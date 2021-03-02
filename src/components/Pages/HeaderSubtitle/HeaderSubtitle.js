@@ -6,7 +6,7 @@ function HeaderSubtitle() {
   const { ...state } = useTheme();
   return (
     <HeaderTitleStyled theme={state.colors}>
-      Ready to cook for dinner?
+      Ya sabés qué pedir para hoy?
     </HeaderTitleStyled>
   );
 }

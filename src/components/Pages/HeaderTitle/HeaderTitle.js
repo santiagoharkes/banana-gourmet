@@ -6,7 +6,7 @@ import { useTheme } from "Context/ThemeContext";
 function HeaderTitle() {
   const { ...state } = useTheme();
   return (
-    <HeaderTitleStyled theme={state.colors}>Hi, Santiago</HeaderTitleStyled>
+    <HeaderTitleStyled theme={state.colors}>Hola, Santiago!</HeaderTitleStyled>
   );
 }
 

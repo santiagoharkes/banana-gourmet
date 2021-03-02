@@ -1,5 +1,6 @@
 const darkTheme = {
   backgroundColor: "#212121",
+  backgroundColorSecondary: "#272727",
   textColor: "#eaeaea",
   yellow: "#fbc320",
   subtitleColor: "#b0b0b0",
@@ -7,6 +8,7 @@ const darkTheme = {
 
 const lightTheme = {
   backgroundColor: "#eaeaea",
+  backgroundColorSecondary: "#ddd",
   textColor: "#212121",
   yellow: "#fbc320",
   subtitleColor: "#373737",

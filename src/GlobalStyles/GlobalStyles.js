@@ -16,6 +16,13 @@ export const GlobalStyles = createGlobalStyle`
     scrollbar-width: none;
     transition: scrollbar-color .3s;
     transition: all 0.3s;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
   }
 
   *:not(:hover) {
