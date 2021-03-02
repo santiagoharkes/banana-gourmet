@@ -9,6 +9,20 @@ const storage = localStorage.getItem("themeContext")
 
 const initialState = {
   theme: storage,
+  colors:
+    storage === "dark"
+      ? {
+          backgroundColor: "#212121",
+          textColor: "#eaeaea",
+          yellow: "#fbc320",
+          subtitleColor: "#b0b0b0",
+        }
+      : {
+          backgroundColor: "#eaeaea",
+          textColor: "#212121",
+          yellow: "#fbc320",
+          subtitleColor: "#373737",
+        },
 };
 
 export const ThemeProvider = ({ children }) => {

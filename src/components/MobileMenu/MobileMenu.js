@@ -30,9 +30,4 @@ export default MobileMenu;
 // MobileMenuContainer
 // Background
 // Si le pasamos la prop transparent, sera transparente --- transparent
-// Si le pasamos un color, sera ese color --- color="red"
-// Sino, por defecto, sera blanco
-// Text color
-// Si le pasamos la prop dark, el texto será oscuro --- text="dark"
-// Si le pasamos la prop light, el texto será claro --- text="light"
-// Si no le pasamos nada, será light
+// Sino, por defecto, sera dark mode

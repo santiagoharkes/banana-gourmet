@@ -9,7 +9,13 @@ export const MainContainer = styled.div`
   overflow: hidden;
   box-shadow: 0px 0px 10px #00000029;
   position: relative;
-  padding-top: 50px;
+  /* padding-top: 30px; */
+  transition: all 0.3s;
+
+  @media screen and (max-width: 500px) {
+    border-radius: 0;
+    max-width: 500px;
+  }
 `;
 
 // export const MainContainerColor = styled(MainContainer)`

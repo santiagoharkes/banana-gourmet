@@ -3,7 +3,7 @@ import { LayoutContainer } from "./LayoutElements";
 
 function Layout({ children, theme }) {
   return (
-    <LayoutContainer>
+    <LayoutContainer theme={theme}>
       <Main theme={theme}>{children}</Main>
     </LayoutContainer>
   );
