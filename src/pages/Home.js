@@ -8,15 +8,7 @@ import ProductContainer from "components/Pages/ProductContainer/ProductContainer
 import burger from "../img/burger1.jpg";
 
 function Home() {
-  const { changeTheme, ...state } = useTheme();
-
-  const handleTheme = () => {
-    if (state.theme === "dark") {
-      changeTheme("light");
-    } else {
-      changeTheme("dark");
-    }
-  };
+  const { ...state } = useTheme();
 
   return (
     <PageContainer theme={state.colors}>

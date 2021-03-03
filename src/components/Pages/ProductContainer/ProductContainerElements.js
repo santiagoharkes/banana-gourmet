@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 import ScrollContainer from "react-indiana-drag-scroll";
+import AddIcon from "@material-ui/icons/Add";
+import RemoveIcon from "@material-ui/icons/Remove";
 
 export const ProductsTitleContainerStyled = styled.div`
   display: flex;
@@ -76,7 +78,7 @@ export const ProductsListStyled = styled.div`
   gap: 20px;
 `;
 
-export const ProductCartStyled = styled.div`
+export const ProductCardStyled = styled.div`
   background-color: ${(props) => props.theme.backgroundColorSecondary};
   min-height: 50px;
   border-radius: 30px;
@@ -86,6 +88,10 @@ export const ProductCartStyled = styled.div`
   align-items: center;
   padding: 10px 20px;
   cursor: pointer;
+
+  &:hover img {
+    transform: scale(1.1);
+  }
 `;
 
 export const ImageCardContainerStyled = styled.div`
@@ -94,10 +100,6 @@ export const ImageCardContainerStyled = styled.div`
   width: 120px;
   overflow: hidden;
   margin-bottom: 15px;
-
-  &:hover img {
-    transform: scale(1.1);
-  }
 
   img {
     object-fit: cover;
@@ -118,6 +120,7 @@ export const PriceCardStyled = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  margin-bottom: 10px;
 `;
 
 export const PriceCardIconStyled = styled(AttachMoneyIcon)`
@@ -135,4 +138,40 @@ export const PriceCardIconStyled = styled(AttachMoneyIcon)`
 export const PriceCardTextStyled = styled.h3`
   color: ${(props) => props.theme.textColor};
   font-size: 1.5rem;
+`;
+
+export const AddProductStyled = styled.div`
+  width: 100%;
+  border-radius: 30px;
+  height: 35px;
+  background-color: ${(props) => props.theme.yellow};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+`;
+
+export const AddIconStyled = styled(AddIcon)`
+  position: absolute;
+  height: 100% !important;
+  top: 0;
+  right: 0;
+  background-color: ${(props) => props.theme.yellow};
+  width: auto !important;
+  padding: 5px;
+`;
+
+export const RemoveIconStyled = styled(RemoveIcon)`
+  position: absolute;
+  height: 100% !important;
+  top: 0;
+  left: 0;
+  background-color: ${(props) => props.theme.yellow};
+  width: auto !important;
+  padding: 5px;
+`;
+
+export const AllProductsStyled = styled.div`
+  padding-bottom: 100px;
 `;

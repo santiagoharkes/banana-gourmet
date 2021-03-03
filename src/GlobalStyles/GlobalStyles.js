@@ -28,4 +28,9 @@ export const GlobalStyles = createGlobalStyle`
   *:not(:hover) {
     scrollbar-color: transparent transparent !important;
   }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 `;

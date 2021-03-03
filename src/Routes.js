@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Layout from "layout/Layout";
 
 import Home from "pages/Home";
+import Nada from "pages/Nada";
 
 import { useTheme } from "Context/ThemeContext";
 
@@ -18,13 +19,14 @@ function Routes() {
   }, [state.theme]);
 
   return (
-    <Layout theme={theme}>
-      <Router>
+    <Router>
+      <Layout theme={theme}>
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route exact path="/pelotudo" component={Nada} />
         </Switch>
-      </Router>
-    </Layout>
+      </Layout>
+    </Router>
   );
 }
 

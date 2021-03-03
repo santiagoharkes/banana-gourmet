@@ -1,19 +1,25 @@
 import {
+  AllProductsStyled,
   ProductsTitleContainerStyled,
   ProductsTitleStyled,
   ProductsSeeAllStyled,
   CategoryListStyled,
   CategoryBadgeStyled,
   ProductsListStyled,
-  ProductCartStyled,
+  ProductCardStyled,
   ImageCardContainerStyled,
   TextCardContainerStyled,
   PriceCardStyled,
   PriceCardIconStyled,
   PriceCardTextStyled,
+  AddProductStyled,
+  AddIconStyled,
+  RemoveIconStyled,
 } from "./ProductContainerElements";
 
-import ScrollContainer from "react-indiana-drag-scroll";
+import { Link } from "react-router-dom";
+
+import BlockIcon from "@material-ui/icons/Block";
 
 import { useTheme } from "Context/ThemeContext";
 
@@ -25,61 +31,122 @@ import PizzaCard from "../../../img/pizzacard.jpg";
 function ProductContainer() {
   const { theme, ...state } = useTheme();
   return (
-    <div>
+    <AllProductsStyled>
       <ProductsTitleContainerStyled>
         <ProductsTitleStyled theme={state.colors}>Menú</ProductsTitleStyled>
         <ProductsSeeAllStyled dark={theme} theme={state.colors}>
-          Ver todos
+          <Link to="/pelotudo">Ver todos</Link>
         </ProductsSeeAllStyled>
       </ProductsTitleContainerStyled>
       <CategoryListStyled>
-        <CategoryBadgeStyled dark={theme} theme={state.colors}>
-          <img src={BurgerIcon} alt="" />
-          Burgers
-        </CategoryBadgeStyled>
-        <CategoryBadgeStyled dark={theme} theme={state.colors} active>
-          <img src={PizzaIcon} alt="" />
-          Pizzas
-        </CategoryBadgeStyled>
-        <CategoryBadgeStyled dark={theme} theme={state.colors}>
-          <img src={ChambucheIcon} alt="" />
-          Chambuchitos
-        </CategoryBadgeStyled>
-        <CategoryBadgeStyled dark={theme} theme={state.colors}>
-          <img src={ChambucheIcon} alt="" />
-          Chambuchitos
-        </CategoryBadgeStyled>
-        <CategoryBadgeStyled dark={theme} theme={state.colors}>
-          <img src={ChambucheIcon} alt="" />
-          Chambuchitos
-        </CategoryBadgeStyled>
-        <CategoryBadgeStyled dark={theme} theme={state.colors}>
-          <img src={ChambucheIcon} alt="" />
-          Chambuchitos
-        </CategoryBadgeStyled>
-        <CategoryBadgeStyled dark={theme} theme={state.colors}>
-          <img src={ChambucheIcon} alt="" />
-          Chambuchitos
-        </CategoryBadgeStyled>
+        <Link to="/pelotudo">
+          <CategoryBadgeStyled dark={theme} theme={state.colors}>
+            <img src={BurgerIcon} alt="" />
+            Burgers
+          </CategoryBadgeStyled>
+        </Link>
+        <Link to="/pelotudo">
+          <CategoryBadgeStyled dark={theme} theme={state.colors} active>
+            <img src={PizzaIcon} alt="" />
+            Pizzas
+          </CategoryBadgeStyled>
+        </Link>
+        <Link to="/pelotudo">
+          <CategoryBadgeStyled dark={theme} theme={state.colors}>
+            <img src={ChambucheIcon} alt="" />
+            Chambuchitos
+          </CategoryBadgeStyled>
+        </Link>
+        <Link to="/pelotudo">
+          <CategoryBadgeStyled dark={theme} theme={state.colors}>
+            <BlockIcon />
+            Chambuchitos
+          </CategoryBadgeStyled>
+        </Link>
+        <Link to="/pelotudo">
+          <CategoryBadgeStyled dark={theme} theme={state.colors}>
+            <BlockIcon />
+            Chambuchitos
+          </CategoryBadgeStyled>
+        </Link>
+        <Link to="/pelotudo">
+          <CategoryBadgeStyled dark={theme} theme={state.colors}>
+            <BlockIcon />
+            Chambuchitos
+          </CategoryBadgeStyled>
+        </Link>
+        <Link to="/pelotudo">
+          <CategoryBadgeStyled dark={theme} theme={state.colors}>
+            <BlockIcon />
+            Chambuchitos
+          </CategoryBadgeStyled>
+        </Link>
       </CategoryListStyled>
 
       <ProductsListStyled>
-        <ProductCartStyled dark={theme} theme={state.colors}>
-          <ImageCardContainerStyled>
-            <img src={PizzaCard} alt="" />
-          </ImageCardContainerStyled>
-          <TextCardContainerStyled dark={theme} theme={state.colors}>
-            Pizza Tranca
-          </TextCardContainerStyled>
-          <PriceCardStyled>
-            <PriceCardIconStyled dark={theme} theme={state.colors} />
-            <PriceCardTextStyled dark={theme} theme={state.colors}>
-              159,99
-            </PriceCardTextStyled>
-          </PriceCardStyled>
-        </ProductCartStyled>
+        <Link to="/pelotudo">
+          <ProductCardStyled dark={theme} theme={state.colors}>
+            <ImageCardContainerStyled>
+              <img src={PizzaCard} alt="" />
+            </ImageCardContainerStyled>
+            <TextCardContainerStyled dark={theme} theme={state.colors}>
+              Pizza Tranca
+            </TextCardContainerStyled>
+            <PriceCardStyled>
+              <PriceCardIconStyled dark={theme} theme={state.colors} />
+              <PriceCardTextStyled dark={theme} theme={state.colors}>
+                159,99
+              </PriceCardTextStyled>
+            </PriceCardStyled>
+            <AddProductStyled dark={theme} theme={state.colors}>
+              <p>Agregar</p>
+            </AddProductStyled>
+          </ProductCardStyled>
+        </Link>
+
+        <Link to="/pelotudo">
+          <ProductCardStyled dark={theme} theme={state.colors}>
+            <ImageCardContainerStyled>
+              <img src={PizzaCard} alt="" />
+            </ImageCardContainerStyled>
+            <TextCardContainerStyled dark={theme} theme={state.colors}>
+              Pizza Tranca
+            </TextCardContainerStyled>
+            <PriceCardStyled>
+              <PriceCardIconStyled dark={theme} theme={state.colors} />
+              <PriceCardTextStyled dark={theme} theme={state.colors}>
+                159,99
+              </PriceCardTextStyled>
+            </PriceCardStyled>
+            <AddProductStyled dark={theme} theme={state.colors}>
+              <AddIconStyled />
+              1
+              <RemoveIconStyled />
+            </AddProductStyled>
+          </ProductCardStyled>
+        </Link>
+
+        <Link to="/pelotudo">
+          <ProductCardStyled dark={theme} theme={state.colors}>
+            <ImageCardContainerStyled>
+              <img src={PizzaCard} alt="" />
+            </ImageCardContainerStyled>
+            <TextCardContainerStyled dark={theme} theme={state.colors}>
+              Pizza Tranca
+            </TextCardContainerStyled>
+            <PriceCardStyled>
+              <PriceCardIconStyled dark={theme} theme={state.colors} />
+              <PriceCardTextStyled dark={theme} theme={state.colors}>
+                159,99
+              </PriceCardTextStyled>
+            </PriceCardStyled>
+            <AddProductStyled dark={theme} theme={state.colors}>
+              <p>Agregar</p>
+            </AddProductStyled>
+          </ProductCardStyled>
+        </Link>
       </ProductsListStyled>
-    </div>
+    </AllProductsStyled>
   );
 }
 
