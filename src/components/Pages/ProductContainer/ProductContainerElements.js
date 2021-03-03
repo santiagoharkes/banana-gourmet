@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
+import ScrollContainer from "react-indiana-drag-scroll";
 
 export const ProductsTitleContainerStyled = styled.div`
   display: flex;
@@ -24,12 +25,12 @@ export const ProductsSeeAllStyled = styled.p`
   }
 `;
 
-export const CategoryListStyled = styled.div`
+export const CategoryListStyled = styled(ScrollContainer)`
   display: flex;
   justify-content: flex-start;
   align-items: center;
   overflow-x: scroll;
-  margin: 0 -20px;
+  margin: 0 -15px;
 `;
 
 export const CategoryBadgeStyled = styled.div`
@@ -53,7 +54,11 @@ export const CategoryBadgeStyled = styled.div`
   margin-bottom: 20px;
 
   &:first-child {
-    margin-left: 20px;
+    margin-left: 15px;
+  }
+
+  &:last-child {
+    margin-right: 20px;
   }
 
   img {

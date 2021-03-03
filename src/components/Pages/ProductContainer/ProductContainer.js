@@ -13,6 +13,8 @@ import {
   PriceCardTextStyled,
 } from "./ProductContainerElements";
 
+import ScrollContainer from "react-indiana-drag-scroll";
+
 import { useTheme } from "Context/ThemeContext";
 
 import BurgerIcon from "../../../img/burgerIcon.png";
@@ -43,7 +45,24 @@ function ProductContainer() {
           <img src={ChambucheIcon} alt="" />
           Chambuchitos
         </CategoryBadgeStyled>
+        <CategoryBadgeStyled dark={theme} theme={state.colors}>
+          <img src={ChambucheIcon} alt="" />
+          Chambuchitos
+        </CategoryBadgeStyled>
+        <CategoryBadgeStyled dark={theme} theme={state.colors}>
+          <img src={ChambucheIcon} alt="" />
+          Chambuchitos
+        </CategoryBadgeStyled>
+        <CategoryBadgeStyled dark={theme} theme={state.colors}>
+          <img src={ChambucheIcon} alt="" />
+          Chambuchitos
+        </CategoryBadgeStyled>
+        <CategoryBadgeStyled dark={theme} theme={state.colors}>
+          <img src={ChambucheIcon} alt="" />
+          Chambuchitos
+        </CategoryBadgeStyled>
       </CategoryListStyled>
+
       <ProductsListStyled>
         <ProductCartStyled dark={theme} theme={state.colors}>
           <ImageCardContainerStyled>

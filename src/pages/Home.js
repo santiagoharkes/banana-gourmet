@@ -23,19 +23,6 @@ function Home() {
       <HeaderContainer />
       <Popular dark={state.theme} theme={state.colors} img={burger} />
       <ProductContainer />
-
-      <button
-        style={{
-          position: "absolute",
-          bottom: "10px",
-          left: "0",
-          width: "100%",
-          padding: "10px",
-        }}
-        onClick={handleTheme}
-      >
-        Cambiar tema
-      </button>
     </PageContainer>
   );
 }

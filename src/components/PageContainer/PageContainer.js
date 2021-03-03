@@ -5,6 +5,7 @@ import { useTheme } from "Context/ThemeContext";
 
 function PageContainer({ children, theme, bgColor }) {
   const { ...state } = useTheme();
+
   return (
     <PageContainerStyled
       bgColor={bgColor ? bgColor : theme.backgroundColor}
