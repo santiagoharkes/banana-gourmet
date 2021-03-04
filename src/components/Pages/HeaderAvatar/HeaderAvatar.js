@@ -1,6 +1,6 @@
 import { AvatarImageStyled } from "./HeaderAvatarElements";
 
-import AvatarImage from "../../../img/avatar.png";
+import AvatarImage from "../../../img/avatar.webp";
 
 import { useTheme } from "Context/ThemeContext";
 

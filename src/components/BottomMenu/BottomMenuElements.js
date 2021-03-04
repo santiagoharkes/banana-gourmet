@@ -3,7 +3,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 
 export const BottomMenuContainerStyled = styled.div`
-  height: 90px;
+  height: 70px;
   background: ${(props) => props.theme.backgroundColor};
   position: absolute;
   bottom: 0;
@@ -14,7 +14,7 @@ export const BottomMenuContainerStyled = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  padding: 20px;
+  padding: 10px;
   color: ${(props) => props.theme.textColor};
 
   a {

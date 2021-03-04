@@ -23,10 +23,10 @@ import BlockIcon from "@material-ui/icons/Block";
 
 import { useTheme } from "Context/ThemeContext";
 
-import BurgerIcon from "../../../img/burgerIcon.png";
-import PizzaIcon from "../../../img/pizzaIcon.jpg";
-import ChambucheIcon from "../../../img/sandwichIcon.png";
-import PizzaCard from "../../../img/pizzacard.jpg";
+import BurgerIcon from "../../../img/burgerIcon.webp";
+import PizzaIcon from "../../../img/pizzaIcon.webp";
+import ChambucheIcon from "../../../img/sandwichIcon.webp";
+import PizzaCard from "../../../img/pizzacard.webp";
 
 function ProductContainer() {
   const { theme, ...state } = useTheme();
@@ -35,56 +35,77 @@ function ProductContainer() {
       <ProductsTitleContainerStyled>
         <ProductsTitleStyled theme={state.colors}>Menú</ProductsTitleStyled>
         <ProductsSeeAllStyled dark={theme} theme={state.colors}>
-          <Link to="/pelotudo">Ver todos</Link>
+          <Link to="/garralapala">Ver todos</Link>
         </ProductsSeeAllStyled>
       </ProductsTitleContainerStyled>
       <CategoryListStyled>
-        <Link to="/pelotudo">
-          <CategoryBadgeStyled dark={theme} theme={state.colors}>
-            <img src={BurgerIcon} alt="" />
-            Burgers
-          </CategoryBadgeStyled>
-        </Link>
-        <Link to="/pelotudo">
-          <CategoryBadgeStyled dark={theme} theme={state.colors} active>
-            <img src={PizzaIcon} alt="" />
-            Pizzas
-          </CategoryBadgeStyled>
-        </Link>
-        <Link to="/pelotudo">
-          <CategoryBadgeStyled dark={theme} theme={state.colors}>
-            <img src={ChambucheIcon} alt="" />
-            Chambuchitos
-          </CategoryBadgeStyled>
-        </Link>
-        <Link to="/pelotudo">
-          <CategoryBadgeStyled dark={theme} theme={state.colors}>
-            <BlockIcon />
-            Chambuchitos
-          </CategoryBadgeStyled>
-        </Link>
-        <Link to="/pelotudo">
-          <CategoryBadgeStyled dark={theme} theme={state.colors}>
-            <BlockIcon />
-            Chambuchitos
-          </CategoryBadgeStyled>
-        </Link>
-        <Link to="/pelotudo">
-          <CategoryBadgeStyled dark={theme} theme={state.colors}>
-            <BlockIcon />
-            Chambuchitos
-          </CategoryBadgeStyled>
-        </Link>
-        <Link to="/pelotudo">
-          <CategoryBadgeStyled dark={theme} theme={state.colors}>
-            <BlockIcon />
-            Chambuchitos
-          </CategoryBadgeStyled>
-        </Link>
+        <CategoryBadgeStyled
+          dark={theme}
+          theme={state.colors}
+          to="/garralapala"
+        >
+          <img src={BurgerIcon} alt="" />
+          Burgers
+        </CategoryBadgeStyled>
+
+        <CategoryBadgeStyled
+          dark={theme}
+          theme={state.colors}
+          active
+          to="/garralapala"
+        >
+          <img src={PizzaIcon} alt="" />
+          Pizzas
+        </CategoryBadgeStyled>
+
+        <CategoryBadgeStyled
+          dark={theme}
+          theme={state.colors}
+          to="/garralapala"
+        >
+          <img src={ChambucheIcon} alt="" />
+          Chambuchitos
+        </CategoryBadgeStyled>
+
+        <CategoryBadgeStyled
+          dark={theme}
+          theme={state.colors}
+          to="/garralapala"
+        >
+          <BlockIcon />
+          Category test
+        </CategoryBadgeStyled>
+
+        <CategoryBadgeStyled
+          dark={theme}
+          theme={state.colors}
+          to="/garralapala"
+        >
+          <BlockIcon />
+          Category test
+        </CategoryBadgeStyled>
+
+        <CategoryBadgeStyled
+          dark={theme}
+          theme={state.colors}
+          to="/garralapala"
+        >
+          <BlockIcon />
+          Category test
+        </CategoryBadgeStyled>
+
+        <CategoryBadgeStyled
+          dark={theme}
+          theme={state.colors}
+          to="/garralapala"
+        >
+          <BlockIcon />
+          Category test
+        </CategoryBadgeStyled>
       </CategoryListStyled>
 
       <ProductsListStyled>
-        <Link to="/pelotudo">
+        <Link to="/garralapala">
           <ProductCardStyled dark={theme} theme={state.colors}>
             <ImageCardContainerStyled>
               <img src={PizzaCard} alt="" />
@@ -104,7 +125,7 @@ function ProductContainer() {
           </ProductCardStyled>
         </Link>
 
-        <Link to="/pelotudo">
+        <Link to="/garralapala">
           <ProductCardStyled dark={theme} theme={state.colors}>
             <ImageCardContainerStyled>
               <img src={PizzaCard} alt="" />
@@ -126,7 +147,7 @@ function ProductContainer() {
           </ProductCardStyled>
         </Link>
 
-        <Link to="/pelotudo">
+        <Link to="/garralapala">
           <ProductCardStyled dark={theme} theme={state.colors}>
             <ImageCardContainerStyled>
               <img src={PizzaCard} alt="" />

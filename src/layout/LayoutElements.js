@@ -16,13 +16,13 @@ export const LayoutContainer = styled.div`
 
   button {
     position: absolute;
-    bottom: 90px;
+    bottom: 0;
+    right: 0;
     width: 50px;
     padding: 10px;
     height: 50px;
-    border-radius: 50%;
+    border-radius: 50% 0 0 0;
     border: none;
-    right: 25px;
     cursor: pointer;
     display: flex;
     justify-content: center;

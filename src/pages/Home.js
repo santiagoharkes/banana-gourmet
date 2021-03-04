@@ -5,7 +5,7 @@ import HeaderContainer from "components/Pages/HeaderContainer/HeaderContainer";
 import Popular from "components/Pages/Popular/Popular";
 import ProductContainer from "components/Pages/ProductContainer/ProductContainer";
 
-import burger from "../img/burger1.jpg";
+import burger from "../img/burger1.webp";
 
 function Home() {
   const { ...state } = useTheme();

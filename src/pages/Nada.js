@@ -1,5 +1,3 @@
-import { useTheme } from "Context/ThemeContext";
-
 import { TituloNada, Explicacion, VolverAtras } from "./NadaElements";
 
 import PageContainer from "components/PageContainer/PageContainer";
@@ -7,8 +5,6 @@ import PageContainer from "components/PageContainer/PageContainer";
 import { Link } from "react-router-dom";
 
 function Home() {
-  const { ...state } = useTheme();
-
   return (
     <PageContainer bgColor="#ff002d">
       <TituloNada>

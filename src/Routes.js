@@ -23,7 +23,7 @@ function Routes() {
       <Layout theme={theme}>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/pelotudo" component={Nada} />
+          <Route exact path="/garralapala" component={Nada} />
         </Switch>
       </Layout>
     </Router>
