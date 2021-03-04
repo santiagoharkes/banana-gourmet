@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import Layout from "layout/Layout";
+import { useTheme } from "Context/ThemeContext";
 
+import Layout from "layout/Layout";
 import Home from "pages/Home";
 import Nada from "pages/Nada";
-
-import { useTheme } from "Context/ThemeContext";
+import Login from "pages/Login";
+import Register from "pages/Register";
 
 function Routes() {
   const { ...state } = useTheme();
@@ -23,6 +23,8 @@ function Routes() {
       <Layout theme={theme}>
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
           <Route exact path="/garralapala" component={Nada} />
         </Switch>
       </Layout>
@@ -31,3 +33,10 @@ function Routes() {
 }
 
 export default Routes;
+
+// DOCS
+
+// PageContainer
+
+// Si se le pasa bgColor, toma ese color de fondo. El color es cualquier color válido en css "red, #fff, etc" como string
+// Sino, por defecto es el del tema (dark o light)

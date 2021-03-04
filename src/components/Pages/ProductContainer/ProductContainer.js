@@ -6,15 +6,6 @@ import {
   CategoryListStyled,
   CategoryBadgeStyled,
   ProductsListStyled,
-  ProductCardStyled,
-  ImageCardContainerStyled,
-  TextCardContainerStyled,
-  PriceCardStyled,
-  PriceCardIconStyled,
-  PriceCardTextStyled,
-  AddProductStyled,
-  AddIconStyled,
-  RemoveIconStyled,
 } from "./ProductContainerElements";
 
 import { Link } from "react-router-dom";
@@ -28,144 +19,61 @@ import PizzaIcon from "../../../img/pizzaIcon.webp";
 import ChambucheIcon from "../../../img/sandwichIcon.webp";
 import PizzaCard from "../../../img/pizzacard.webp";
 
+import ProductCard from "../ProductCard/ProductCard";
+
 function ProductContainer() {
-  const { theme, ...state } = useTheme();
+  const { theme } = useTheme();
   return (
     <AllProductsStyled>
       <ProductsTitleContainerStyled>
-        <ProductsTitleStyled theme={state.colors}>Menú</ProductsTitleStyled>
-        <ProductsSeeAllStyled dark={theme} theme={state.colors}>
+        <ProductsTitleStyled>Menú</ProductsTitleStyled>
+        <ProductsSeeAllStyled dark={theme}>
           <Link to="/garralapala">Ver todos</Link>
         </ProductsSeeAllStyled>
       </ProductsTitleContainerStyled>
       <CategoryListStyled>
-        <CategoryBadgeStyled
-          dark={theme}
-          theme={state.colors}
-          to="/garralapala"
-        >
+        <CategoryBadgeStyled dark={theme} to="/garralapala">
           <img src={BurgerIcon} alt="" />
           Burgers
         </CategoryBadgeStyled>
 
-        <CategoryBadgeStyled
-          dark={theme}
-          theme={state.colors}
-          active
-          to="/garralapala"
-        >
+        <CategoryBadgeStyled dark={theme} active to="/garralapala">
           <img src={PizzaIcon} alt="" />
           Pizzas
         </CategoryBadgeStyled>
 
-        <CategoryBadgeStyled
-          dark={theme}
-          theme={state.colors}
-          to="/garralapala"
-        >
+        <CategoryBadgeStyled dark={theme} to="/garralapala">
           <img src={ChambucheIcon} alt="" />
           Chambuchitos
         </CategoryBadgeStyled>
 
-        <CategoryBadgeStyled
-          dark={theme}
-          theme={state.colors}
-          to="/garralapala"
-        >
+        <CategoryBadgeStyled dark={theme} to="/garralapala">
           <BlockIcon />
           Category test
         </CategoryBadgeStyled>
 
-        <CategoryBadgeStyled
-          dark={theme}
-          theme={state.colors}
-          to="/garralapala"
-        >
+        <CategoryBadgeStyled dark={theme} to="/garralapala">
           <BlockIcon />
           Category test
         </CategoryBadgeStyled>
 
-        <CategoryBadgeStyled
-          dark={theme}
-          theme={state.colors}
-          to="/garralapala"
-        >
+        <CategoryBadgeStyled dark={theme} to="/garralapala">
           <BlockIcon />
           Category test
         </CategoryBadgeStyled>
 
-        <CategoryBadgeStyled
-          dark={theme}
-          theme={state.colors}
-          to="/garralapala"
-        >
+        <CategoryBadgeStyled dark={theme} to="/garralapala">
           <BlockIcon />
           Category test
         </CategoryBadgeStyled>
       </CategoryListStyled>
 
       <ProductsListStyled>
-        <Link to="/garralapala">
-          <ProductCardStyled dark={theme} theme={state.colors}>
-            <ImageCardContainerStyled>
-              <img src={PizzaCard} alt="" />
-            </ImageCardContainerStyled>
-            <TextCardContainerStyled dark={theme} theme={state.colors}>
-              Pizza Tranca
-            </TextCardContainerStyled>
-            <PriceCardStyled>
-              <PriceCardIconStyled dark={theme} theme={state.colors} />
-              <PriceCardTextStyled dark={theme} theme={state.colors}>
-                159,99
-              </PriceCardTextStyled>
-            </PriceCardStyled>
-            <AddProductStyled dark={theme} theme={state.colors}>
-              <p>Agregar</p>
-            </AddProductStyled>
-          </ProductCardStyled>
-        </Link>
+        <ProductCard img={PizzaCard} />
 
-        <Link to="/garralapala">
-          <ProductCardStyled dark={theme} theme={state.colors}>
-            <ImageCardContainerStyled>
-              <img src={PizzaCard} alt="" />
-            </ImageCardContainerStyled>
-            <TextCardContainerStyled dark={theme} theme={state.colors}>
-              Pizza Tranca
-            </TextCardContainerStyled>
-            <PriceCardStyled>
-              <PriceCardIconStyled dark={theme} theme={state.colors} />
-              <PriceCardTextStyled dark={theme} theme={state.colors}>
-                159,99
-              </PriceCardTextStyled>
-            </PriceCardStyled>
-            <AddProductStyled dark={theme} theme={state.colors}>
-              <AddIconStyled />
-              1
-              <RemoveIconStyled />
-            </AddProductStyled>
-          </ProductCardStyled>
-        </Link>
+        <ProductCard img={PizzaCard} />
 
-        <Link to="/garralapala">
-          <ProductCardStyled dark={theme} theme={state.colors}>
-            <ImageCardContainerStyled>
-              <img src={PizzaCard} alt="" />
-            </ImageCardContainerStyled>
-            <TextCardContainerStyled dark={theme} theme={state.colors}>
-              Pizza Tranca
-            </TextCardContainerStyled>
-            <PriceCardStyled>
-              <PriceCardIconStyled dark={theme} theme={state.colors} />
-              <PriceCardTextStyled dark={theme} theme={state.colors}>
-                159,99
-              </PriceCardTextStyled>
-            </PriceCardStyled>
-            <AddProductStyled dark={theme} theme={state.colors}>
-              <p>Agregar</p>
-            </AddProductStyled>
-          </ProductCardStyled>
-        </Link>
+        <ProductCard img={PizzaCard} />
       </ProductsListStyled>
     </AllProductsStyled>
   );

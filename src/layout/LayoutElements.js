@@ -14,8 +14,8 @@ export const LayoutContainer = styled.div`
       100%
   );
 
-  button {
-    position: absolute;
+  & > button {
+    position: fixed;
     bottom: 0;
     right: 0;
     width: 50px;

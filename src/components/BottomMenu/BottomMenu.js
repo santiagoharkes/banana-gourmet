@@ -1,3 +1,5 @@
+import { ThemeProvider } from "styled-components";
+
 import {
   BottomMenuContainerStyled,
   SearchIconStyled,
@@ -14,17 +16,19 @@ import ZapiLogo from "../../img/zapilogo.webp";
 function BottomMenu() {
   const { theme, ...state } = useTheme();
   return (
-    <BottomMenuContainerStyled dark={theme} theme={state.colors}>
-      <Link to="/garralapala">
-        <SearchIconStyled />
-      </Link>
-      <Link to="/">
-        <ZapiLogoStyled src={ZapiLogo} />
-      </Link>
-      <Link to="/garralapala">
-        <CartIconStyled />
-      </Link>
-    </BottomMenuContainerStyled>
+    <ThemeProvider theme={state.colors}>
+      <BottomMenuContainerStyled dark={theme}>
+        <Link to="/garralapala">
+          <SearchIconStyled />
+        </Link>
+        <Link to="/">
+          <ZapiLogoStyled src={ZapiLogo} />
+        </Link>
+        <Link to="/garralapala">
+          <CartIconStyled />
+        </Link>
+      </BottomMenuContainerStyled>
+    </ThemeProvider>
   );
 }
 

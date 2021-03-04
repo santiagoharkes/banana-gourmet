@@ -1,3 +1,5 @@
+import { ThemeProvider } from "styled-components";
+
 import { useTheme } from "Context/ThemeContext";
 
 import PageContainer from "components/PageContainer/PageContainer";
@@ -11,11 +13,13 @@ function Home() {
   const { ...state } = useTheme();
 
   return (
-    <PageContainer theme={state.colors}>
-      <HeaderContainer />
-      <Popular dark={state.theme} theme={state.colors} img={burger} />
-      <ProductContainer />
-    </PageContainer>
+    <ThemeProvider theme={state.colors}>
+      <PageContainer theme={state.colors}>
+        <HeaderContainer />
+        <Popular dark={state.theme} img={burger} />
+        <ProductContainer />
+      </PageContainer>
+    </ThemeProvider>
   );
 }
 
