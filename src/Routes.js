@@ -9,6 +9,7 @@ import Nada from "pages/Nada";
 import Login from "pages/Login";
 import Register from "pages/Register";
 import Cart from "pages/Cart";
+import Product from "pages/Product";
 
 function Routes() {
   const { ...state } = useTheme();
@@ -27,6 +28,7 @@ function Routes() {
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/cart" component={Cart} />
+          <Route exact path="/product/:id" component={Product} />
           <Route exact path="/garralapala" component={Nada} />
         </Switch>
       </Layout>

@@ -75,8 +75,8 @@ export const CategoryBadgeStyled = styled(Link)`
 
 export const ProductsListStyled = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(2, 47%);
+  gap: 6%;
 `;
 
 export const AllProductsStyled = styled.div`

@@ -18,6 +18,10 @@ export const CartTotalContainerStyled = styled.div`
   justify-content: space-between;
   align-items: center;
   box-shadow: 0px 2px 8px #0000002b;
+
+  @media screen and (max-width: 500px) and (max-height: 850px) {
+    position: fixed;
+  }
 `;
 
 export const BuyButtonStyled = styled.button`
