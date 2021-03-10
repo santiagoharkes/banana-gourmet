@@ -24,7 +24,7 @@ function BottomMenu() {
         <Link to="/">
           <ZapiLogoStyled src={ZapiLogo} />
         </Link>
-        <Link to="/garralapala">
+        <Link to="/cart">
           <CartIconStyled />
         </Link>
       </BottomMenuContainerStyled>

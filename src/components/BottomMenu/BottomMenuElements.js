@@ -23,6 +23,10 @@ export const BottomMenuContainerStyled = styled.div`
     justify-content: center;
     align-items: center;
   }
+
+  @media screen and (max-width: 500px) and (max-height: 850px) {
+    position: fixed;
+  }
 `;
 
 export const SearchIconStyled = styled(SearchIcon)``;

@@ -16,6 +16,12 @@ export const MainContainer = styled.div`
     border-radius: 0;
     max-width: 500px;
   }
+
+  @media screen and (max-width: 500px) and (max-height: 850px) {
+    width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+  }
 `;
 
 // export const MainContainerColor = styled(MainContainer)`
