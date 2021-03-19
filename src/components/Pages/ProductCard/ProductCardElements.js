@@ -9,10 +9,11 @@ export const ProductCardStyled = styled.div`
   border-radius: 30px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
   cursor: pointer;
+  height: 100%;
 
   &:hover img {
     transform: scale(1.1);
@@ -41,6 +42,7 @@ export const TextCardContainerStyled = styled.div`
   color: ${(props) => props.theme.textColor};
   font-size: 1rem;
   margin-bottom: 10px;
+  text-align: center;
 `;
 
 export const PriceCardStyled = styled.div`

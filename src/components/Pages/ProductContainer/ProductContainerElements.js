@@ -13,6 +13,17 @@ export const ProductsTitleStyled = styled.h3`
   font-size: 1.25rem;
 `;
 
+export const ErrorMessageStyled = styled(ProductsTitleStyled)`
+  text-align: center;
+`;
+
+export const ErrorDescriptionStyled = styled.p`
+  color: ${(props) => props.theme.subtitleColor};
+  font-size: 1rem;
+  font-weight: 300;
+  text-align: center;
+`;
+
 export const ProductsSeeAllStyled = styled.p`
   color: ${(props) => props.theme.textColor};
   font-size: 0.75rem;

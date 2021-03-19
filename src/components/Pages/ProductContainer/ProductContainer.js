@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useQuery } from "react-query";
 
 import {
   AllProductsStyled,
@@ -14,40 +13,13 @@ import {
 // import BlockIcon from "@material-ui/icons/Block";
 
 import { useTheme } from "Context/Theme/ThemeContext";
-// import { useAxios } from "../../../hooks/useAxios";
 
 import ProductCard from "../ProductCard/ProductCard";
 
-function ProductContainer() {
+function ProductContainer({ productos, categorias }) {
   const { theme } = useTheme();
-  // const axios = useAxios();
 
-  // const fetchProducts = async () => {
-  //   const res = await axios.get("/productos");
-  //   return res.json();
-  // };
-
-  // const fetchCategories = async () => {
-  //   const res = await axios.get("/categorias");
-  //   return res.json();
-  // };
-
-  // const {
-  //   data: productos,
-  //   isLoading: productsLoading,
-  //   isError: productsError,
-  // } = useQuery("products", fetchProducts);
-
-  // const {
-  //   data: categorias,
-  //   isLoading: categoriesLoading,
-  //   isError: categoriesError,
-  // } = useQuery("categories", fetchCategories);
-
-  // console.log({ productos });
-  // console.log({ categorias });
-
-  const [categoryName, setCategoryName] = useState("");
+  const [categoryName, setCategoryName] = useState(null);
 
   const handleCategoryClick = (categoria) => {
     setCategoryName(categoria);
@@ -59,41 +31,43 @@ function ProductContainer() {
         <ProductsTitleStyled>Menú</ProductsTitleStyled>
         <ProductsSeeAllStyled
           dark={theme}
-          onClick={() => setCategoryName("Todos")}
+          onClick={() => setCategoryName(null)}
         >
           Ver todos
         </ProductsSeeAllStyled>
       </ProductsTitleContainerStyled>
-      {/* <CategoryListStyled>
-        {categorias.map(({ nombre, img }) => (
+      <CategoryListStyled>
+        {categorias?.data.map(({ nombre, img }) => (
           <CategoryBadgeStyled
             dark={theme}
             onClick={() => handleCategoryClick(nombre)}
             active={categoryName === nombre ? true : null}
           >
-            <img src={img.url} alt="" />
+            <img
+              src={`${process.env.REACT_APP_API_ENDPOINT}${img.url}`}
+              alt=""
+            />
             {nombre}
           </CategoryBadgeStyled>
         ))}
       </CategoryListStyled>
 
       <ProductsListStyled>
-        {productos.map((producto) => (
-          <ProductCard img={producto.img} />
-        ))}
-      </ProductsListStyled> */}
-      <CategoryListStyled>
-        <CategoryBadgeStyled
-          dark={theme}
-          onClick={() => handleCategoryClick("dfdsfsdfdsf")}
-        >
-          <img src="" alt="" />
-          fgdfgdfgdfg
-        </CategoryBadgeStyled>
-      </CategoryListStyled>
-
-      <ProductsListStyled>
-        <ProductCard img="" />
+        {categoryName
+          ? productos?.data
+              .filter((producto) => producto.categoria.nombre === categoryName)
+              .map((producto) => (
+                <ProductCard
+                  img={`${process.env.REACT_APP_API_ENDPOINT}${producto.img[0].url}`}
+                  data={producto}
+                />
+              ))
+          : productos?.data.map((producto) => (
+              <ProductCard
+                img={`${process.env.REACT_APP_API_ENDPOINT}${producto.img[0].url}`}
+                data={producto}
+              />
+            ))}
       </ProductsListStyled>
     </AllProductsStyled>
   );

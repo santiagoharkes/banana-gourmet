@@ -27,7 +27,9 @@ export function AxiosProvider({ children }) {
     return axios;
   }, []);
 
-  return <AxiosProvider value={axios}>{children}</AxiosProvider>;
+  return (
+    <AxiosContext.Provider value={axios}>{children}</AxiosContext.Provider>
+  );
 }
 
 export const useAxios = () => useContext(AxiosContext);

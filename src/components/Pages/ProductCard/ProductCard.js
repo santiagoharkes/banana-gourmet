@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 
 import { useTheme } from "Context/Theme/ThemeContext";
 
-function ProductCard({ img }) {
+function ProductCard({ img, data }) {
   const { theme } = useTheme();
   return (
     <Link replace to="/product/1">
@@ -23,11 +23,11 @@ function ProductCard({ img }) {
           <img src={img} alt="" />
         </ImageCardContainerStyled>
         <TextCardContainerStyled dark={theme}>
-          Pizza Tranca
+          {data.nombre}
         </TextCardContainerStyled>
         <PriceCardStyled>
           <PriceCardIconStyled dark={theme} />
-          <PriceCardTextStyled dark={theme}>159,99</PriceCardTextStyled>
+          <PriceCardTextStyled dark={theme}>{data.precio}</PriceCardTextStyled>
         </PriceCardStyled>
         <AddProductStyled dark={theme}>
           <p>Agregar</p>
