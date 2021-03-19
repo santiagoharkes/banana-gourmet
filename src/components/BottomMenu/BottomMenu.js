@@ -7,7 +7,7 @@ import {
   ZapiLogoStyled,
 } from "./BottomMenuElements";
 
-import { useTheme } from "Context/ThemeContext";
+import { useTheme } from "Context/Theme/ThemeContext";
 
 import { Link } from "react-router-dom";
 
@@ -18,13 +18,13 @@ function BottomMenu() {
   return (
     <ThemeProvider theme={state.colors}>
       <BottomMenuContainerStyled dark={theme}>
-        <Link to="/garralapala">
+        <Link replace to="/garralapala">
           <SearchIconStyled />
         </Link>
-        <Link to="/">
+        <Link replace to="/">
           <ZapiLogoStyled src={ZapiLogo} />
         </Link>
-        <Link to="/cart">
+        <Link replace to="/cart">
           <CartIconStyled />
         </Link>
       </BottomMenuContainerStyled>

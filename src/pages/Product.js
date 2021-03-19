@@ -2,9 +2,11 @@ import { ThemeProvider } from "styled-components";
 
 import PageContainer from "components/PageContainer/PageContainer";
 import { ProductContainerStyled, ProductImageStyled } from "./ProductElements";
-import { useTheme } from "Context/ThemeContext";
+import HeaderTitle from "components/Pages/HeaderTitle/HeaderTitle";
+import HeaderSubtitle from "components/Pages/HeaderSubtitle/HeaderSubtitle";
+import { useTheme } from "Context/Theme/ThemeContext";
 
-import PizzaImage from "../img/pizzacard.webp";
+import PizzaTranqui from "../img/pizzaTranqui.webp";
 
 function Product() {
   const { theme, ...state } = useTheme();
@@ -12,8 +14,10 @@ function Product() {
     <ThemeProvider theme={state.colors}>
       <PageContainer theme={state.colors}>
         <ProductContainerStyled>
+          <HeaderTitle>Pizza Tranqui</HeaderTitle>
+          <HeaderSubtitle>Una pizza normalita pa salir del paso</HeaderSubtitle>
           <ProductImageStyled>
-            <img src={PizzaImage} alt="" />
+            <img src={PizzaTranqui} alt="" />
           </ProductImageStyled>
         </ProductContainerStyled>
       </PageContainer>

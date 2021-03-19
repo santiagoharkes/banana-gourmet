@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import { useTheme } from "Context/ThemeContext";
+import { useTheme } from "Context/Theme/ThemeContext";
 
 import Layout from "layout/Layout";
 import Home from "pages/Home";

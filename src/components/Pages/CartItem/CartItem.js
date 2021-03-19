@@ -12,7 +12,7 @@ import {
   CloseIconStyled,
 } from "./CartItemElements";
 
-import { useTheme } from "Context/ThemeContext";
+import { useTheme } from "Context/Theme/ThemeContext";
 
 function CartItem({ img, data: { title, price } }) {
   const { theme } = useTheme();

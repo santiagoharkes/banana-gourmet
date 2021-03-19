@@ -2,7 +2,7 @@ import Main from "components/Main/Main";
 import { LayoutContainer } from "./LayoutElements";
 import Brightness3Icon from "@material-ui/icons/Brightness3";
 import WbSunnyIcon from "@material-ui/icons/WbSunny";
-import { useTheme } from "Context/ThemeContext";
+import { useTheme } from "Context/Theme/ThemeContext";
 
 function Layout({ children, theme }) {
   const { changeTheme, ...state } = useTheme();

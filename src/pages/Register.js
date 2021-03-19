@@ -7,7 +7,7 @@ import {
   ButtonSubmitStyled,
   GoToRegister,
 } from "./RegisterElements";
-import { useTheme } from "Context/ThemeContext";
+import { useTheme } from "Context/Theme/ThemeContext";
 import PageContainer from "components/PageContainer/PageContainer";
 import HeaderTitle from "components/Pages/HeaderTitle/HeaderTitle";
 import HeaderSubtitle from "components/Pages/HeaderSubtitle/HeaderSubtitle";
@@ -31,7 +31,9 @@ function Login() {
           <GoToRegister theme={state.colors} dark={theme}>
             Ya tenés una cuenta?
             <span>
-              <Link to="/login">Login!</Link>
+              <Link replace to="/login">
+                Login!
+              </Link>
             </span>
           </GoToRegister>
         </FormStyled>

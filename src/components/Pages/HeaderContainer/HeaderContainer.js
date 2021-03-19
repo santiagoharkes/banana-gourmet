@@ -17,7 +17,7 @@ function HeaderContainer() {
         <HeaderTitle>Hola, Santiago!</HeaderTitle>
         <HeaderSubtitle>Ya sabés qué pedir para hoy?</HeaderSubtitle>
       </HeaderTitleStyled>
-      <Link to="/login">
+      <Link replace to="/login">
         <HeaderAvatar />
       </Link>
     </HeaderContainerStyled>

@@ -1,7 +1,6 @@
 import { ThemeProvider } from "styled-components";
 
-import { useTheme } from "Context/ThemeContext";
-
+import { useTheme } from "Context/Theme/ThemeContext";
 import PageContainer from "components/PageContainer/PageContainer";
 import HeaderContainer from "components/Pages/HeaderContainer/HeaderContainer";
 import Popular from "components/Pages/Popular/Popular";

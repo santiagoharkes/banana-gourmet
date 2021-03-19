@@ -15,7 +15,7 @@ function Home() {
         Todavía no hay nada en funcionamiento, así que te recomiendo que vuelvas
         atrás y esperes a que me ponga a laburar
       </Explicacion>
-      <Link to="/">
+      <Link replace to="/">
         <VolverAtras>VOLVER</VolverAtras>
       </Link>
     </PageContainer>

@@ -2,9 +2,8 @@
 import { HeaderTitleStyled } from "./HeaderTitleElements";
 
 function HeaderTitle({ children, color }) {
-  console.log(color);
   return (
-    <HeaderTitleStyled color={color ? color : false}>
+    <HeaderTitleStyled color={color ? color : null}>
       {children}
     </HeaderTitleStyled>
   );

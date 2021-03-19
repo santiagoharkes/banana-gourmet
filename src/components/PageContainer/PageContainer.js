@@ -1,7 +1,7 @@
 import React from "react";
 
 import { PageContainerStyled } from "./PageContainerElements";
-import { useTheme } from "Context/ThemeContext";
+import { useTheme } from "Context/Theme/ThemeContext";
 
 function PageContainer({ children, theme, bgColor }) {
   const { ...state } = useTheme();

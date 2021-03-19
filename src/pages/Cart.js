@@ -4,14 +4,14 @@ import HeaderSubtitle from "components/Pages/HeaderSubtitle/HeaderSubtitle";
 import CartItem from "components/Pages/CartItem/CartItem";
 
 import { ThemeProvider } from "styled-components";
-import { useTheme } from "Context/ThemeContext";
+import { useTheme } from "Context/Theme/ThemeContext";
 import {
   CartContainer,
   CartTotalContainerStyled,
   BuyButtonStyled,
 } from "./CartElements";
 
-import PizzaCard from "../img/pizzacard.webp";
+import PizzaTranqui from "../img/pizzaTranqui.webp";
 
 function Cart() {
   const { theme, ...state } = useTheme();
@@ -68,7 +68,7 @@ function Cart() {
         </HeaderSubtitle>
         <CartContainer>
           {data.map((item) => (
-            <CartItem img={PizzaCard} data={item} />
+            <CartItem img={PizzaTranqui} data={item} />
           ))}
         </CartContainer>
         <CartTotalContainerStyled>

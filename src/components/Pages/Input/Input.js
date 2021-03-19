@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { useTheme } from "Context/ThemeContext";
+import { useTheme } from "Context/Theme/ThemeContext";
 import { InputContainerSyled, InputStyled, LabelStyled } from "./InputElements";
 
 function Input({ type, label }) {

@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 
 function Popular({ img, theme, dark }) {
   return (
-    <Link to="/garralapala">
+    <Link replace to="/garralapala">
       <PopularCardStyled dark={dark} theme={theme}>
         <PopularImageStyled src={img} />
         <p>Burgers</p>

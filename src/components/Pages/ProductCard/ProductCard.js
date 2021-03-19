@@ -12,12 +12,12 @@ import {
 
 import { Link } from "react-router-dom";
 
-import { useTheme } from "Context/ThemeContext";
+import { useTheme } from "Context/Theme/ThemeContext";
 
 function ProductCard({ img }) {
   const { theme } = useTheme();
   return (
-    <Link to="/garralapala">
+    <Link replace to="/product/1">
       <ProductCardStyled dark={theme}>
         <ImageCardContainerStyled>
           <img src={img} alt="" />

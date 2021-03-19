@@ -16,6 +16,7 @@ export const ProductCardStyled = styled.div`
 
   &:hover img {
     transform: scale(1.1);
+    filter: contrast(100%);
   }
 `;
 
@@ -32,6 +33,7 @@ export const ImageCardContainerStyled = styled.div`
     width: 100%;
     height: 100%;
     object-position: center;
+    filter: contrast(75%);
   }
 `;
 

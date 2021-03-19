@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import ScrollContainer from "react-indiana-drag-scroll";
 
-import { Link } from "react-router-dom";
-
 export const ProductsTitleContainerStyled = styled.div`
   display: flex;
   justify-content: space-between;
@@ -34,7 +32,7 @@ export const CategoryListStyled = styled(ScrollContainer)`
   margin: 0 -15px;
 `;
 
-export const CategoryBadgeStyled = styled(Link)`
+export const CategoryBadgeStyled = styled.div`
   padding: 5px 10px;
   background-color: ${(props) =>
     props.active ? props.theme.yellow : props.theme.backgroundColorSecondary};
@@ -76,7 +74,8 @@ export const CategoryBadgeStyled = styled(Link)`
 export const ProductsListStyled = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 47%);
-  gap: 6%;
+  gap: 20px;
+  row-gap: 20px;
 `;
 
 export const AllProductsStyled = styled.div`
