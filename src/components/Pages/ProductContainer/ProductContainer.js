@@ -52,10 +52,7 @@ function ProductContainer({ productos, categorias }) {
           ? productos?.data
               .filter((producto) => producto.categoria.nombre === categoria)
               .map((producto) => (
-                <ProductCard
-                  img={`${process.env.REACT_APP_API_ENDPOINT}${producto.img[0].url}`}
-                  data={producto}
-                />
+                <ProductCard img={`${producto.img[0].url}`} data={producto} />
               ))
           : productos?.data.map((producto) => (
               <ProductCard img={`${producto.img[0].url}`} data={producto} />
