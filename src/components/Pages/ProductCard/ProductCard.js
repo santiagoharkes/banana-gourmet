@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import {
   ProductCardStyled,
@@ -11,14 +11,13 @@ import {
   AddIconStyled,
   RemoveIconStyled,
 } from "./ProductCardElements";
+import { useProducts } from "Context/Products/ProductsContext";
 import { useTheme } from "Context/Theme/ThemeContext";
 import { useCart } from "Context/Cart/CartContext";
-import { useState } from "react";
 
 function ProductCard({ img, data }) {
-  const [itemInCart, setItemInCart] = useState(null);
-
   const { theme } = useTheme();
+
   const {
     sumarProducto,
     restarProducto,
@@ -27,19 +26,27 @@ function ProductCard({ img, data }) {
     eliminarProducto,
   } = useCart();
 
+  const { storeProducto } = useProducts();
+
+  const history = useHistory();
+
   const isInCart = (product) => {
     const isInCart = !!cartItems.find((item) => item.id === product.id);
     const itemInCart = isInCart
       ? cartItems.find((item) => item.id === product.id)
       : null;
-    console.log({ itemInCart });
     return itemInCart;
+  };
+
+  const handleClick = () => {
+    storeProducto(data);
+    history.push("/product/1");
   };
 
   return (
     <>
       <ProductCardStyled dark={theme}>
-        <Link replace to="/product/1">
+        <div onClick={handleClick}>
           <ImageCardContainerStyled>
             <img src={img} alt="" />
           </ImageCardContainerStyled>
@@ -52,7 +59,7 @@ function ProductCard({ img, data }) {
               {data.precio}
             </PriceCardTextStyled>
           </PriceCardStyled>
-        </Link>
+        </div>
 
         {isInCart(data) && isInCart(data).quantity > 0 && (
           <AddProductStyled dark={theme}>

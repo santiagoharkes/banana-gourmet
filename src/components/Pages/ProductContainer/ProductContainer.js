@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import {
   AllProductsStyled,
   ProductsTitleContainerStyled,
@@ -43,10 +41,7 @@ function ProductContainer({ productos, categorias }) {
             onClick={() => storeCategories(nombre)}
             active={categoria === nombre ? true : null}
           >
-            <img
-              src={`${process.env.REACT_APP_API_ENDPOINT}${img.url}`}
-              alt=""
-            />
+            <img src={`${img.url}`} alt="" />
             {nombre}
           </CategoryBadgeStyled>
         ))}
@@ -63,10 +58,7 @@ function ProductContainer({ productos, categorias }) {
                 />
               ))
           : productos?.data.map((producto) => (
-              <ProductCard
-                img={`${process.env.REACT_APP_API_ENDPOINT}${producto.img[0].url}`}
-                data={producto}
-              />
+              <ProductCard img={`${producto.img[0].url}`} data={producto} />
             ))}
       </ProductsListStyled>
     </AllProductsStyled>
