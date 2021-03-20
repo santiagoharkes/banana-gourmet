@@ -39,13 +39,7 @@ function Product() {
             )}
           </TitleContainerStyled>
           <ProductImageStyled>
-            <img
-              src={
-                producto &&
-                `${process.env.REACT_APP_API_ENDPOINT}${producto.img[0].url}`
-              }
-              alt=""
-            />
+            <img src={producto && `${producto.img[0].url}`} alt="" />
           </ProductImageStyled>
           <DescriptionTitle>Descripción:</DescriptionTitle>
           <HeaderSubtitle>{producto?.descripcion}</HeaderSubtitle>
