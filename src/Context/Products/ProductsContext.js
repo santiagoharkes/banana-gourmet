@@ -6,24 +6,17 @@ const ProductsContext = createContext();
 
 export const ProductsProvider = ({ children }) => {
   const initialState = {
-    productos: [],
-    categorias: [],
+    categoria: null,
   };
 
   const [state, dispatch] = useReducer(ProductsReducer, initialState);
-
-  const storeProducts = (payload) => {
-    dispatch({ type: "ADD_PRODUCTS", payload });
-  };
 
   const storeCategories = (payload) => {
     dispatch({ type: "ADD_CATEGORIES", payload });
   };
 
   return (
-    <ProductsContext.Provider
-      value={{ ...state, storeProducts, storeCategories }}
-    >
+    <ProductsContext.Provider value={{ ...state, storeCategories }}>
       {children}
     </ProductsContext.Provider>
   );

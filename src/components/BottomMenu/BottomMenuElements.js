@@ -35,4 +35,24 @@ export const ZapiLogoStyled = styled.img`
   max-height: 100%;
 `;
 
+export const CartIconContainerStyled = styled.div`
+  position: relative;
+`;
+
+export const ItemCountStyled = styled.div`
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  top: -10px;
+  right: -10px;
+  background-color: ${(props) => props.theme.yellow};
+  color: black;
+  padding: 5px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.7em;
+`;
+
 export const CartIconStyled = styled(ShoppingCartIcon)``;

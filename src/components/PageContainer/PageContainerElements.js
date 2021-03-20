@@ -12,4 +12,5 @@ export const PageContainerStyled = styled.div`
   width: 100%;
   overflow: scroll;
   transition: all 0.5s ease;
+  min-height: 80%;
 `;

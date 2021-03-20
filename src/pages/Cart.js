@@ -1,8 +1,11 @@
+import React from "react";
 import PageContainer from "components/PageContainer/PageContainer";
 import HeaderTitle from "components/Pages/HeaderTitle/HeaderTitle";
 import HeaderSubtitle from "components/Pages/HeaderSubtitle/HeaderSubtitle";
 import CartItem from "components/Pages/CartItem/CartItem";
+import NoItemsCart from "components/NoItemsCart/NoItemsCart";
 
+import { useCart } from "../Context/Cart/CartContext";
 import { ThemeProvider } from "styled-components";
 import { useTheme } from "Context/Theme/ThemeContext";
 import {
@@ -16,48 +19,9 @@ import PizzaTranqui from "../img/pizzaTranqui.webp";
 function Cart() {
   const { theme, ...state } = useTheme();
 
-  const data = [
-    {
-      title: "Pizza tranca palanca",
-      price: 125,
-      description: "Es una pizza tranquila",
-    },
-    {
-      title: "Pizza la terrible del oeste",
-      price: 195,
-      description: "Es una pizza terrible",
-    },
-    {
-      title: "Pizza tranca palanca",
-      price: 125,
-      description: "Es una pizza tranquila",
-    },
-    {
-      title: "Pizza la terrible del oeste",
-      price: 195,
-      description: "Es una pizza terrible",
-    },
-    {
-      title: "Pizza tranca palanca",
-      price: 125,
-      description: "Es una pizza tranquila",
-    },
-    {
-      title: "Pizza la terrible del oeste",
-      price: 195,
-      description: "Es una pizza terrible",
-    },
-    {
-      title: "Pizza tranca palanca",
-      price: 125,
-      description: "Es una pizza tranquila",
-    },
-    {
-      title: "Pizza la terrible del oeste",
-      price: 195,
-      description: "Es una pizza terrible",
-    },
-  ];
+  const { cartItems, total } = useCart();
+
+  console.log({ cartItems });
 
   return (
     <ThemeProvider theme={state.colors}>
@@ -67,14 +31,17 @@ function Cart() {
           Aquí están los productos que seleccionaste
         </HeaderSubtitle>
         <CartContainer>
-          {data.map((item) => (
-            <CartItem img={PizzaTranqui} data={item} />
-          ))}
+          {cartItems.length === 0 && <NoItemsCart h="100" />}
+          {cartItems.map((item) => {
+            return <CartItem img={PizzaTranqui} data={item} />;
+          })}
         </CartContainer>
-        <CartTotalContainerStyled>
-          <HeaderTitle>Total: $125</HeaderTitle>
-          <BuyButtonStyled>Comprar!</BuyButtonStyled>
-        </CartTotalContainerStyled>
+        {total > 0 && (
+          <CartTotalContainerStyled>
+            <HeaderTitle>Total: ${total}</HeaderTitle>
+            <BuyButtonStyled>Comprar!</BuyButtonStyled>
+          </CartTotalContainerStyled>
+        )}
       </PageContainer>
     </ThemeProvider>
   );

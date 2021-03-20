@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 
 import {
@@ -5,16 +6,20 @@ import {
   SearchIconStyled,
   CartIconStyled,
   ZapiLogoStyled,
+  CartIconContainerStyled,
+  ItemCountStyled,
 } from "./BottomMenuElements";
 
 import { useTheme } from "Context/Theme/ThemeContext";
-
-import { Link } from "react-router-dom";
+import { useCart } from "Context/Cart/CartContext";
 
 import ZapiLogo from "../../img/zapilogo.webp";
 
 function BottomMenu() {
   const { theme, ...state } = useTheme();
+
+  const { itemCount } = useCart();
+
   return (
     <ThemeProvider theme={state.colors}>
       <BottomMenuContainerStyled dark={theme}>
@@ -25,7 +30,10 @@ function BottomMenu() {
           <ZapiLogoStyled src={ZapiLogo} />
         </Link>
         <Link replace to="/cart">
-          <CartIconStyled />
+          <CartIconContainerStyled>
+            {itemCount >= 1 && <ItemCountStyled>{itemCount}</ItemCountStyled>}
+            <CartIconStyled />
+          </CartIconContainerStyled>
         </Link>
       </BottomMenuContainerStyled>
     </ThemeProvider>

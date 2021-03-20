@@ -5,6 +5,8 @@ import { QueryClient, QueryClientProvider } from "react-query";
 // Components
 import Routes from "Routes";
 import { ThemeProvider } from "Context/Theme/ThemeContext";
+import { ProductsProvider } from "Context/Products/ProductsContext";
+import { CartContextProvider } from "Context/Cart/CartContext";
 import { AxiosProvider } from "hooks/useAxios";
 
 // Styles
@@ -17,8 +19,12 @@ ReactDOM.render(
     <AxiosProvider>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider>
-          <GlobalStyles />
-          <Routes />
+          <ProductsProvider>
+            <CartContextProvider>
+              <GlobalStyles />
+              <Routes />
+            </CartContextProvider>
+          </ProductsProvider>
         </ThemeProvider>
       </QueryClientProvider>
     </AxiosProvider>

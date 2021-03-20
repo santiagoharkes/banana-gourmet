@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import {
   ProductCardStyled,
   ImageCardContainerStyled,
@@ -6,39 +8,73 @@ import {
   PriceCardIconStyled,
   PriceCardTextStyled,
   AddProductStyled,
-  // AddIconStyled,
-  // RemoveIconStyled,
+  AddIconStyled,
+  RemoveIconStyled,
 } from "./ProductCardElements";
-
-import { Link } from "react-router-dom";
-
 import { useTheme } from "Context/Theme/ThemeContext";
+import { useCart } from "Context/Cart/CartContext";
+import { useState } from "react";
 
 function ProductCard({ img, data }) {
+  const [itemInCart, setItemInCart] = useState(null);
+
   const { theme } = useTheme();
+  const {
+    sumarProducto,
+    restarProducto,
+    agregarProducto,
+    cartItems,
+    eliminarProducto,
+  } = useCart();
+
+  const isInCart = (product) => {
+    const isInCart = !!cartItems.find((item) => item.id === product.id);
+    const itemInCart = isInCart
+      ? cartItems.find((item) => item.id === product.id)
+      : null;
+    console.log({ itemInCart });
+    return itemInCart;
+  };
+
   return (
-    <Link replace to="/product/1">
+    <>
       <ProductCardStyled dark={theme}>
-        <ImageCardContainerStyled>
-          <img src={img} alt="" />
-        </ImageCardContainerStyled>
-        <TextCardContainerStyled dark={theme}>
-          {data.nombre}
-        </TextCardContainerStyled>
-        <PriceCardStyled>
-          <PriceCardIconStyled dark={theme} />
-          <PriceCardTextStyled dark={theme}>{data.precio}</PriceCardTextStyled>
-        </PriceCardStyled>
-        <AddProductStyled dark={theme}>
-          <p>Agregar</p>
-        </AddProductStyled>
-        {/* <AddProductStyled dark={theme}>
-          <AddIconStyled />
-          1
-          <RemoveIconStyled />
-        </AddProductStyled> */}
+        <Link replace to="/product/1">
+          <ImageCardContainerStyled>
+            <img src={img} alt="" />
+          </ImageCardContainerStyled>
+          <TextCardContainerStyled dark={theme}>
+            {data.nombre}
+          </TextCardContainerStyled>
+          <PriceCardStyled>
+            <PriceCardIconStyled dark={theme} />
+            <PriceCardTextStyled dark={theme}>
+              {data.precio}
+            </PriceCardTextStyled>
+          </PriceCardStyled>
+        </Link>
+
+        {isInCart(data) && isInCart(data).quantity > 0 && (
+          <AddProductStyled dark={theme}>
+            <AddIconStyled onClick={() => sumarProducto(data)} />
+            {isInCart(data).quantity}
+            <RemoveIconStyled
+              onClick={
+                isInCart(data).quantity <= 1
+                  ? () => eliminarProducto(data)
+                  : () => restarProducto(data)
+              }
+            />
+          </AddProductStyled>
+        )}
+
+        {(!isInCart(data) || isInCart(data).quantity < 1) && (
+          <AddProductStyled dark={theme} onClick={() => agregarProducto(data)}>
+            <p>Agregar</p>
+          </AddProductStyled>
+        )}
       </ProductCardStyled>
-    </Link>
+    </>
   );
 }
 

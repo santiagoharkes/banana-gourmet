@@ -13,17 +13,17 @@ import {
 // import BlockIcon from "@material-ui/icons/Block";
 
 import { useTheme } from "Context/Theme/ThemeContext";
+import { useProducts } from "Context/Products/ProductsContext";
 
 import ProductCard from "../ProductCard/ProductCard";
 
 function ProductContainer({ productos, categorias }) {
   const { theme } = useTheme();
+  const { storeCategories, categoria } = useProducts();
 
-  const [categoryName, setCategoryName] = useState(null);
-
-  const handleCategoryClick = (categoria) => {
-    setCategoryName(categoria);
-  };
+  // const handleCategoryClick = (categoria) => {
+  //   storeCategories(categoria);
+  // };
 
   return (
     <AllProductsStyled>
@@ -31,7 +31,7 @@ function ProductContainer({ productos, categorias }) {
         <ProductsTitleStyled>Menú</ProductsTitleStyled>
         <ProductsSeeAllStyled
           dark={theme}
-          onClick={() => setCategoryName(null)}
+          onClick={() => storeCategories(null)}
         >
           Ver todos
         </ProductsSeeAllStyled>
@@ -40,8 +40,8 @@ function ProductContainer({ productos, categorias }) {
         {categorias?.data.map(({ nombre, img }) => (
           <CategoryBadgeStyled
             dark={theme}
-            onClick={() => handleCategoryClick(nombre)}
-            active={categoryName === nombre ? true : null}
+            onClick={() => storeCategories(nombre)}
+            active={categoria === nombre ? true : null}
           >
             <img
               src={`${process.env.REACT_APP_API_ENDPOINT}${img.url}`}
@@ -53,9 +53,9 @@ function ProductContainer({ productos, categorias }) {
       </CategoryListStyled>
 
       <ProductsListStyled>
-        {categoryName
+        {categoria
           ? productos?.data
-              .filter((producto) => producto.categoria.nombre === categoryName)
+              .filter((producto) => producto.categoria.nombre === categoria)
               .map((producto) => (
                 <ProductCard
                   img={`${process.env.REACT_APP_API_ENDPOINT}${producto.img[0].url}`}

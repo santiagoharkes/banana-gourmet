@@ -36,9 +36,6 @@ function Home() {
     isError: categoriesError,
   } = useQuery("categories", fetchCategories);
 
-  console.log({ productos });
-  console.log({ categorias });
-
   return (
     <ThemeProvider theme={state.colors}>
       <PageContainer theme={state.colors}>
