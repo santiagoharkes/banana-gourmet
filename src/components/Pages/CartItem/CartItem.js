@@ -23,10 +23,7 @@ function CartItem({ data: { img, nombre, precio, ...data } }) {
     <CartItemStyled>
       <CloseIconStyled onClick={() => eliminarProducto(data)} />
       <ImageCardContainerStyled>
-        <img
-          src={`${process.env.REACT_APP_API_ENDPOINT}${img[0].url}`}
-          alt=""
-        />
+        <img src={`${img[0].url}`} alt="" />
       </ImageCardContainerStyled>
       <TextContainer>{nombre}</TextContainer>
       <PriceAddStyledContainer>
