@@ -4,22 +4,32 @@ import {
   HeaderTitleStyled,
 } from "./HeaderContainerElements";
 
-import { Link } from "react-router-dom";
-
+import { useAuth } from "Context/Auth/AuthContext";
+import { useMenu } from "Context/Menu/MenuContext";
 import HeaderTitle from "../HeaderTitle/HeaderTitle";
 import HeaderSubtitle from "../HeaderSubtitle/HeaderSubtitle";
 import HeaderAvatar from "../HeaderAvatar/HeaderAvatar";
 
 function HeaderContainer() {
+  const { user, logout } = useAuth();
+
   return (
     <HeaderContainerStyled>
       <HeaderTitleStyled>
-        <HeaderTitle>Hola, Santiago!</HeaderTitle>
+        <HeaderTitle>
+          Hola, {user ? `${user.user.nombre}!` : `cómo estás?`}
+        </HeaderTitle>
         <HeaderSubtitle>Ya sabés qué pedir para hoy?</HeaderSubtitle>
       </HeaderTitleStyled>
-      <Link replace to="/login">
-        <HeaderAvatar />
-      </Link>
+      {/* {user ? (
+        <HeaderAvatar onClick={logout} />
+      ) : (
+        <Link replace to="/login">
+          <HeaderAvatar />
+        </Link>
+      )} */}
+
+      <HeaderAvatar />
     </HeaderContainerStyled>
   );
 }

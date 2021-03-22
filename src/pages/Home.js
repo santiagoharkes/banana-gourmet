@@ -3,18 +3,23 @@ import { useQuery } from "react-query";
 
 import { useAxios } from "../hooks/useAxios";
 import { useTheme } from "Context/Theme/ThemeContext";
+import { useAuth } from "Context/Auth/AuthContext";
+import { useMenu } from "Context/Menu/MenuContext";
 import PageContainer from "components/PageContainer/PageContainer";
 import HeaderContainer from "components/Pages/HeaderContainer/HeaderContainer";
 import Popular from "components/Pages/Popular/Popular";
 import ProductContainer from "components/Pages/ProductContainer/ProductContainer";
 import Loading from "components/Loading/Loading";
 import { ErrorMessageStyled, ErrorDescriptionStyled } from "./HomeElements";
+import Sidebar from "components/Sidebar/Sidebar";
 
 import burger from "../img/burger1.webp";
 
 function Home() {
   const { ...state } = useTheme();
+  const { loading: userLoading } = useAuth();
   const axios = useAxios();
+  const { isVisible } = useMenu();
 
   const fetchProducts = () => {
     return axios.get("/productos");
@@ -39,7 +44,8 @@ function Home() {
   return (
     <ThemeProvider theme={state.colors}>
       <PageContainer theme={state.colors}>
-        <HeaderContainer />
+        <Sidebar />
+
         {productsError || categoriesError ? (
           <>
             <ErrorMessageStyled>
@@ -49,10 +55,11 @@ function Home() {
               Por favor, intentá más tarde
             </ErrorDescriptionStyled>
           </>
-        ) : productsLoading || categoriesLoading ? (
-          <Loading h="80" />
+        ) : productsLoading || categoriesLoading || userLoading ? (
+          <Loading h="100" />
         ) : (
           <>
+            <HeaderContainer />
             <Popular dark={state.theme} img={burger} />
             <ProductContainer productos={productos} categorias={categorias} />
           </>

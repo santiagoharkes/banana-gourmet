@@ -16,6 +16,7 @@ export const BottomMenuContainerStyled = styled.div`
   align-items: center;
   padding: 10px;
   color: ${(props) => props.theme.textColor};
+  z-index: 100;
 
   a {
     height: 100%;

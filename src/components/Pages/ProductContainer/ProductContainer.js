@@ -35,8 +35,9 @@ function ProductContainer({ productos, categorias }) {
         </ProductsSeeAllStyled>
       </ProductsTitleContainerStyled>
       <CategoryListStyled>
-        {categorias?.data.map(({ nombre, img }) => (
+        {categorias?.data.map(({ nombre, img, _id }) => (
           <CategoryBadgeStyled
+            key={_id}
             dark={theme}
             onClick={() => storeCategories(nombre)}
             active={categoria === nombre ? true : null}
@@ -52,10 +53,18 @@ function ProductContainer({ productos, categorias }) {
           ? productos?.data
               .filter((producto) => producto.categoria.nombre === categoria)
               .map((producto) => (
-                <ProductCard img={`${producto.img[0].url}`} data={producto} />
+                <ProductCard
+                  key={producto._id}
+                  img={`${producto.img[0].url}`}
+                  data={producto}
+                />
               ))
           : productos?.data.map((producto) => (
-              <ProductCard img={`${producto.img[0].url}`} data={producto} />
+              <ProductCard
+                key={producto._id}
+                img={`${producto.img[0].url}`}
+                data={producto}
+              />
             ))}
       </ProductsListStyled>
     </AllProductsStyled>

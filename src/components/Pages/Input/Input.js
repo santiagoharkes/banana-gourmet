@@ -3,19 +3,18 @@ import React, { useState } from "react";
 import { useTheme } from "Context/Theme/ThemeContext";
 import { InputContainerSyled, InputStyled, LabelStyled } from "./InputElements";
 
-function Input({ type, label }) {
+function Input({ type, label, onChange, value, name }) {
   const { theme } = useTheme();
   const [isActive, setIsActive] = useState(false);
-  const [value, setValue] = useState("");
 
-  function handleTextChange(text) {
-    setValue(text);
-
-    if (text !== "") {
+  function handleTextChange(e) {
+    if (e.target.value !== "") {
       setIsActive(true);
     } else {
       setIsActive(false);
     }
+
+    onChange(e);
   }
 
   return (
@@ -24,7 +23,8 @@ function Input({ type, label }) {
         type={type}
         dark={theme}
         value={value}
-        onChange={(e) => handleTextChange(e.target.value)}
+        onChange={(e) => handleTextChange(e)}
+        name={name}
       />
       <LabelStyled className={isActive ? "active" : ""} htmlFor={type}>
         {label}

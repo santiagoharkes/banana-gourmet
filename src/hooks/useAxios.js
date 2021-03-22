@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useMemo } from "react";
 import Axios from "axios";
+import Cookies from "js-cookie";
 
 export const AxiosContext = createContext(Axios);
 
@@ -14,11 +15,14 @@ export function AxiosProvider({ children }) {
 
     axios.interceptors.request.use((config) => {
       // Leer el token desde localStorage
+      // const data = localStorage.getItem("authData") || null;
+      // const authData = data ? JSON.parse(data) : null;
 
-      const data = localStorage.getItem("authData") || null;
-      const authData = data ? JSON.parse(data) : null;
-      if (authData?.token) {
-        config.headers.Authorization = `Bearer ${authData?.token}`;
+      // Leer el token desde Cookies
+      const token = Cookies.get("token") || null;
+
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
       }
 
       return config;

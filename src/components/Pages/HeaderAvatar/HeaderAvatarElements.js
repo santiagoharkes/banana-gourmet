@@ -8,4 +8,5 @@ export const AvatarImageStyled = styled.img`
   padding: 5px 0 0;
   object-fit: contain;
   border: 1px solid #fbc320;
+  cursor: pointer;
 `;

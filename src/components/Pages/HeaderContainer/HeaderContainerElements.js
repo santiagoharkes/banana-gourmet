@@ -5,6 +5,7 @@ export const HeaderContainerStyled = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 30px;
+  position: relative;
 `;
 
 export const HeaderTitleStyled = styled.div`
