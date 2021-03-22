@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 export const SidebarStyled = styled.div`
   position: absolute;
@@ -55,4 +56,35 @@ export const SidebarBackgroundStyled = styled.div`
     z-index: 9;
     transition: 0.3s ease;
   }
+`;
+
+export const SidebarULStyled = styled.ul`
+  list-style: none;
+`;
+
+export const LiStyled = styled.li`
+  margin: 15px 0;
+  font-size: 1.5em;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34, -0.72, 0, 1.75);
+  transition-delay: none;
+  transform-origin: 0%;
+  opacity: 0.7;
+
+  &:hover {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+`;
+
+export const CloseSidebarStyled = styled.p`
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  font-size: 0.75em;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.7;
 `;

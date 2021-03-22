@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Switch, Route, useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 
 import { useTheme } from "Context/Theme/ThemeContext";
 
@@ -12,18 +13,19 @@ import Cart from "pages/Cart";
 import Product from "pages/Product";
 
 function Routes() {
-  const { ...state } = useTheme();
+  const { theme } = useTheme();
 
-  const [theme, setTheme] = useState("");
+  // const [theme, setTheme] = useState("");
+  const location = useLocation();
 
-  useEffect(() => {
-    setTheme(state.theme);
-  }, [state.theme]);
+  // useEffect(() => {
+  //   setTheme(state.theme);
+  // }, [state.theme]);
 
   return (
-    <Router>
-      <Layout theme={theme}>
-        <Switch>
+    <Layout theme={theme}>
+      <AnimatePresence>
+        <Switch location={location} key={location.key}>
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
@@ -31,8 +33,8 @@ function Routes() {
           <Route exact path="/product/:id" component={Product} />
           <Route exact path="/garralapala" component={Nada} />
         </Switch>
-      </Layout>
-    </Router>
+      </AnimatePresence>
+    </Layout>
   );
 }
 

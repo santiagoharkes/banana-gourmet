@@ -39,8 +39,7 @@ export const TitleContainerStyled = styled.div`
 `;
 
 export const HeartIconInactiveStyled = styled(FavoriteBorderIcon)`
-  color: ${(props) =>
-    props.theme.dark === "dark" ? props.theme.yellow : "red"};
+  color: ${(props) => (props.dark === "dark" ? props.theme.yellow : "red")};
   padding: 5px;
   width: 1.3em !important;
   height: 1.3em !important;
@@ -51,8 +50,7 @@ export const HeartIconInactiveStyled = styled(FavoriteBorderIcon)`
 `;
 
 export const HeartIconActiveStyled = styled(FavoriteIcon)`
-  color: ${(props) =>
-    props.theme.dark === "dark" ? props.theme.yellow : "red"};
+  color: ${(props) => (props.dark === "dark" ? props.theme.yellow : "red")};
   padding: 5px;
   width: 1.3em !important;
   height: 1.3em !important;

@@ -17,15 +17,9 @@ export const MobileMenuContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: ${(props) => {
-    return props.transparent
-      ? "transparent"
-      : props.theme === "dark"
-      ? "#1b1b22"
-      : "#fafafa";
+    return props.transparent ? "transparent" : props.theme.backgroundColor;
   }};
-  color: ${(props) => {
-    return props.theme === "dark" ? "#fafafa" : "#1b1b22";
-  }};
+  color: ${(props) => props.theme.textColor};
   position: absolute;
   top: 0;
   left: 0;

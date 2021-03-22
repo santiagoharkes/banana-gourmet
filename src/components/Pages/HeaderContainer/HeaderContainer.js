@@ -5,7 +5,6 @@ import {
 } from "./HeaderContainerElements";
 
 import { useAuth } from "Context/Auth/AuthContext";
-import { useMenu } from "Context/Menu/MenuContext";
 import HeaderTitle from "../HeaderTitle/HeaderTitle";
 import HeaderSubtitle from "../HeaderSubtitle/HeaderSubtitle";
 import HeaderAvatar from "../HeaderAvatar/HeaderAvatar";

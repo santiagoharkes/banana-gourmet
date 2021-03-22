@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { ThemeProvider } from "styled-components";
 import { Link, useHistory } from "react-router-dom";
 import Cookies from "js-cookie";
 
@@ -8,6 +7,7 @@ import {
   FormStyled,
   ButtonSubmitStyled,
   GoToRegister,
+  TestEmailStyled,
 } from "./LoginElements";
 import { useAxios } from "hooks/useAxios";
 import { useTheme } from "Context/Theme/ThemeContext";
@@ -20,7 +20,7 @@ import PizzaLogin from "../img/pizzaLogin.webp";
 import Loading from "components/Loading/Loading";
 
 function Login() {
-  const { theme, ...state } = useTheme();
+  const { theme } = useTheme();
   const axios = useAxios();
   const { login, setLoading, loading } = useAuth();
   const history = useHistory();
@@ -69,42 +69,48 @@ function Login() {
   };
 
   return (
-    <ThemeProvider theme={state.colors}>
-      <PageContainer theme={state.colors}>
-        <HeaderTitle>Login!</HeaderTitle>
-        <HeaderSubtitle>Iniciá sesión para acceder a tu cuenta</HeaderSubtitle>
-        {loading ? (
-          <Loading h="80" />
-        ) : (
-          <FormStyled onSubmit={onLoginSubmit}>
-            <ImageLoginStyled src={PizzaLogin} />
-            <Input
-              type="email"
-              label="E-mail"
-              name="identifier"
-              value={loginData.identifier}
-              onChange={onInputChange}
-            />
-            <Input
-              type="password"
-              label="Password"
-              name="password"
-              value={loginData.password}
-              onChange={onInputChange}
-            />
-            <ButtonSubmitStyled>Login</ButtonSubmitStyled>
-            <GoToRegister theme={state.colors} dark={theme}>
-              No tenés una cuenta?
-              <span>
-                <Link replace to="/register">
-                  Registrate!
-                </Link>
-              </span>
-            </GoToRegister>
-          </FormStyled>
-        )}
-      </PageContainer>
-    </ThemeProvider>
+    <PageContainer>
+      <HeaderTitle>Login!</HeaderTitle>
+      <HeaderSubtitle>Iniciá sesión para acceder a tu cuenta</HeaderSubtitle>
+      {loading ? (
+        <Loading h="80" />
+      ) : (
+        <FormStyled onSubmit={onLoginSubmit}>
+          <ImageLoginStyled src={PizzaLogin} />
+          <Input
+            type="email"
+            label="E-mail"
+            name="identifier"
+            value={loginData.identifier}
+            onChange={onInputChange}
+          />
+          <Input
+            type="password"
+            label="Password"
+            name="password"
+            value={loginData.password}
+            onChange={onInputChange}
+          />
+          <ButtonSubmitStyled>Login</ButtonSubmitStyled>
+          <GoToRegister dark={theme}>
+            No tenés una cuenta?
+            <span>
+              <Link replace to="/register">
+                Registrate!
+              </Link>
+            </span>
+          </GoToRegister>
+          <TestEmailStyled dark={theme}>
+            test email:
+            <span>test@test.com</span>
+          </TestEmailStyled>
+          <TestEmailStyled dark={theme}>
+            test password:
+            <span>test1234</span>
+          </TestEmailStyled>
+        </FormStyled>
+      )}
+    </PageContainer>
   );
 }
 

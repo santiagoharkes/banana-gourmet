@@ -1,8 +1,8 @@
 import styled from "styled-components";
-
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
-export const NoItemContainer = styled.div`
+export const NoItemContainer = styled(motion.div)`
   height: ${(props) => (props.h ? `${props.h}%` : "50%")};
   display: flex;
   justify-content: center;

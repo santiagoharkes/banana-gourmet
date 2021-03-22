@@ -1,12 +1,9 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
-export const PageContainerStyled = styled.div`
+export const PageContainerStyled = styled(motion.div)`
   background-color: ${(props) =>
-    props.bgColor
-      ? props.bgColor
-      : props.theme === "dark"
-      ? "#1b1b22"
-      : "#fafafa"};
+    props.bgColor ? props.bgColor : props.theme.backgroundColor};
   padding: 50px 20px 20px;
   height: 100%;
   width: 100%;

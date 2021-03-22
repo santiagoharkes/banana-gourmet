@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { ThemeProvider } from "styled-components";
 import { Link, useHistory } from "react-router-dom";
 import Cookies from "js-cookie";
 
@@ -69,59 +68,57 @@ function Login() {
       });
   };
   return (
-    <ThemeProvider theme={state.colors}>
-      <PageContainer theme={state.colors}>
-        <HeaderTitle>Register!</HeaderTitle>
-        <HeaderSubtitle>Registrate para poder hacer un pedido</HeaderSubtitle>
-        {error && <h1>Ocurrio un error</h1>}
-        {loading && !error ? (
-          <Loading h="80" />
-        ) : (
-          <FormStyled onSubmit={onRegisterSubmit}>
-            <ImageLoginStyled src={RegisterImage} />
-            <Input
-              type="text"
-              label="Nombre de usuario"
-              name="username"
-              onChange={onInputChange}
-            />
-            <Input
-              type="text"
-              label="Nombre"
-              name="nombre"
-              onChange={onInputChange}
-            />
-            <Input
-              type="text"
-              label="Apellido"
-              name="apellido"
-              onChange={onInputChange}
-            />
-            <Input
-              type="email"
-              label="E-mail"
-              name="email"
-              onChange={onInputChange}
-            />
-            <Input
-              type="password"
-              label="Password"
-              name="password"
-              onChange={onInputChange}
-            />
-            <ButtonSubmitStyled>Registrate</ButtonSubmitStyled>
-            <GoToRegister theme={state.colors} dark={theme}>
-              Ya tenés una cuenta?
-              <span>
-                <Link replace to="/login">
-                  Login!
-                </Link>
-              </span>
-            </GoToRegister>
-          </FormStyled>
-        )}
-      </PageContainer>
-    </ThemeProvider>
+    <PageContainer>
+      <HeaderTitle>Register!</HeaderTitle>
+      <HeaderSubtitle>Registrate para poder hacer un pedido</HeaderSubtitle>
+      {error && <h1>Ocurrio un error</h1>}
+      {loading && !error ? (
+        <Loading h="80" />
+      ) : (
+        <FormStyled onSubmit={onRegisterSubmit}>
+          <ImageLoginStyled src={RegisterImage} />
+          <Input
+            type="text"
+            label="Nombre de usuario"
+            name="username"
+            onChange={onInputChange}
+          />
+          <Input
+            type="text"
+            label="Nombre"
+            name="nombre"
+            onChange={onInputChange}
+          />
+          <Input
+            type="text"
+            label="Apellido"
+            name="apellido"
+            onChange={onInputChange}
+          />
+          <Input
+            type="email"
+            label="E-mail"
+            name="email"
+            onChange={onInputChange}
+          />
+          <Input
+            type="password"
+            label="Password"
+            name="password"
+            onChange={onInputChange}
+          />
+          <ButtonSubmitStyled>Registrate</ButtonSubmitStyled>
+          <GoToRegister dark={theme}>
+            Ya tenés una cuenta?
+            <span>
+              <Link replace to="/login">
+                Login!
+              </Link>
+            </span>
+          </GoToRegister>
+        </FormStyled>
+      )}
+    </PageContainer>
   );
 }
 

@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { BrowserRouter as Router } from "react-router-dom";
 
 // Components
 import Routes from "Routes";
@@ -18,7 +19,9 @@ ReactDOM.render(
       <QueryClientProvider client={queryClient}>
         <Providers>
           <GlobalStyles />
-          <Routes />
+          <Router>
+            <Routes />
+          </Router>
         </Providers>
       </QueryClientProvider>
     </AxiosProvider>

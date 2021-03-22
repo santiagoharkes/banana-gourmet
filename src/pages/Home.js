@@ -1,4 +1,3 @@
-import { ThemeProvider } from "styled-components";
 import { useQuery } from "react-query";
 
 import { useAxios } from "../hooks/useAxios";
@@ -16,10 +15,8 @@ import Sidebar from "components/Sidebar/Sidebar";
 import burger from "../img/burger1.webp";
 
 function Home() {
-  const { ...state } = useTheme();
   const { loading: userLoading } = useAuth();
   const axios = useAxios();
-  const { isVisible } = useMenu();
 
   const fetchProducts = () => {
     return axios.get("/productos");
@@ -42,30 +39,28 @@ function Home() {
   } = useQuery("categories", fetchCategories);
 
   return (
-    <ThemeProvider theme={state.colors}>
-      <PageContainer theme={state.colors}>
-        <Sidebar />
+    <PageContainer>
+      <Sidebar />
 
-        {productsError || categoriesError ? (
-          <>
-            <ErrorMessageStyled>
-              Ocurrió un error con tu solicitud!
-            </ErrorMessageStyled>
-            <ErrorDescriptionStyled>
-              Por favor, intentá más tarde
-            </ErrorDescriptionStyled>
-          </>
-        ) : productsLoading || categoriesLoading || userLoading ? (
-          <Loading h="100" />
-        ) : (
-          <>
-            <HeaderContainer />
-            <Popular dark={state.theme} img={burger} />
-            <ProductContainer productos={productos} categorias={categorias} />
-          </>
-        )}
-      </PageContainer>
-    </ThemeProvider>
+      {productsError || categoriesError ? (
+        <>
+          <ErrorMessageStyled>
+            Ocurrió un error con tu solicitud!
+          </ErrorMessageStyled>
+          <ErrorDescriptionStyled>
+            Por favor, intentá más tarde
+          </ErrorDescriptionStyled>
+        </>
+      ) : productsLoading || categoriesLoading || userLoading ? (
+        <Loading h="100" />
+      ) : (
+        <>
+          <HeaderContainer />
+          <Popular img={burger} />
+          <ProductContainer productos={productos} categorias={categorias} />
+        </>
+      )}
+    </PageContainer>
   );
 }
 

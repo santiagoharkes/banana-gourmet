@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
-export const CartContainer = styled.div`
+export const CartContainer = styled(motion.div)`
   margin: 20px 0;
   padding-bottom: 130px;
 `;

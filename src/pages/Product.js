@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { ThemeProvider } from "styled-components";
 
 import PageContainer from "components/PageContainer/PageContainer";
 import {
@@ -18,34 +17,33 @@ import { useProducts } from "Context/Products/ProductsContext";
 function Product() {
   const [isLike, setIsLike] = useState(false);
 
-  const { theme, ...state } = useTheme();
+  const { theme } = useTheme();
   const { producto } = useProducts();
 
-  const newTheme = {
-    dark: theme,
-    ...state.colors,
-  };
-
   return (
-    <ThemeProvider theme={newTheme}>
-      <PageContainer theme={newTheme}>
-        <ProductContainerStyled>
-          <TitleContainerStyled>
-            <HeaderTitle>{producto?.nombre}</HeaderTitle>
-            {isLike ? (
-              <HeartIconActiveStyled onClick={() => setIsLike(!isLike)} />
-            ) : (
-              <HeartIconInactiveStyled onClick={() => setIsLike(!isLike)} />
-            )}
-          </TitleContainerStyled>
-          <ProductImageStyled>
-            <img src={producto && `${producto.img[0].url}`} alt="" />
-          </ProductImageStyled>
-          <DescriptionTitle>Descripción:</DescriptionTitle>
-          <HeaderSubtitle>{producto?.descripcion}</HeaderSubtitle>
-        </ProductContainerStyled>
-      </PageContainer>
-    </ThemeProvider>
+    <PageContainer>
+      <ProductContainerStyled>
+        <TitleContainerStyled>
+          <HeaderTitle>{producto?.nombre}</HeaderTitle>
+          {isLike ? (
+            <HeartIconActiveStyled
+              dark={theme}
+              onClick={() => setIsLike(!isLike)}
+            />
+          ) : (
+            <HeartIconInactiveStyled
+              dark={theme}
+              onClick={() => setIsLike(!isLike)}
+            />
+          )}
+        </TitleContainerStyled>
+        <ProductImageStyled>
+          <img src={producto && `${producto.img[0].url}`} alt="" />
+        </ProductImageStyled>
+        <DescriptionTitle>Descripción:</DescriptionTitle>
+        <HeaderSubtitle>{producto?.descripcion}</HeaderSubtitle>
+      </ProductContainerStyled>
+    </PageContainer>
   );
 }
 

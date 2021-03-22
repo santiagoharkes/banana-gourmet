@@ -10,9 +10,9 @@ import {
   SignalWifi,
 } from "./MobileMenuElements";
 
-function MobileMenu({ theme }) {
+function MobileMenu() {
   return (
-    <MobileMenuContainer theme={theme}>
+    <MobileMenuContainer>
       <Clock />
       <IconContainer>
         <SignalWifi />

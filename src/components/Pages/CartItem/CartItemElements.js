@@ -3,12 +3,13 @@ import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 import CloseIcon from "@material-ui/icons/Close";
+import { motion } from "framer-motion";
 
 export const CartContainer = styled.div`
   margin: 20px 0;
 `;
 
-export const CartItemStyled = styled.div`
+export const CartItemStyled = styled(motion.div)`
   background-color: ${(props) => props.theme.backgroundColorSecondary};
   min-height: 50px;
   border-radius: 15px;

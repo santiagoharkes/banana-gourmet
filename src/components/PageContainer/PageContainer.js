@@ -1,15 +1,32 @@
 import React from "react";
 
 import { PageContainerStyled } from "./PageContainerElements";
-import { useTheme } from "Context/Theme/ThemeContext";
 
-function PageContainer({ children, theme, bgColor }) {
-  const { ...state } = useTheme();
+const containerVariants = {
+  hidden: {
+    x: "-100vw",
+  },
+  visible: {
+    x: "0vw",
+    transition: {
+      duration: 0.3,
+      delay: 0.1,
+    },
+  },
+  exit: {
+    x: "-200vw",
+    transition: { ease: "easeInOut" },
+  },
+};
 
+function PageContainer({ children, bgColor }) {
   return (
     <PageContainerStyled
-      bgColor={bgColor ? bgColor : theme.backgroundColor}
-      theme={state.theme}
+      bgColor={bgColor && bgColor}
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
     >
       {children}
     </PageContainerStyled>

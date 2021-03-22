@@ -11,6 +11,7 @@ export const MainContainer = styled.div`
   position: relative;
   /* padding-top: 30px; */
   transition: all 0.3s;
+  background-color: ${(props) => props.theme.backgroundColor};
 
   @media screen and (max-width: 500px) {
     border-radius: 0;

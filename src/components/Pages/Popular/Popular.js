@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import {
   PopularCardStyled,
   PriceCardStyled,
@@ -6,20 +8,20 @@ import {
   PopularImageStyled,
 } from "./PopularElements";
 
-import { Link } from "react-router-dom";
+import { useTheme } from "Context/Theme/ThemeContext";
 
-function Popular({ img, theme, dark }) {
+function Popular({ img }) {
+  const { theme } = useTheme();
+
   return (
     <Link replace to="/garralapala">
-      <PopularCardStyled dark={dark} theme={theme}>
+      <PopularCardStyled dark={theme}>
         <PopularImageStyled src={img} />
         <p>Burgers</p>
         <h2>Burger Zarpada</h2>
         <PriceCardStyled>
-          <PriceCardIconStyled dark={dark} theme={theme} />
-          <PriceCardTextStyled dark={dark} theme={theme}>
-            159,99
-          </PriceCardTextStyled>
+          <PriceCardIconStyled dark={theme} />
+          <PriceCardTextStyled dark={theme}>159,99</PriceCardTextStyled>
         </PriceCardStyled>
       </PopularCardStyled>
     </Link>

@@ -38,3 +38,8 @@ export const GoToRegister = styled.p`
       props.dark === "dark" ? props.theme.yellow : props.theme.textColor};
   }
 `;
+
+export const TestEmailStyled = styled(GoToRegister)`
+  margin-top: 20px;
+  opacity: 0.3;
+`;
