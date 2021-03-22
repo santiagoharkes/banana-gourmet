@@ -35,7 +35,7 @@ export function AuthContextprovider({ children }) {
         setUser(userLogged);
       });
     }
-  }, []);
+  }, [axios]);
 
   const setUser = (payload) => {
     dispatch({ type: "SET_USER", payload });
@@ -64,6 +64,7 @@ export function AuthContextprovider({ children }) {
     setLoading,
     logout,
     setUser,
+    register,
   };
 
   return (

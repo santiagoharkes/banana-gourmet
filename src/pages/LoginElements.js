@@ -43,3 +43,7 @@ export const TestEmailStyled = styled(GoToRegister)`
   margin-top: 20px;
   opacity: 0.3;
 `;
+
+export const FormContainer = styled.div`
+  padding-bottom: 70px;
+`;

@@ -1,5 +1,6 @@
 import React from "react";
 
+import { useMenu } from "Context/Menu/MenuContext";
 import { PageContainerStyled } from "./PageContainerElements";
 
 const containerVariants = {
@@ -20,6 +21,8 @@ const containerVariants = {
 };
 
 function PageContainer({ children, bgColor }) {
+  const { isVisible } = useMenu();
+
   return (
     <PageContainerStyled
       bgColor={bgColor && bgColor}
@@ -27,6 +30,7 @@ function PageContainer({ children, bgColor }) {
       initial="hidden"
       animate="visible"
       exit="exit"
+      className={isVisible && "overflow-hidden"}
     >
       {children}
     </PageContainerStyled>

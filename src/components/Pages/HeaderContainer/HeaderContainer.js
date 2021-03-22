@@ -10,7 +10,7 @@ import HeaderSubtitle from "../HeaderSubtitle/HeaderSubtitle";
 import HeaderAvatar from "../HeaderAvatar/HeaderAvatar";
 
 function HeaderContainer() {
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
 
   return (
     <HeaderContainerStyled>
@@ -20,13 +20,6 @@ function HeaderContainer() {
         </HeaderTitle>
         <HeaderSubtitle>Ya sabés qué pedir para hoy?</HeaderSubtitle>
       </HeaderTitleStyled>
-      {/* {user ? (
-        <HeaderAvatar onClick={logout} />
-      ) : (
-        <Link replace to="/login">
-          <HeaderAvatar />
-        </Link>
-      )} */}
 
       <HeaderAvatar />
     </HeaderContainerStyled>

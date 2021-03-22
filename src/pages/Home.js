@@ -1,9 +1,7 @@
 import { useQuery } from "react-query";
 
 import { useAxios } from "../hooks/useAxios";
-import { useTheme } from "Context/Theme/ThemeContext";
 import { useAuth } from "Context/Auth/AuthContext";
-import { useMenu } from "Context/Menu/MenuContext";
 import PageContainer from "components/PageContainer/PageContainer";
 import HeaderContainer from "components/Pages/HeaderContainer/HeaderContainer";
 import Popular from "components/Pages/Popular/Popular";

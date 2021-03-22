@@ -1,5 +1,5 @@
 import React from "react";
-import { AnimatePresence, AnimateSharedLayout } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 
 import PageContainer from "components/PageContainer/PageContainer";
 import HeaderTitle from "components/Pages/HeaderTitle/HeaderTitle";
@@ -32,8 +32,8 @@ function Cart() {
         )}
 
         <AnimatePresence>
-          {cartItems.map((item, index) => {
-            return <CartItem data={item} key={`cartItem-${index}`} />;
+          {cartItems.map((item) => {
+            return <CartItem data={item} key={item._id} />;
           })}
         </AnimatePresence>
       </CartContainer>

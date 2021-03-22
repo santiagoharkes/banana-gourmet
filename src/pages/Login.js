@@ -8,6 +8,7 @@ import {
   ButtonSubmitStyled,
   GoToRegister,
   TestEmailStyled,
+  FormContainer,
 } from "./LoginElements";
 import { useAxios } from "hooks/useAxios";
 import { useTheme } from "Context/Theme/ThemeContext";
@@ -30,7 +31,7 @@ function Login() {
     if (token) {
       history.push("/");
     }
-  }, []);
+  }, [history]);
 
   const [loginData, setLoginData] = useState({
     identifier: null,
@@ -38,6 +39,8 @@ function Login() {
   });
 
   const [error, setError] = useState(null);
+
+  console.log(error);
 
   const onInputChange = (event) => {
     setLoginData({ ...loginData, [event.target.name]: event.target.value });
@@ -75,40 +78,42 @@ function Login() {
       {loading ? (
         <Loading h="80" />
       ) : (
-        <FormStyled onSubmit={onLoginSubmit}>
-          <ImageLoginStyled src={PizzaLogin} />
-          <Input
-            type="email"
-            label="E-mail"
-            name="identifier"
-            value={loginData.identifier}
-            onChange={onInputChange}
-          />
-          <Input
-            type="password"
-            label="Password"
-            name="password"
-            value={loginData.password}
-            onChange={onInputChange}
-          />
-          <ButtonSubmitStyled>Login</ButtonSubmitStyled>
-          <GoToRegister dark={theme}>
-            No tenés una cuenta?
-            <span>
-              <Link replace to="/register">
-                Registrate!
-              </Link>
-            </span>
-          </GoToRegister>
-          <TestEmailStyled dark={theme}>
-            test email:
-            <span>test@test.com</span>
-          </TestEmailStyled>
-          <TestEmailStyled dark={theme}>
-            test password:
-            <span>test1234</span>
-          </TestEmailStyled>
-        </FormStyled>
+        <FormContainer>
+          <FormStyled onSubmit={onLoginSubmit}>
+            <ImageLoginStyled src={PizzaLogin} />
+            <Input
+              type="email"
+              label="E-mail"
+              name="identifier"
+              value={loginData.identifier}
+              onChange={onInputChange}
+            />
+            <Input
+              type="password"
+              label="Password"
+              name="password"
+              value={loginData.password}
+              onChange={onInputChange}
+            />
+            <ButtonSubmitStyled>Login</ButtonSubmitStyled>
+            <GoToRegister dark={theme}>
+              No tenés una cuenta?
+              <span>
+                <Link replace to="/register">
+                  Registrate!
+                </Link>
+              </span>
+            </GoToRegister>
+            <TestEmailStyled dark={theme}>
+              test email:
+              <span>test@test.com</span>
+            </TestEmailStyled>
+            <TestEmailStyled dark={theme}>
+              test password:
+              <span>test1234</span>
+            </TestEmailStyled>
+          </FormStyled>
+        </FormContainer>
       )}
     </PageContainer>
   );

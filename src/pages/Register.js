@@ -19,7 +19,7 @@ import RegisterImage from "../img/registerImage.webp";
 import Loading from "components/Loading/Loading";
 
 function Login() {
-  const { theme, ...state } = useTheme();
+  const { theme } = useTheme();
   const axios = useAxios();
   const { setUser, setLoading, loading } = useAuth();
   const history = useHistory();
@@ -29,7 +29,7 @@ function Login() {
     if (token) {
       history.push("/");
     }
-  }, []);
+  }, [history]);
 
   const [registerData, setRegisterData] = useState({
     username: null,

@@ -28,6 +28,7 @@ export const LayoutContainer = styled.div`
     justify-content: center;
     align-items: center;
     outline: none;
+    z-index: 200;
   }
 
   button.toLight {
