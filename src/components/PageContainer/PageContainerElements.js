@@ -10,6 +10,7 @@ export const PageContainerStyled = styled(motion.div)`
   overflow: scroll;
   transition: all 0.5s ease;
   min-height: 80%;
+  overflow-x: hidden;
 
   &.overflow-hidden {
     overflow: hidden;
