@@ -12,6 +12,7 @@ import {
   PriceAddContainerStyled,
   ProductPriceStyled,
   LineaDivisora,
+  DescriptionTitleStyled,
 } from "./ProductElements";
 import {
   AddProductStyled,
@@ -21,7 +22,6 @@ import {
   PriceCardTextStyled,
 } from "components/Pages/ProductCard/ProductCardElements";
 import HeaderTitle from "components/Pages/HeaderTitle/HeaderTitle";
-import HeaderSubtitle from "components/Pages/HeaderSubtitle/HeaderSubtitle";
 import ProductAddMore from "components/Pages/ProductAddMore/ProductAddMore";
 import { useTheme } from "Context/Theme/ThemeContext";
 import { useProducts } from "Context/Products/ProductsContext";
@@ -34,6 +34,7 @@ function Product() {
 
   const { theme } = useTheme();
   const { producto } = useProducts();
+
   const {
     sumarProducto,
     restarProducto,
@@ -101,7 +102,7 @@ function Product() {
           )}
         </PriceAddContainerStyled>
         <DescriptionTitle>Descripción:</DescriptionTitle>
-        <HeaderSubtitle>{producto?.descripcion}</HeaderSubtitle>
+        <DescriptionTitleStyled>{producto?.descripcion}</DescriptionTitleStyled>
 
         <LineaDivisora />
 

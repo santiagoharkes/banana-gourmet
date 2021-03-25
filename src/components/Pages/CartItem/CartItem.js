@@ -1,3 +1,5 @@
+import { useHistory } from "react-router-dom";
+
 import {
   CartItemStyled,
   PriceCardStyled,
@@ -14,18 +16,33 @@ import {
 import { useCart } from "Context/Cart/CartContext";
 
 import { useTheme } from "Context/Theme/ThemeContext";
+import { useProducts } from "Context/Products/ProductsContext";
 
 function CartItem({ data: { img, nombre, precio, ...data } }) {
   const { theme } = useTheme();
   const { sumarProducto, restarProducto, eliminarProducto } = useCart();
+  const { storeProducto } = useProducts();
+  const history = useHistory();
+
+  const pushObject = {
+    img,
+    nombre,
+    precio,
+    ...data,
+  };
+
+  const handleClick = () => {
+    storeProducto(pushObject);
+    history.replace("/product/1");
+  };
 
   return (
     <CartItemStyled>
       <CloseIconStyled onClick={() => eliminarProducto(data)} />
-      <ImageCardContainerStyled>
+      <ImageCardContainerStyled onClick={handleClick}>
         <img src={`${img[0].url}`} alt="" />
       </ImageCardContainerStyled>
-      <TextContainer>{nombre}</TextContainer>
+      <TextContainer onClick={handleClick}>{nombre}</TextContainer>
       <PriceAddStyledContainer>
         <PriceCardStyled>
           <PriceCardIconStyled dark={theme} />

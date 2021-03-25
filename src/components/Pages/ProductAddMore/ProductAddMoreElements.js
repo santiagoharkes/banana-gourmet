@@ -13,7 +13,10 @@ export const AddMoreContainerStyled = styled.div`
   margin-top: 20px;
 `;
 
-export const DescriptionTitleStyled = styled(DescriptionTitle)``;
+export const DescriptionTitleStyled = styled.p`
+  ${DescriptionTitle};
+  color: ${(props) => props.theme.textColor};
+`;
 
 export const AddProductsContainerStyled = styled.div`
   display: flex;
@@ -30,6 +33,7 @@ export const ItemCardStyled = styled.div`
   grid-template-columns: auto 1fr 30%;
   align-items: center;
   gap: 10px;
+  margin: 5px 0;
 `;
 
 export const ImgContainerStyled = styled.div`
@@ -39,6 +43,7 @@ export const ImgContainerStyled = styled.div`
   overflow: hidden;
   position: relative;
   background: white;
+  cursor: pointer;
 `;
 
 export const ImgStyled = styled.img`
@@ -52,6 +57,7 @@ export const ImgStyled = styled.img`
 
 export const ItemTitleStyled = styled.p`
   color: ${(props) => props.theme.textColor};
+  cursor: pointer;
 `;
 
 export const PriceAddContainerStyled = styled.div`

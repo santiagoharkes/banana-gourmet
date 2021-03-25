@@ -31,6 +31,7 @@ export const ImageCardContainerStyled = styled.div`
   height: 60px;
   width: 60px;
   overflow: hidden;
+  cursor: pointer;
 
   img {
     object-fit: cover;
@@ -124,4 +125,5 @@ export const PriceAddStyledContainer = styled.div`
 export const TextContainer = styled.div`
   width: 100%;
   color: ${(props) => props.theme.textColor};
+  cursor: pointer;
 `;

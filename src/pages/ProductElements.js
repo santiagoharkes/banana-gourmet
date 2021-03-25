@@ -2,6 +2,7 @@ import styled from "styled-components";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import HeaderSubtitle from "components/Pages/HeaderSubtitle/HeaderSubtitle";
+import { HeaderTitleStyled } from "components/Pages/HeaderSubtitle/HeaderSubtitleElements";
 
 import { PriceCardStyled } from "components/Pages/ProductCard/ProductCardElements";
 
@@ -29,7 +30,7 @@ export const ProductImageStyled = styled.div`
 `;
 
 export const DescriptionTitle = styled.p`
-  ${HeaderSubtitle}
+  ${HeaderTitleStyled}
   font-weight: bold;
   margin-bottom: 5px;
   color: ${(props) => props.theme.textColor};
@@ -83,3 +84,5 @@ export const LineaDivisora = styled.div`
   margin: 20px 0;
   opacity: 0.5;
 `;
+
+export const DescriptionTitleStyled = styled(HeaderSubtitle)``;

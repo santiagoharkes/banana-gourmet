@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
+import { useHistory } from "react-router-dom";
 
 import {
   AddMoreContainerStyled,
@@ -24,10 +25,14 @@ import { isInCart } from "utils/functions";
 import { useAxios } from "hooks/useAxios";
 import { useTheme } from "Context/Theme/ThemeContext";
 import { useCart } from "Context/Cart/CartContext";
+import { useProducts } from "Context/Products/ProductsContext";
 
 function ProductAddMore({ producto }) {
   const axios = useAxios();
   const { theme } = useTheme();
+  const { storeProducto } = useProducts();
+  const history = useHistory();
+
   const {
     sumarProducto,
     restarProducto,
@@ -35,10 +40,15 @@ function ProductAddMore({ producto }) {
     cartItems,
     eliminarProducto,
   } = useCart();
+
   const [categories, setCategories] = useState([]);
 
   const fetchCategories = () => {
     return axios.get("/categorias");
+  };
+
+  const fetchProducts = () => {
+    return axios.get("/productos");
   };
 
   const {
@@ -47,7 +57,11 @@ function ProductAddMore({ producto }) {
     isError: categoriesError,
   } = useQuery("categories", fetchCategories);
 
-  console.log(categories);
+  const {
+    data: { data: productos },
+    // isLoading: productsLoading,
+    // isError: productsError,
+  } = useQuery("products", fetchProducts);
 
   useEffect(() => {
     if (
@@ -73,6 +87,13 @@ function ProductAddMore({ producto }) {
     }
   }, [categorias, producto]);
 
+  const handleClick = (producto) => {
+    setTimeout(() => {
+      storeProducto(producto);
+    }, 350);
+    history.replace("/product/1");
+  };
+
   return (
     <AddMoreContainerStyled>
       <DescriptionTitleStyled>Agregar más:</DescriptionTitleStyled>
@@ -81,51 +102,58 @@ function ProductAddMore({ producto }) {
         <Loading />
       ) : (
         categories.map((categoria) => (
-          <AddProductsContainerStyled>
+          <AddProductsContainerStyled key={categoria._id}>
             <CategoryTitleStyled>{categoria.nombre}</CategoryTitleStyled>
-            {categoria.productos.map((producto) => (
-              <ItemCardStyled>
-                <ImgContainerStyled>
-                  <ImgStyled src={producto?.img[0].url} />
-                </ImgContainerStyled>
-                <ItemTitleStyled>{producto.nombre}</ItemTitleStyled>
-                <PriceAddContainerStyled>
-                  <ItemPriceContainerStyled>
-                    <ItemPriceIconStyled dark={theme} />
-                    <ItemPriceTextStyled dark={theme}>
-                      {producto.precio.toFixed(2)}
-                    </ItemPriceTextStyled>
-                  </ItemPriceContainerStyled>
+            {categoria.productos.map((product) => {
+              const producto = productos?.find(
+                (valor) => valor._id === product._id
+              );
+              return (
+                <ItemCardStyled key={producto._id}>
+                  <ImgContainerStyled onClick={() => handleClick(producto)}>
+                    <ImgStyled src={producto?.img[0].url} />
+                  </ImgContainerStyled>
+                  <ItemTitleStyled onClick={() => handleClick(producto)}>
+                    {producto.nombre}
+                  </ItemTitleStyled>
+                  <PriceAddContainerStyled>
+                    <ItemPriceContainerStyled>
+                      <ItemPriceIconStyled dark={theme} />
+                      <ItemPriceTextStyled dark={theme}>
+                        {producto.precio.toFixed(2)}
+                      </ItemPriceTextStyled>
+                    </ItemPriceContainerStyled>
 
-                  {isInCart(producto, cartItems) &&
-                    isInCart(producto, cartItems).quantity > 0 && (
-                      <AddProductContainerStyled dark={theme}>
-                        <AddProductIconStyled
-                          onClick={() => sumarProducto(producto)}
-                        />
-                        {isInCart(producto, cartItems).quantity}
-                        <RemoveProductIconStyled
-                          onClick={
-                            isInCart(producto, cartItems).quantity <= 1
-                              ? () => eliminarProducto(producto)
-                              : () => restarProducto(producto)
-                          }
-                        />
+                    {isInCart(producto, cartItems) &&
+                      isInCart(producto, cartItems).quantity > 0 && (
+                        <AddProductContainerStyled dark={theme}>
+                          <AddProductIconStyled
+                            onClick={() => sumarProducto(producto)}
+                          />
+                          {isInCart(producto, cartItems).quantity}
+                          <RemoveProductIconStyled
+                            onClick={
+                              isInCart(producto, cartItems).quantity <= 1
+                                ? () => eliminarProducto(producto)
+                                : () => restarProducto(producto)
+                            }
+                          />
+                        </AddProductContainerStyled>
+                      )}
+
+                    {(!isInCart(producto, cartItems) ||
+                      isInCart(producto, cartItems).quantity < 1) && (
+                      <AddProductContainerStyled
+                        dark={theme}
+                        onClick={() => agregarProducto(producto)}
+                      >
+                        <p>Agregar</p>
                       </AddProductContainerStyled>
                     )}
-
-                  {(!isInCart(producto, cartItems) ||
-                    isInCart(producto, cartItems).quantity < 1) && (
-                    <AddProductContainerStyled
-                      dark={theme}
-                      onClick={() => agregarProducto(producto)}
-                    >
-                      <p>Agregar</p>
-                    </AddProductContainerStyled>
-                  )}
-                </PriceAddContainerStyled>
-              </ItemCardStyled>
-            ))}
+                  </PriceAddContainerStyled>
+                </ItemCardStyled>
+              );
+            })}
           </AddProductsContainerStyled>
         ))
       )}
