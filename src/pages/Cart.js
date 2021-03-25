@@ -16,8 +16,6 @@ import {
 function Cart() {
   const { cartItems, total } = useCart();
 
-  console.log({ cartItems });
-
   return (
     <>
       <PageContainer>

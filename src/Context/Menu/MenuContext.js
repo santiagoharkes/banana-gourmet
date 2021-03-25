@@ -19,8 +19,6 @@ export const Menuprovider = ({ children }) => {
     dispatch({ type: "HIDE_MENU", isVisible: false });
   };
 
-  console.log("El estado del menu es " + state.isVisible);
-
   return (
     <MenuContext.Provider value={{ ...state, showMenu, hideMenu }}>
       {children}

@@ -46,6 +46,7 @@ export const CategoryListStyled = styled(ScrollContainer)`
   background-color: ${(props) => props.theme.backgroundColor};
   padding-top: 20px;
   padding-bottom: 20px;
+  transition: all 0.5s ease;
 `;
 
 export const CategoryBadgeStyled = styled.div`

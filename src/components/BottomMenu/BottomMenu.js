@@ -20,13 +20,13 @@ function BottomMenu() {
 
   return (
     <BottomMenuContainerStyled>
-      <Link onClick={hideMenu} replace to="/garralapala">
+      <Link onClick={hideMenu} to="/garralapala">
         <SearchIconStyled />
       </Link>
       <Link onClick={hideMenu} replace to="/">
         <ZapiLogoStyled src={ZapiLogo} />
       </Link>
-      <Link onClick={hideMenu} replace to="/cart">
+      <Link onClick={hideMenu} to="/cart">
         <CartIconContainerStyled>
           {itemCount >= 1 && <ItemCountStyled>{itemCount}</ItemCountStyled>}
           <CartIconStyled />

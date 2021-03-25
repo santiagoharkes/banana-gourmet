@@ -26,6 +26,7 @@ export const ImageCardContainerStyled = styled.div`
   height: 120px;
   width: 120px;
   overflow: hidden;
+  margin: 0 auto;
   margin-bottom: 15px;
 
   img {
@@ -79,6 +80,7 @@ export const AddProductStyled = styled.div`
   align-items: center;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 `;
 
 export const AddIconStyled = styled(AddIcon)`
@@ -89,6 +91,7 @@ export const AddIconStyled = styled(AddIcon)`
   background-color: ${(props) => props.theme.yellow};
   width: auto !important;
   padding: 5px;
+  cursor: pointer;
 `;
 
 export const RemoveIconStyled = styled(RemoveIcon)`
@@ -99,4 +102,5 @@ export const RemoveIconStyled = styled(RemoveIcon)`
   background-color: ${(props) => props.theme.yellow};
   width: auto !important;
   padding: 5px;
+  cursor: pointer;
 `;

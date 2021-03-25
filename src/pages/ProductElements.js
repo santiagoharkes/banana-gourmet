@@ -3,8 +3,11 @@ import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import HeaderSubtitle from "components/Pages/HeaderSubtitle/HeaderSubtitle";
 
+import { PriceCardStyled } from "components/Pages/ProductCard/ProductCardElements";
+
 export const ProductContainerStyled = styled.div`
   width: 100%;
+  padding-bottom: 75px;
 `;
 
 export const ProductImageStyled = styled.div`
@@ -58,4 +61,25 @@ export const HeartIconActiveStyled = styled(FavoriteIcon)`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+`;
+
+export const PriceAddContainerStyled = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+`;
+
+export const ProductPriceStyled = styled(PriceCardStyled)`
+  margin: 0;
+  justify-content: flex-start;
+`;
+
+export const LineaDivisora = styled.div`
+  height: 0;
+  border-bottom: 1px solid ${(props) => props.theme.yellow};
+  width: 100%;
+  margin: 20px 0;
+  opacity: 0.5;
 `;

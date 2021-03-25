@@ -14,6 +14,7 @@ import {
 import { useProducts } from "Context/Products/ProductsContext";
 import { useTheme } from "Context/Theme/ThemeContext";
 import { useCart } from "Context/Cart/CartContext";
+import { isInCart } from "utils/functions";
 
 function ProductCard({ img, data }) {
   const { theme } = useTheme();
@@ -29,14 +30,6 @@ function ProductCard({ img, data }) {
   const { storeProducto } = useProducts();
 
   const history = useHistory();
-
-  const isInCart = (product) => {
-    const isInCart = !!cartItems.find((item) => item.id === product.id);
-    const itemInCart = isInCart
-      ? cartItems.find((item) => item.id === product.id)
-      : null;
-    return itemInCart;
-  };
 
   const handleClick = () => {
     storeProducto(data);
@@ -56,18 +49,18 @@ function ProductCard({ img, data }) {
           <PriceCardStyled>
             <PriceCardIconStyled dark={theme} />
             <PriceCardTextStyled dark={theme}>
-              {data.precio}
+              {data.precio.toFixed(2)}
             </PriceCardTextStyled>
           </PriceCardStyled>
         </div>
 
-        {isInCart(data) && isInCart(data).quantity > 0 && (
+        {isInCart(data, cartItems) && isInCart(data, cartItems).quantity > 0 && (
           <AddProductStyled dark={theme}>
             <AddIconStyled onClick={() => sumarProducto(data)} />
-            {isInCart(data).quantity}
+            {isInCart(data, cartItems).quantity}
             <RemoveIconStyled
               onClick={
-                isInCart(data).quantity <= 1
+                isInCart(data, cartItems).quantity <= 1
                   ? () => eliminarProducto(data)
                   : () => restarProducto(data)
               }
@@ -75,7 +68,8 @@ function ProductCard({ img, data }) {
           </AddProductStyled>
         )}
 
-        {(!isInCart(data) || isInCart(data).quantity < 1) && (
+        {(!isInCart(data, cartItems) ||
+          isInCart(data, cartItems).quantity < 1) && (
           <AddProductStyled dark={theme} onClick={() => agregarProducto(data)}>
             <p>Agregar</p>
           </AddProductStyled>

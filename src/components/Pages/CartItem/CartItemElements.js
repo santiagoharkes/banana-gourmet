@@ -14,7 +14,7 @@ export const CartItemStyled = styled(motion.div)`
   min-height: 50px;
   border-radius: 15px;
   display: grid;
-  grid-template-columns: auto auto 1fr;
+  grid-template-columns: 20% 1fr 30%;
   padding: 10px 20px;
   margin-bottom: 20px;
   place-items: center;
