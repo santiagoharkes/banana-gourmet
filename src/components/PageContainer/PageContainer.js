@@ -9,6 +9,7 @@ const containerVariants = {
   },
   visible: {
     x: "0vw",
+    position: "relative",
     transition: {
       duration: 0.3,
       delay: 0.1,

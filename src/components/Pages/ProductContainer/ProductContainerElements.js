@@ -5,7 +5,6 @@ export const ProductsTitleContainerStyled = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
 `;
 
 export const ProductsTitleStyled = styled.h3`
@@ -41,6 +40,12 @@ export const CategoryListStyled = styled(ScrollContainer)`
   align-items: center;
   overflow-x: scroll;
   margin: 0 -15px;
+  position: sticky;
+  top: -20;
+  z-index: 10;
+  background-color: ${(props) => props.theme.backgroundColor};
+  padding-top: 20px;
+  padding-bottom: 20px;
 `;
 
 export const CategoryBadgeStyled = styled.div`
@@ -61,7 +66,7 @@ export const CategoryBadgeStyled = styled.div`
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   min-width: max-content;
 
   &:first-child {

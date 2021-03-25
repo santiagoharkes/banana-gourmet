@@ -10,6 +10,7 @@ export const FormStyled = styled.form`
   justify-content: center;
   align-items: center;
   margin: 40px 0;
+  padding-bottom: 50px;
 
   & > div {
     margin: 10px;

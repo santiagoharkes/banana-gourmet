@@ -19,31 +19,33 @@ function Cart() {
   console.log({ cartItems });
 
   return (
-    <PageContainer>
-      <HeaderTitle>Cart!</HeaderTitle>
-      <HeaderSubtitle>
-        Aquí están los productos que seleccionaste
-      </HeaderSubtitle>
-      <CartContainer>
-        {cartItems.length === 0 && (
-          <AnimatePresence>
-            <NoItemsCart h="100" key="noItemsCard" />
-          </AnimatePresence>
-        )}
+    <>
+      <PageContainer>
+        <HeaderTitle>Cart!</HeaderTitle>
+        <HeaderSubtitle>
+          Aquí están los productos que seleccionaste
+        </HeaderSubtitle>
+        <CartContainer>
+          {cartItems.length === 0 && (
+            <AnimatePresence>
+              <NoItemsCart h="100" key="noItemsCard" />
+            </AnimatePresence>
+          )}
 
-        <AnimatePresence>
-          {cartItems.map((item) => {
-            return <CartItem data={item} key={item._id} />;
-          })}
-        </AnimatePresence>
-      </CartContainer>
+          <AnimatePresence>
+            {cartItems.map((item) => {
+              return <CartItem data={item} key={item._id} />;
+            })}
+          </AnimatePresence>
+        </CartContainer>
+      </PageContainer>
       {total > 0 && (
         <CartTotalContainerStyled>
           <HeaderTitle>Total: ${total}</HeaderTitle>
           <BuyButtonStyled>Comprar!</BuyButtonStyled>
         </CartTotalContainerStyled>
       )}
-    </PageContainer>
+    </>
   );
 }
 
