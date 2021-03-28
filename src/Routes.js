@@ -11,6 +11,7 @@ import Login from "pages/Login";
 import Register from "pages/Register";
 import Cart from "pages/Cart";
 import Product from "pages/Product";
+import MisFavoritos from "pages/MisFavoritos";
 
 function Routes() {
   const { theme } = useTheme();
@@ -31,6 +32,7 @@ function Routes() {
           <Route exact path="/register" component={Register} />
           <Route exact path="/cart" component={Cart} />
           <Route exact path="/product/:id" component={Product} />
+          <Route exact path="/mis-favoritos" component={MisFavoritos} />
           <Route exact path="/garralapala" component={Nada} />
         </Switch>
       </AnimatePresence>

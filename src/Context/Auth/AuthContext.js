@@ -23,8 +23,14 @@ export function AuthContextprovider({ children }) {
   const [state, dispatch] = useReducer(AuthReducer, initialState);
   const axios = useAxios();
 
+  console.log({ state });
+
   useEffect(() => {
     const token = Cookies.get("token") || null;
+
+    // Este useEffect chequea si estoy logueado cada vez que axios cambia. O sea, cuando aparece un token o no.
+    // Entonces lo hace solamente cuando te logueas o entras a un path desde el navegador.
+
     if (token) {
       dispatch({ type: "LOADING" });
       axios.get(`/users/me/`).then((res) => {
@@ -32,8 +38,11 @@ export function AuthContextprovider({ children }) {
           jwt: token,
           user: res.data,
         };
+        console.log("****** CHEQUEANDO SI TOY LOGUEADO ******");
         setUser(userLogged);
       });
+    } else {
+      setUser(null);
     }
   }, [axios]);
 
@@ -53,7 +62,7 @@ export function AuthContextprovider({ children }) {
     dispatch({ type: "REGISTER", payload });
   };
 
-  const logout = (payload) => {
+  const logout = () => {
     Cookies.remove("token");
     dispatch({ type: "LOGOUT" });
   };

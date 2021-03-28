@@ -23,13 +23,12 @@ function Cart() {
         <HeaderSubtitle>
           Aquí están los productos que seleccionaste
         </HeaderSubtitle>
+        {cartItems.length === 0 && (
+          <AnimatePresence>
+            <NoItemsCart h="80" key="noItemsCard" from="cart" />
+          </AnimatePresence>
+        )}
         <CartContainer>
-          {cartItems.length === 0 && (
-            <AnimatePresence>
-              <NoItemsCart h="100" key="noItemsCard" />
-            </AnimatePresence>
-          )}
-
           <AnimatePresence>
             {cartItems.map((item) => {
               return <CartItem data={item} key={item._id} />;

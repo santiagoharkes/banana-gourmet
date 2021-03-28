@@ -25,6 +25,7 @@ export const NoItemSubtitle = styled.p`
   font-size: 1rem;
   font-weight: 300;
   margin: 5px 0 10px;
+  text-align: center;
 `;
 
 export const NoItemButtonStyled = styled(Link)`

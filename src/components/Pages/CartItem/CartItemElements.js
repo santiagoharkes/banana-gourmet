@@ -89,6 +89,7 @@ export const AddProductStyled = styled.div`
   align-items: center;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 `;
 
 export const AddIconStyled = styled(AddIcon)`

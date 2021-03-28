@@ -9,6 +9,7 @@ import { AxiosProvider } from "hooks/useAxios";
 import Providers from "Context/Providers/Providers";
 
 // Styles
+import "./index.css";
 import { GlobalStyles } from "GlobalStyles/GlobalStyles";
 
 const queryClient = new QueryClient();

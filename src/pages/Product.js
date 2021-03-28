@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 import PageContainer from "components/PageContainer/PageContainer";
@@ -7,8 +7,6 @@ import {
   ProductImageStyled,
   DescriptionTitle,
   TitleContainerStyled,
-  HeartIconInactiveStyled,
-  HeartIconActiveStyled,
   PriceAddContainerStyled,
   ProductPriceStyled,
   LineaDivisora,
@@ -23,17 +21,19 @@ import {
 } from "components/Pages/ProductCard/ProductCardElements";
 import HeaderTitle from "components/Pages/HeaderTitle/HeaderTitle";
 import ProductAddMore from "components/Pages/ProductAddMore/ProductAddMore";
+import LikeButton from "components/LikeButton/LikeButton";
 import { useTheme } from "Context/Theme/ThemeContext";
 import { useProducts } from "Context/Products/ProductsContext";
 import { useCart } from "Context/Cart/CartContext";
 import { isInCart } from "utils/functions";
+import { useAuth } from "Context/Auth/AuthContext";
 
 function Product() {
-  const [isLike, setIsLike] = useState(false);
   const history = useHistory();
 
   const { theme } = useTheme();
   const { producto } = useProducts();
+  const { user } = useAuth();
 
   const {
     sumarProducto,
@@ -54,17 +54,7 @@ function Product() {
       <ProductContainerStyled>
         <TitleContainerStyled>
           <HeaderTitle>{producto?.nombre}</HeaderTitle>
-          {isLike ? (
-            <HeartIconActiveStyled
-              dark={theme}
-              onClick={() => setIsLike(!isLike)}
-            />
-          ) : (
-            <HeartIconInactiveStyled
-              dark={theme}
-              onClick={() => setIsLike(!isLike)}
-            />
-          )}
+          <LikeButton user={user} producto={producto} />
         </TitleContainerStyled>
         <ProductImageStyled>
           <img src={producto && `${producto.img[0].url}`} alt="" />

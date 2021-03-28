@@ -26,7 +26,7 @@ const noItemsCartVariants = {
   },
 };
 
-function NoItemsCart({ h }) {
+function NoItemsCart({ h, from }) {
   return (
     <NoItemContainer
       h={h}
@@ -36,8 +36,26 @@ function NoItemsCart({ h }) {
       exit="exit"
     >
       <NoItemImageStyled src={Image404} />
-      <NoItemTitle>Todavía no hay nada en la carta!</NoItemTitle>
-      <NoItemSubtitle>Volvé para hacer tu pedido</NoItemSubtitle>
+      {from === "cart" && (
+        <>
+          <NoItemTitle>Todavía no hay nada en la carta!</NoItemTitle>
+          <NoItemSubtitle>Volvé para hacer tu pedido</NoItemSubtitle>{" "}
+        </>
+      )}
+      {from === "favorites" && (
+        <>
+          <NoItemTitle>Todavía no tenés favoritos!</NoItemTitle>
+          <NoItemSubtitle>
+            Volvé para elegir los productos que más te gusten
+          </NoItemSubtitle>
+        </>
+      )}
+      {from === "pedidos" && (
+        <>
+          <NoItemTitle>Todavía no tenés pedidos!</NoItemTitle>
+          <NoItemSubtitle>Volvé para hacer tu pedido</NoItemSubtitle>
+        </>
+      )}
       <NoItemButtonStyled to="/">Volver</NoItemButtonStyled>
     </NoItemContainer>
   );

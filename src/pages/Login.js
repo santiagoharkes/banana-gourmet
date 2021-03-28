@@ -40,8 +40,6 @@ function Login() {
 
   const [error, setError] = useState(null);
 
-  console.log(error);
-
   const onInputChange = (event) => {
     setLoginData({ ...loginData, [event.target.name]: event.target.value });
   };
@@ -60,13 +58,11 @@ function Login() {
           expires: inFifteenMinutes,
         });
 
-        //resolve the promise to set loading to false in SignUp form
         login(res.data);
-        //redirect back to home page for restaurance selection
+
         history.push("/");
       })
       .catch((error) => {
-        //reject the promise and pass the error object back to the form
         setError(error);
       });
   };
@@ -79,40 +75,44 @@ function Login() {
         <Loading h="80" />
       ) : (
         <FormContainer>
-          <FormStyled onSubmit={onLoginSubmit}>
-            <ImageLoginStyled src={PizzaLogin} />
-            <Input
-              type="email"
-              label="E-mail"
-              name="identifier"
-              value={loginData.identifier}
-              onChange={onInputChange}
-            />
-            <Input
-              type="password"
-              label="Password"
-              name="password"
-              value={loginData.password}
-              onChange={onInputChange}
-            />
-            <ButtonSubmitStyled>Login</ButtonSubmitStyled>
-            <GoToRegister dark={theme}>
-              No tenés una cuenta?
-              <span>
-                <Link replace to="/register">
-                  Registrate!
-                </Link>
-              </span>
-            </GoToRegister>
-            <TestEmailStyled dark={theme}>
-              test email:
-              <span>test@test.com</span>
-            </TestEmailStyled>
-            <TestEmailStyled dark={theme}>
-              test password:
-              <span>test1234</span>
-            </TestEmailStyled>
-          </FormStyled>
+          {error ? (
+            <h1>Hubo un error...</h1>
+          ) : (
+            <FormStyled onSubmit={onLoginSubmit}>
+              <ImageLoginStyled src={PizzaLogin} />
+              <Input
+                type="email"
+                label="E-mail"
+                name="identifier"
+                value={loginData.identifier}
+                onChange={onInputChange}
+              />
+              <Input
+                type="password"
+                label="Password"
+                name="password"
+                value={loginData.password}
+                onChange={onInputChange}
+              />
+              <ButtonSubmitStyled>Login</ButtonSubmitStyled>
+              <GoToRegister dark={theme}>
+                No tenés una cuenta?
+                <span>
+                  <Link replace to="/register">
+                    Registrate!
+                  </Link>
+                </span>
+              </GoToRegister>
+              <TestEmailStyled dark={theme}>
+                test email:
+                <span>test@test.com</span>
+              </TestEmailStyled>
+              <TestEmailStyled dark={theme}>
+                test password:
+                <span>test1234</span>
+              </TestEmailStyled>
+            </FormStyled>
+          )}
         </FormContainer>
       )}
     </PageContainer>

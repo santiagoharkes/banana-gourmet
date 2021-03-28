@@ -48,7 +48,9 @@ function Sidebar() {
             <>
               <LiStyled onClick={handleClick}>Mi perfil</LiStyled>
               <LiStyled onClick={handleClick}>Mis pedidos</LiStyled>
-              <LiStyled onClick={handleClick}>Mis favoritos</LiStyled>
+              <LiStyled onClick={(e) => handleClick(e, "/mis-favoritos")}>
+                Mis favoritos
+              </LiStyled>
               <LiStyled onClick={(e) => handleClick(e, "logout")}>
                 Logout
               </LiStyled>
