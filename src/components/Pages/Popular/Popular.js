@@ -19,17 +19,23 @@ import { useTheme } from "Context/Theme/ThemeContext";
 import { useQuery } from "react-query";
 import { useProducts } from "Context/Products/ProductsContext";
 import { useHistory } from "react-router";
+import { useAxios } from "hooks/useAxios";
 
 function Popular() {
+  const axios = useAxios();
   const { theme } = useTheme();
   const { storeProducto } = useProducts();
   const history = useHistory();
+
+  const fetchProducts = () => {
+    return axios.get("/productos");
+  };
 
   const {
     data: productos,
     // isLoading: productsLoading,
     // isError: productsError,
-  } = useQuery("products");
+  } = useQuery("products", fetchProducts);
 
   SwiperCore.use([Navigation, Pagination]);
 
@@ -48,7 +54,7 @@ function Popular() {
       {productos.data
         .filter((valor) => valor.popular === true)
         .map((popular) => (
-          <SwiperSlide>
+          <SwiperSlide key={popular._id}>
             <PopularLinkStyled onClick={() => handleClick(popular)}>
               <PopularCardStyled dark={theme}>
                 <PopularImageStyled src={popular.img[0].url} />

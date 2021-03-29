@@ -12,7 +12,7 @@ import FavoriteItem from "components/Pages/FavoriteItem/FavoriteItem";
 
 import { FavoritesContainerStyled } from "./MisFavoritosElements";
 
-function MisPedidos() {
+function MisFavoritos() {
   const axios = useAxios();
 
   const fetchLikes = () => {
@@ -49,4 +49,4 @@ function MisPedidos() {
   );
 }
 
-export default MisPedidos;
+export default MisFavoritos;
