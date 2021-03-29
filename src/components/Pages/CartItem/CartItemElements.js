@@ -20,9 +20,12 @@ export const CartItemStyled = styled(motion.div)`
   place-items: center;
   gap: 15px;
   position: relative;
+  will-change: transform;
+  position: relative;
 
   &:hover img {
     transform: scale(1.1);
+    z-index: 1;
   }
 `;
 
@@ -32,6 +35,13 @@ export const ImageCardContainerStyled = styled.div`
   width: 60px;
   overflow: hidden;
   cursor: pointer;
+  will-change: transform;
+  position: relative;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  z-index: 2;
 
   img {
     object-fit: cover;
@@ -39,6 +49,7 @@ export const ImageCardContainerStyled = styled.div`
     width: 100%;
     height: 100%;
     object-position: center;
+    z-index: 1;
   }
 `;
 

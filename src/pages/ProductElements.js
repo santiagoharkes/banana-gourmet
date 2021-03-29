@@ -16,6 +16,13 @@ export const ProductImageStyled = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  will-change: transform;
+  position: relative;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  z-index: 2;
 
   img {
     object-fit: cover;
@@ -24,6 +31,7 @@ export const ProductImageStyled = styled.div`
     height: 200px;
     object-position: center;
     border-radius: 30px;
+    z-index: 1;
   }
 `;
 

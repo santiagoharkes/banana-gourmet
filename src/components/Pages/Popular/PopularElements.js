@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
-import { Link } from "react-router-dom";
 
 export const PopularCardStyled = styled.div`
   margin: 0 5px;
@@ -22,6 +21,12 @@ export const PopularCardStyled = styled.div`
   margin-bottom: 30px;
   transition: all 0.3s ease, box-shadow 1s ease;
   cursor: pointer;
+  will-change: transform;
+  position: relative;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
 
   & * {
     z-index: 3;
@@ -62,6 +67,7 @@ export const PopularCardStyled = styled.div`
 
   &:hover img {
     transform: scale(1.5);
+    z-index: 1;
   }
 `;
 
@@ -101,6 +107,6 @@ export const PriceCardTextStyled = styled.h3`
   font-size: 2rem;
 `;
 
-export const PopularLinkStyled = styled(Link)`
+export const PopularLinkStyled = styled.div`
   width: 100%;
 `;

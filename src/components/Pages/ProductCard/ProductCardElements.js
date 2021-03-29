@@ -14,10 +14,13 @@ export const ProductCardStyled = styled.div`
   padding: 10px 20px;
   cursor: pointer;
   height: 100%;
+  will-change: transform;
+  position: relative;
 
   &:hover img {
     transform: scale(1.1);
     filter: contrast(100%);
+    z-index: 1;
   }
 `;
 
@@ -28,6 +31,13 @@ export const ImageCardContainerStyled = styled.div`
   overflow: hidden;
   margin: 0 auto;
   margin-bottom: 15px;
+  will-change: transform;
+  position: relative;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  z-index: 2;
 
   img {
     object-fit: cover;
@@ -36,6 +46,7 @@ export const ImageCardContainerStyled = styled.div`
     height: 100%;
     object-position: center;
     filter: contrast(75%);
+    z-index: 1;
   }
 `;
 

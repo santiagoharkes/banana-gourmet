@@ -27,8 +27,8 @@ function Popular() {
 
   const {
     data: productos,
-    isLoading: productsLoading,
-    isError: productsError,
+    // isLoading: productsLoading,
+    // isError: productsError,
   } = useQuery("products");
 
   SwiperCore.use([Navigation, Pagination]);
