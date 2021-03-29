@@ -33,7 +33,7 @@ function CartItem({ data: { img, nombre, precio, ...data } }) {
 
   const handleClick = () => {
     storeProducto(pushObject);
-    history.replace("/product/1");
+    history.replace("/product");
   };
 
   return (

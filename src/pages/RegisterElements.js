@@ -43,3 +43,8 @@ export const GoToRegister = styled.p`
       props.dark === "dark" ? props.theme.yellow : props.theme.textColor};
   }
 `;
+
+export const InputError = styled.p`
+  color: red;
+  font-size: 0.75em;
+`;

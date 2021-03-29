@@ -67,6 +67,10 @@ export function AuthContextprovider({ children }) {
     dispatch({ type: "LOGOUT" });
   };
 
+  const loginError = () => {
+    dispatch({ type: "LOGIN_ERROR" });
+  };
+
   const contextValues = {
     ...state,
     login,
@@ -74,6 +78,7 @@ export function AuthContextprovider({ children }) {
     logout,
     setUser,
     register,
+    loginError,
   };
 
   return (

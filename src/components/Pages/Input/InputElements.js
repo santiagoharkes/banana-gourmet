@@ -36,6 +36,14 @@ export const InputStyled = styled.input`
     border: none;
     border-bottom: 3px solid red;
     box-shadow: none;
+    color: red;
+  }
+
+  &.invalid {
+    border: none;
+    border-bottom: 3px solid red;
+    box-shadow: none;
+    color: red;
   }
 `;
 

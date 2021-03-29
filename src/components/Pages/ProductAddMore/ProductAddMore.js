@@ -91,7 +91,7 @@ function ProductAddMore({ producto }) {
     setTimeout(() => {
       storeProducto(producto);
     }, 350);
-    history.replace("/product/1");
+    history.replace("/product");
   };
 
   return (

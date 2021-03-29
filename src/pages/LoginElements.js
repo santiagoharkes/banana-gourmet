@@ -47,3 +47,8 @@ export const TestEmailStyled = styled(GoToRegister)`
 export const FormContainer = styled.div`
   padding-bottom: 70px;
 `;
+
+export const InputError = styled.p`
+  color: red;
+  font-size: 0.75em;
+`;

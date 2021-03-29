@@ -1,5 +1,6 @@
 import React from "react";
 import { AnimatePresence } from "framer-motion";
+import { Helmet } from "react-helmet";
 
 import PageContainer from "components/PageContainer/PageContainer";
 import HeaderTitle from "components/Pages/HeaderTitle/HeaderTitle";
@@ -19,6 +20,14 @@ function Cart() {
   return (
     <>
       <PageContainer>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>Banana Gourmet - Cart</title>
+          <meta
+            name="description"
+            content="Banana Gourmet - Cart - Aquí están los productos que seleccionaste"
+          />
+        </Helmet>
         <HeaderTitle>Cart!</HeaderTitle>
         <HeaderSubtitle>
           Aquí están los productos que seleccionaste

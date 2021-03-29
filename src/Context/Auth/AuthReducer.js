@@ -27,6 +27,12 @@ export const AuthReducer = (state, action) => {
         loading: false,
       };
 
+    case "LOGIN_ERROR":
+      return {
+        ...state,
+        loading: false,
+      };
+
     default:
       return state;
   }

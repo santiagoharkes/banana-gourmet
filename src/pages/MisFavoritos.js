@@ -1,6 +1,7 @@
 import React from "react";
 import { useQuery } from "react-query";
 import { AnimatePresence } from "framer-motion";
+import { Helmet } from "react-helmet";
 
 import { useAxios } from "../hooks/useAxios";
 import PageContainer from "components/PageContainer/PageContainer";
@@ -28,6 +29,14 @@ function MisFavoritos() {
   return (
     <>
       <PageContainer>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>Banana Gourmet - Favoritos</title>
+          <meta
+            name="description"
+            content="Banana Gourmet - Favoritos - Aquí están tus productos favoritos"
+          />
+        </Helmet>
         <HeaderTitle>Favoritos!</HeaderTitle>
         <HeaderSubtitle>Aquí están tus productos favoritos</HeaderSubtitle>
         {likesError && <h1>Hubo un error...</h1>}

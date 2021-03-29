@@ -32,6 +32,7 @@ import { useProducts } from "Context/Products/ProductsContext";
 import { useCart } from "Context/Cart/CartContext";
 import { isInCart } from "utils/functions";
 import { useAuth } from "Context/Auth/AuthContext";
+import { Helmet } from "react-helmet";
 
 SwiperCore.use([Navigation, Pagination]);
 
@@ -60,6 +61,14 @@ function Product() {
 
   return (
     <PageContainer>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Banana Gourmet - Product</title>
+        <meta
+          name="description"
+          content="Banana Gourmet - Product - Mirá la descripción de este producto"
+        />
+      </Helmet>
       {producto && (
         <ProductContainerStyled>
           <TitleContainerStyled>

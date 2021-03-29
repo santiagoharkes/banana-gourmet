@@ -1,4 +1,5 @@
 import { useQuery } from "react-query";
+import { Helmet } from "react-helmet";
 
 import { useAxios } from "../hooks/useAxios";
 import { useAuth } from "Context/Auth/AuthContext";
@@ -36,6 +37,14 @@ function Home() {
 
   return (
     <PageContainer>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Banana Gourmet</title>
+        <meta
+          name="description"
+          content="Un lugar donde podés comprar comidita rica"
+        />
+      </Helmet>
       <Sidebar />
 
       {productsError || categoriesError ? (

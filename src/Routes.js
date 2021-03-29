@@ -27,7 +27,7 @@ function Routes() {
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/cart" component={Cart} />
-          <Route exact path="/product/:id" component={Product} />
+          <Route exact path="/product" component={Product} />
           <ProtectedRoute
             exact
             path="/mis-favoritos"

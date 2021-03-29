@@ -41,7 +41,7 @@ function Popular() {
 
   const handleClick = (data) => {
     storeProducto(data);
-    history.replace("/product/1");
+    history.replace("/product");
   };
 
   return (
