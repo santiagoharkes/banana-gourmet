@@ -10,8 +10,6 @@ import Loading from "components/Loading/Loading";
 import { ErrorMessageStyled, ErrorDescriptionStyled } from "./HomeElements";
 import Sidebar from "components/Sidebar/Sidebar";
 
-import burger from "../img/burger1.webp";
-
 function Home() {
   const { loading: userLoading } = useAuth();
   const axios = useAxios();
@@ -54,7 +52,7 @@ function Home() {
       ) : (
         <>
           <HeaderContainer />
-          <Popular img={burger} />
+          <Popular />
           <ProductContainer productos={productos} categorias={categorias} />
         </>
       )}

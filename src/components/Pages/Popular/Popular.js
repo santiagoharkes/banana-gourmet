@@ -17,9 +17,13 @@ import {
 
 import { useTheme } from "Context/Theme/ThemeContext";
 import { useQuery } from "react-query";
+import { useProducts } from "Context/Products/ProductsContext";
+import { useHistory } from "react-router";
 
-function Popular({ img }) {
+function Popular() {
   const { theme } = useTheme();
+  const { storeProducto } = useProducts();
+  const history = useHistory();
 
   const {
     data: productos,
@@ -27,42 +31,39 @@ function Popular({ img }) {
     isError: productsError,
   } = useQuery("products");
 
-  console.log(productos.data.filter((valor) => valor.popular === true));
-
   SwiperCore.use([Navigation, Pagination]);
+
+  const handleClick = (data) => {
+    storeProducto(data);
+    history.replace("/product/1");
+  };
 
   return (
     <Swiper
       spaceBetween={15}
       pagination={{ clickable: true }}
-      scrollbar={{ draggable: true, loop: true }}
+      scrollbar={{ draggable: true }}
+      loop={true}
     >
-      <SwiperSlide>
-        <PopularLinkStyled replace to="/garralapala">
-          <PopularCardStyled dark={theme}>
-            <PopularImageStyled src={img} />
-            <p>Burgers</p>
-            <h2>Burger Zarpada</h2>
-            <PriceCardStyled>
-              <PriceCardIconStyled dark={theme} />
-              <PriceCardTextStyled dark={theme}>159,99</PriceCardTextStyled>
-            </PriceCardStyled>
-          </PopularCardStyled>
-        </PopularLinkStyled>
-      </SwiperSlide>
-      <SwiperSlide>
-        <PopularLinkStyled replace to="/garralapala">
-          <PopularCardStyled dark={theme}>
-            <PopularImageStyled src={img} />
-            <p>Burgers</p>
-            <h2>Burger Zarpada</h2>
-            <PriceCardStyled>
-              <PriceCardIconStyled dark={theme} />
-              <PriceCardTextStyled dark={theme}>159,99</PriceCardTextStyled>
-            </PriceCardStyled>
-          </PopularCardStyled>
-        </PopularLinkStyled>
-      </SwiperSlide>
+      {productos.data
+        .filter((valor) => valor.popular === true)
+        .map((popular) => (
+          <SwiperSlide>
+            <PopularLinkStyled onClick={() => handleClick(popular)}>
+              <PopularCardStyled dark={theme}>
+                <PopularImageStyled src={popular.img[0].url} />
+                <p>{popular.categoria.nombre}</p>
+                <h2>{popular.nombre}</h2>
+                <PriceCardStyled>
+                  <PriceCardIconStyled dark={theme} />
+                  <PriceCardTextStyled dark={theme}>
+                    {popular.precio}
+                  </PriceCardTextStyled>
+                </PriceCardStyled>
+              </PopularCardStyled>
+            </PopularLinkStyled>
+          </SwiperSlide>
+        ))}
     </Swiper>
   );
 }

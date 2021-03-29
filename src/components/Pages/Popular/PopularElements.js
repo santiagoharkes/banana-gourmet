@@ -72,6 +72,7 @@ export const PopularImageStyled = styled.img`
   width: 100%;
   height: 100%;
   z-index: 1;
+  object-fit: cover;
 `;
 
 export const PriceCardStyled = styled.div`
