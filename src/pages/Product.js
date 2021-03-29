@@ -54,7 +54,7 @@ function Product() {
     if (!producto || producto === null) {
       history.push("/");
     }
-  }, []);
+  }, [history, producto]);
 
   console.log(producto);
 
