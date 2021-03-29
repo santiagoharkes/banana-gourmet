@@ -25,8 +25,6 @@ function MisPedidos() {
     isError: likesError,
   } = useQuery("likes", fetchLikes);
 
-  console.log({ likes });
-
   return (
     <>
       <PageContainer>

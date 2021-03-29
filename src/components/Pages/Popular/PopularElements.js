@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
+import { Link } from "react-router-dom";
 
 export const PopularCardStyled = styled.div`
   margin: 0 5px;
@@ -97,4 +98,8 @@ export const PriceCardTextStyled = styled.h3`
       ? props.theme.backgroundColor
       : props.theme.textColor};
   font-size: 2rem;
+`;
+
+export const PopularLinkStyled = styled(Link)`
+  width: 100%;
 `;

@@ -18,6 +18,7 @@ export const NoItemImageStyled = styled.img`
 export const NoItemTitle = styled.h3`
   color: ${(props) => props.theme.textColor};
   margin: 5px 0 10px;
+  text-align: center;
 `;
 
 export const NoItemSubtitle = styled.p`

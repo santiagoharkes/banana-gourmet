@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route, useLocation } from "react-router-dom";
+import { Switch, Route, useLocation, Redirect } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 
 import { useTheme } from "Context/Theme/ThemeContext";
@@ -12,16 +12,12 @@ import Register from "pages/Register";
 import Cart from "pages/Cart";
 import Product from "pages/Product";
 import MisFavoritos from "pages/MisFavoritos";
+import ProtectedRoute from "components/ProtectedRoute/ProtectedRoute";
 
 function Routes() {
   const { theme } = useTheme();
 
-  // const [theme, setTheme] = useState("");
   const location = useLocation();
-
-  // useEffect(() => {
-  //   setTheme(state.theme);
-  // }, [state.theme]);
 
   return (
     <Layout theme={theme}>
@@ -32,8 +28,15 @@ function Routes() {
           <Route exact path="/register" component={Register} />
           <Route exact path="/cart" component={Cart} />
           <Route exact path="/product/:id" component={Product} />
-          <Route exact path="/mis-favoritos" component={MisFavoritos} />
+          <ProtectedRoute
+            exact
+            path="/mis-favoritos"
+            component={MisFavoritos}
+          />
           <Route exact path="/garralapala" component={Nada} />
+          <Route exact path="*">
+            <Redirect to="/" />
+          </Route>
         </Switch>
       </AnimatePresence>
     </Layout>

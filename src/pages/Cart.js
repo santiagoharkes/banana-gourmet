@@ -28,13 +28,15 @@ function Cart() {
             <NoItemsCart h="80" key="noItemsCard" from="cart" />
           </AnimatePresence>
         )}
-        <CartContainer>
-          <AnimatePresence>
-            {cartItems.map((item) => {
-              return <CartItem data={item} key={item._id} />;
-            })}
-          </AnimatePresence>
-        </CartContainer>
+        {cartItems.length > 0 && (
+          <CartContainer>
+            <AnimatePresence>
+              {cartItems.map((item) => {
+                return <CartItem data={item} key={item._id} />;
+              })}
+            </AnimatePresence>
+          </CartContainer>
+        )}
       </PageContainer>
       {total > 0 && (
         <CartTotalContainerStyled>

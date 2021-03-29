@@ -6,3 +6,11 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.swiper-pagination-bullet {
+  background: black;
+}
+
+.swiper-pagination-bullet-active {
+  background: #fbc320;
+}
