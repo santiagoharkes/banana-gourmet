@@ -7,6 +7,16 @@ import { PriceCardStyled } from "components/Pages/ProductCard/ProductCardElement
 export const ProductContainerStyled = styled.div`
   width: 100%;
   padding-bottom: 75px;
+
+  &.swiper-pagination.swiper-pagination-clickable.swiper-pagination-bullets {
+    margin-bottom: 10px;
+  }
+
+  &.swiper-pagination-fraction,
+  .swiper-pagination-custom,
+  .swiper-container-horizontal > .swiper-pagination-bullets {
+    bottom: 25px;
+  }
 `;
 
 export const ProductImageStyled = styled.div`
