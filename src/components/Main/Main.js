@@ -9,10 +9,10 @@ import BottomMenu from "components/BottomMenu/BottomMenu";
 
 import { useTheme } from "Context/Theme/ThemeContext";
 
-function Main({ children, theme }) {
-  const { colors } = useTheme();
+function Main({ children }) {
+  const { colors, theme } = useTheme();
   return (
-    <ThemeProvider theme={colors}>
+    <ThemeProvider theme={colors} dark={theme}>
       <MainContainer>
         <MobileMenu />
         {children}

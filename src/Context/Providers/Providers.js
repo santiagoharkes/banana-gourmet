@@ -3,6 +3,7 @@ import { ProductsProvider } from "Context/Products/ProductsContext";
 import { CartContextProvider } from "Context/Cart/CartContext";
 import { AuthContextprovider } from "Context/Auth/AuthContext";
 import { Menuprovider } from "Context/Menu/MenuContext";
+import { CheckoutContextProvider } from "Context/Checkout/CheckoutContext";
 
 function Providers({ children }) {
   return (
@@ -10,7 +11,9 @@ function Providers({ children }) {
       <AuthContextprovider>
         <Menuprovider>
           <ProductsProvider>
-            <CartContextProvider>{children}</CartContextProvider>
+            <CartContextProvider>
+              <CheckoutContextProvider>{children}</CheckoutContextProvider>
+            </CartContextProvider>
           </ProductsProvider>
         </Menuprovider>
       </AuthContextprovider>

@@ -12,6 +12,7 @@ import Register from "pages/Register";
 import Cart from "pages/Cart";
 import Product from "pages/Product";
 import MisFavoritos from "pages/MisFavoritos";
+import Checkout from "pages/Checkout";
 import ProtectedRoute from "components/ProtectedRoute/ProtectedRoute";
 
 function Routes() {
@@ -33,6 +34,7 @@ function Routes() {
             path="/mis-favoritos"
             component={MisFavoritos}
           />
+          <Route exact path="/checkout" component={Checkout} />
           <Route exact path="/garralapala" component={Nada} />
           <Route exact path="*">
             <Redirect to="/" />

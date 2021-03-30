@@ -25,10 +25,14 @@ export const CartTotalContainerStyled = styled.div`
   }
 `;
 
-export const BuyButtonStyled = styled.button`
+export const BuyButtonStyled = styled.div`
   border-radius: 30px;
   padding: 10px 30px;
   background-color: ${(props) => props.theme.yellow};
+  color: ${(props) =>
+    props.dark === "dark"
+      ? props.theme.backgroundColor
+      : props.theme.textColor};
   display: flex;
   justify-content: center;
   align-items: center;

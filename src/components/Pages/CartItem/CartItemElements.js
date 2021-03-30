@@ -57,7 +57,7 @@ export const PriceCardStyled = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: ${(props) => (props.mb ? `${props.mb}px` : "10px")};
 `;
 
 export const CloseIconStyled = styled(CloseIcon)`

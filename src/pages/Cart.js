@@ -13,9 +13,23 @@ import {
   CartTotalContainerStyled,
   BuyButtonStyled,
 } from "./CartElements";
+import { useTheme } from "Context/Theme/ThemeContext";
+import { useAuth } from "Context/Auth/AuthContext";
+import { useHistory } from "react-router";
 
 function Cart() {
   const { cartItems, total } = useCart();
+  const { theme } = useTheme();
+  const { user } = useAuth();
+  const history = useHistory();
+
+  const handleBuyClick = () => {
+    if (user) {
+      history.push("/checkout");
+    } else {
+      history.push("/login");
+    }
+  };
 
   return (
     <>
@@ -50,7 +64,9 @@ function Cart() {
       {total > 0 && (
         <CartTotalContainerStyled>
           <HeaderTitle>Total: ${total}</HeaderTitle>
-          <BuyButtonStyled>Comprar!</BuyButtonStyled>
+          <BuyButtonStyled dark={theme} onClick={handleBuyClick}>
+            Comprar!
+          </BuyButtonStyled>
         </CartTotalContainerStyled>
       )}
     </>
