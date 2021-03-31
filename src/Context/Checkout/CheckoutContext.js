@@ -27,7 +27,19 @@ export function CheckoutContextProvider({ children }) {
   const { user } = useAuth();
 
   useEffect(() => {
-    const cartItemsIds = cartItems.map((valor) => valor._id);
+    const cartItemsIds = cartItems
+      .map((valor) => {
+        if (valor.quantity > 1) {
+          let nuevoArray = [];
+          for (let index = 0; index < valor.quantity; index++) {
+            nuevoArray.push(valor._id);
+          }
+          return nuevoArray;
+        } else {
+          return valor._id;
+        }
+      })
+      .flat();
 
     setProductos(cartItemsIds);
     setPrecio(subtotal);

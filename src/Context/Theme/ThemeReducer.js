@@ -4,6 +4,10 @@ const darkTheme = {
   textColor: "#eaeaea",
   yellow: "#fbc320",
   subtitleColor: "#b0b0b0",
+  successBackground: "#00d717",
+  errorBackground: "#ff0018",
+  pendingBackground: "#ff921f",
+  yendoBackground: "#1f96ff",
 };
 
 const lightTheme = {
@@ -12,6 +16,10 @@ const lightTheme = {
   textColor: "#212121",
   yellow: "#fbc320",
   subtitleColor: "#373737",
+  successBackground: "#00d717",
+  errorBackground: "#ff0018",
+  pendingBackground: "#ff921f",
+  yendoBackground: "#1f96ff",
 };
 
 export const ThemeReducer = (state, action) => {

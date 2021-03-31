@@ -57,8 +57,6 @@ function Product() {
     }
   }, [history, producto]);
 
-  console.log(producto);
-
   return (
     <PageContainer>
       <Helmet>

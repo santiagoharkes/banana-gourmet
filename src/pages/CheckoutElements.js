@@ -17,14 +17,16 @@ export const CheckoutItemsContainerStyled = styled.div`
 `;
 
 export const TotalContainerStyled = styled(ItemContainerStyled)`
-  background-color: ${(props) =>
-    props.dark === "dark" ? props.theme.yellow : props.theme.textColor};
+  background-color: ${(props) => props.theme.backgroundColorSecondary};
+  border: 1px solid
+    ${(props) =>
+      props.dark === "dark" ? props.theme.yellow : props.theme.textColor};
   display: flex;
   justify-content: space-between;
 `;
 
 export const TotalTitleStyled = styled.p`
-  color: ${(props) => props.theme.backgroundColor};
+  color: ${(props) => props.theme.textColor};
 `;
 
 export const TotalPriceContainer = styled(PriceCardStyled)`
@@ -33,13 +35,13 @@ export const TotalPriceContainer = styled(PriceCardStyled)`
 
 export const TotalPriceIcon = styled(PriceCardIconStyled)`
   background-color: ${(props) =>
-    props.dark === "dark" ? props.theme.backgroundColor : props.theme.yellow};
-  color: ${(props) =>
     props.dark === "dark" ? props.theme.yellow : props.theme.textColor};
+  color: ${(props) =>
+    props.dark === "dark" ? props.theme.backgroundColor : props.theme.yellow};
 `;
 
 export const TotalPriceNumber = styled(PriceCardTextStyled)`
-  color: ${(props) => props.theme.backgroundColor};
+  color: ${(props) => props.theme.textColor};
 `;
 
 export const FormaDePagoContainerStyled = styled.div`
@@ -158,4 +160,12 @@ export const PropinaCardContainer = styled(FormaDePagoCardStyled)`
   height: auto;
   width: auto;
   padding: 10px 20px;
+`;
+
+export const ButtonBuy = styled(ItemContainerStyled)`
+  background-color: ${(props) => props.theme.yellow};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 `;

@@ -1,6 +1,8 @@
-import React from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from "react";
 import { Switch, Route, useLocation, Redirect } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
+import Cookies from "js-cookie";
 
 import { useTheme } from "Context/Theme/ThemeContext";
 
@@ -14,11 +16,36 @@ import Product from "pages/Product";
 import MisFavoritos from "pages/MisFavoritos";
 import Checkout from "pages/Checkout";
 import ProtectedRoute from "components/ProtectedRoute/ProtectedRoute";
+import PedidoDone from "pages/CheckoutDone";
+import PedidoFail from "pages/CheckoutFail";
+import Pedido from "pages/Pedido";
+import { useAuth } from "Context/Auth/AuthContext";
+import { useAxios } from "hooks/useAxios";
 
 function Routes() {
   const { theme } = useTheme();
+  const { setLoading, setUser } = useAuth();
+  const axios = useAxios();
 
   const location = useLocation();
+
+  const token = Cookies.get("token") || null;
+
+  useEffect(() => {
+    if (token) {
+      setLoading();
+      axios.get(`/users/me/`).then((res) => {
+        const userLogged = {
+          jwt: token,
+          user: res.data,
+        };
+        console.log("****** CHEQUEANDO SI TOY LOGUEADO ******");
+        setUser(userLogged);
+      });
+    } else {
+      setUser(null);
+    }
+  }, [axios, token]);
 
   return (
     <Layout theme={theme}>
@@ -34,7 +61,10 @@ function Routes() {
             path="/mis-favoritos"
             component={MisFavoritos}
           />
-          <Route exact path="/checkout" component={Checkout} />
+          <ProtectedRoute exact path="/checkout" component={Checkout} />
+          <Route exact path="/pedido" component={Pedido} />
+          <Route exact path="/pedido/done" component={PedidoDone} />
+          <Route exact path="/pedido/fail" component={PedidoFail} />
           <Route exact path="/garralapala" component={Nada} />
           <Route exact path="*">
             <Redirect to="/" />

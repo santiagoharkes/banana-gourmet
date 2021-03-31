@@ -46,7 +46,9 @@ function CartItem({ data: { img, nombre, precio, ...data } }) {
       <PriceAddStyledContainer>
         <PriceCardStyled>
           <PriceCardIconStyled dark={theme} />
-          <PriceCardTextStyled dark={theme}>{precio}</PriceCardTextStyled>
+          <PriceCardTextStyled dark={theme}>
+            {(precio * data.quantity).toFixed(2)}
+          </PriceCardTextStyled>
         </PriceCardStyled>
         <AddProductStyled dark={theme}>
           <AddIconStyled onClick={() => sumarProducto(data)} />

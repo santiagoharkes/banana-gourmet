@@ -1,16 +1,7 @@
-import React, { createContext, useReducer, useContext, useEffect } from "react";
+import React, { createContext, useReducer, useContext } from "react";
 import Cookies from "js-cookie";
 
-import { useAxios } from "hooks/useAxios";
 import { AuthReducer } from "./AuthReducer.js";
-// import {
-//   SUMAR_PRODUCTO,
-//   RESTAR_PRODUCTO,
-//   AGREGAR_PRODUCTO,
-//   ELIMINAR_PRODUCTO,
-//   LIMPIAR_CARTA,
-//   CHECKOUT,
-// } from "../../utils/constants";
 
 const AuthContext = createContext();
 
@@ -21,30 +12,6 @@ const initialState = {
 
 export function AuthContextprovider({ children }) {
   const [state, dispatch] = useReducer(AuthReducer, initialState);
-  const axios = useAxios();
-
-  console.log({ state });
-
-  useEffect(() => {
-    const token = Cookies.get("token") || null;
-
-    // Este useEffect chequea si estoy logueado cada vez que axios cambia. O sea, cuando aparece un token o no.
-    // Entonces lo hace solamente cuando te logueas o entras a un path desde el navegador.
-
-    if (token) {
-      dispatch({ type: "LOADING" });
-      axios.get(`/users/me/`).then((res) => {
-        const userLogged = {
-          jwt: token,
-          user: res.data,
-        };
-        console.log("****** CHEQUEANDO SI TOY LOGUEADO ******");
-        setUser(userLogged);
-      });
-    } else {
-      setUser(null);
-    }
-  }, [axios]);
 
   const setUser = (payload) => {
     dispatch({ type: "SET_USER", payload });

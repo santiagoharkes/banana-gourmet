@@ -32,12 +32,12 @@ function CartItem({ data }) {
   const history = useHistory();
   const [producto, setProducto] = useState({});
 
+  console.log(producto);
+
   useEffect(() => {
     const filterProduct = cartItems.find((valor) => valor._id === data._id);
     setProducto(filterProduct);
   }, [data, cartItems]);
-
-  console.log({ producto });
 
   const handleClick = () => {
     storeProducto(data);
