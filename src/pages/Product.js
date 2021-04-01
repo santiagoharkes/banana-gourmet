@@ -81,7 +81,7 @@ function Product() {
               loop={true}
             >
               {producto?.img?.map((valor) => (
-                <SwiperSlide>
+                <SwiperSlide key={valor._id}>
                   <ProductImageStyled>
                     <img src={`${valor.url}`} alt="" />
                   </ProductImageStyled>

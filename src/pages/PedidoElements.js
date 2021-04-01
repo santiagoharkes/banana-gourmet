@@ -16,7 +16,7 @@ export const TicketItemStyled = styled.div`
   width: 100%;
   padding: 10px;
   display: grid;
-  grid-template-columns: 10% 1fr 20%;
+  grid-template-columns: 10% 1fr 25%;
   text-align: center;
   color: ${(props) => props.theme.textColor};
   border-top: ${(props) =>
@@ -61,6 +61,10 @@ export const CodigoTitle = styled(TicketItemStyled)`
   text-align: center;
   border-bottom: 1px solid
     ${(props) => (props.dark === "dark" ? "#4f4f4f" : "#d7d7d7")};
+
+  & * {
+    user-select: text;
+  }
 
   & span {
     font-weight: bold;
