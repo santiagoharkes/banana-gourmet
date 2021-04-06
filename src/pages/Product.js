@@ -33,12 +33,15 @@ import { useCart } from "Context/Cart/CartContext";
 import { isInCart } from "utils/functions";
 import { useAuth } from "Context/Auth/AuthContext";
 import { Helmet } from "react-helmet";
+import { useQuery } from "react-query";
+import { useAxios } from "hooks/useAxios";
+import Loading from "components/Loading/Loading";
 
 SwiperCore.use([Navigation, Pagination]);
 
 function Product() {
   const history = useHistory();
-
+  const axios = useAxios();
   const { theme } = useTheme();
   const { producto } = useProducts();
   const { user } = useAuth();
@@ -57,6 +60,18 @@ function Product() {
     }
   }, [history, producto]);
 
+  const fetchPedido = (id) => {
+    return axios.get(`/productos/${id}`);
+  };
+
+  const {
+    data: product,
+    isLoading: productLoading,
+    // isError: pedidoError,
+  } = useQuery(["producto", producto?._id], () => fetchPedido(producto?._id));
+
+  console.log({ product });
+
   return (
     <PageContainer>
       <Helmet>
@@ -67,20 +82,21 @@ function Product() {
           content="Banana Gourmet - Product - Mirá la descripción de este producto"
         />
       </Helmet>
-      {producto && (
+      {productLoading && <Loading h="80" />}
+      {product?.data && (
         <ProductContainerStyled>
           <TitleContainerStyled>
-            <HeaderTitle>{producto?.nombre}</HeaderTitle>
-            <LikeButton user={user} producto={producto} />
+            <HeaderTitle>{product?.data?.nombre}</HeaderTitle>
+            <LikeButton user={user} producto={product.data} />
           </TitleContainerStyled>
-          {producto.img.length > 1 ? (
+          {product.data.img.length > 1 ? (
             <Swiper
               spaceBetween={20}
               pagination={{ clickable: true }}
               scrollbar={{ draggable: true }}
               loop={true}
             >
-              {producto?.img?.map((valor) => (
+              {product?.data?.img?.map((valor) => (
                 <SwiperSlide key={valor._id}>
                   <ProductImageStyled>
                     <img src={`${valor.url}`} alt="" />
@@ -90,36 +106,36 @@ function Product() {
             </Swiper>
           ) : (
             <ProductImageStyled>
-              <img src={`${producto.img[0].url}`} alt="" />
+              <img src={`${product.data.img[0].url}`} alt="" />
             </ProductImageStyled>
           )}
           <PriceAddContainerStyled>
             <ProductPriceStyled>
               <PriceCardIconStyled dark={theme} />
               <PriceCardTextStyled dark={theme}>
-                {producto.precio.toFixed(2)}
+                {product.data.precio.toFixed(2)}
               </PriceCardTextStyled>
             </ProductPriceStyled>
-            {isInCart(producto, cartItems) &&
-              isInCart(producto, cartItems).quantity > 0 && (
+            {isInCart(product.data, cartItems) &&
+              isInCart(product.data, cartItems).quantity > 0 && (
                 <AddProductStyled dark={theme}>
-                  <AddIconStyled onClick={() => sumarProducto(producto)} />
-                  {isInCart(producto, cartItems).quantity}
+                  <AddIconStyled onClick={() => sumarProducto(product.data)} />
+                  {isInCart(product.data, cartItems).quantity}
                   <RemoveIconStyled
                     onClick={
-                      isInCart(producto, cartItems).quantity <= 1
-                        ? () => eliminarProducto(producto)
-                        : () => restarProducto(producto)
+                      isInCart(product.data, cartItems).quantity <= 1
+                        ? () => eliminarProducto(product.data)
+                        : () => restarProducto(product.data)
                     }
                   />
                 </AddProductStyled>
               )}
 
-            {(!isInCart(producto, cartItems) ||
-              isInCart(producto, cartItems).quantity < 1) && (
+            {(!isInCart(product.data, cartItems) ||
+              isInCart(product.data, cartItems).quantity < 1) && (
               <AddProductStyled
                 dark={theme}
-                onClick={() => agregarProducto(producto)}
+                onClick={() => agregarProducto(product.data)}
               >
                 <p>Agregar</p>
               </AddProductStyled>
@@ -127,12 +143,12 @@ function Product() {
           </PriceAddContainerStyled>
           <DescriptionTitle>Descripción:</DescriptionTitle>
           <DescriptionTitleStyled>
-            {producto?.descripcion}
+            {product?.data.descripcion}
           </DescriptionTitleStyled>
 
           <LineaDivisora />
 
-          {producto && <ProductAddMore producto={producto} />}
+          {product.data && <ProductAddMore producto={product.data} />}
         </ProductContainerStyled>
       )}
     </PageContainer>

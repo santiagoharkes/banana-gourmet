@@ -22,7 +22,7 @@ function Sidebar() {
       hideMenu();
       if (route === "logout") {
         logout();
-        history.replace("/");
+        history.replace("/login");
       }
       if (route && route !== "logout") {
         history.replace(route);

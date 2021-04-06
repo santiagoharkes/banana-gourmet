@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
 
 import PageContainer from "components/PageContainer/PageContainer";
@@ -13,16 +13,18 @@ import {
   SubtotalTitle,
   EnvioPropinaStyled,
   CodigoTitle,
-  EstadoPedidoStyled,
+  // EstadoPedidoStyled,
   EstadoEnvioStyled,
 } from "./PedidoElements";
 import { useTheme } from "Context/Theme/ThemeContext";
 import { usePedido } from "Context/Pedido/PedidoContext";
 import { useAxios } from "hooks/useAxios";
 import { useQuery } from "react-query";
+import { useHistory } from "react-router";
 
 function Pedido() {
   const { theme } = useTheme();
+  const history = useHistory();
   const { pedido: contextPedido } = usePedido();
   const axios = useAxios();
 
@@ -34,11 +36,15 @@ function Pedido() {
     data: pedido,
     // isLoading: pedidoLoading,
     // isError: pedidoError,
-  } = useQuery(["pedido", contextPedido._id], () =>
-    fetchPedido(contextPedido._id)
+  } = useQuery(["pedido", contextPedido?._id], () =>
+    fetchPedido(contextPedido?._id)
   );
 
-  console.log(pedido);
+  useEffect(() => {
+    if (!contextPedido) {
+      history.push("/");
+    }
+  }, [history, contextPedido]);
 
   return (
     <>
@@ -54,9 +60,9 @@ function Pedido() {
         <HeaderTitle>Pedido!</HeaderTitle>
         <HeaderSubtitle>Estos son los detalles de tu pedido</HeaderSubtitle>
         <PedidoContainerStyled>
-          <EstadoPedidoStyled dark={theme}>
+          {/* <EstadoPedidoStyled dark={theme}>
             Tu pedido ha sido aprobado!
-          </EstadoPedidoStyled>
+          </EstadoPedidoStyled> */}
           {pedido?.data && (
             <>
               <EstadoEnvioStyled
@@ -85,20 +91,30 @@ function Pedido() {
                   <p>Descripción</p>
                   <p>Precio</p>
                 </TicketTitle>
-                {pedido.data.productos.map((valor) => {
-                  //   const quantity = pedido.data.productos.filter(
-                  //     (producto) => producto._id === valor._id
-                  //   );
-                  //   console.log({ quantity });
+                {pedido.data.productos
+                  .reduce((acc, current) => {
+                    const x = acc.find((item) => item._id === current._id);
+                    if (!x) {
+                      return acc.concat([current]);
+                    } else {
+                      return acc;
+                    }
+                  }, [])
+                  .map((valor) => {
+                    const filtradosLength = pedido.data.productos.filter(
+                      (holis) => holis._id === valor._id
+                    );
 
-                  return (
-                    <TicketItemStyled>
-                      <p>1</p>
-                      <p>{valor.nombre}</p>
-                      <p className="precio">$ {valor.precio.toFixed(2)}</p>
-                    </TicketItemStyled>
-                  );
-                })}
+                    return (
+                      <TicketItemStyled>
+                        <p>{filtradosLength.length}</p>
+                        <p>{valor.nombre}</p>
+                        <p className="precio">
+                          $ {(valor.precio * filtradosLength.length).toFixed(2)}
+                        </p>
+                      </TicketItemStyled>
+                    );
+                  })}
                 <SubtotalTitle dark={theme} borderTop>
                   <p>Subtotal</p>
                   <p>$ {pedido.data.precio}</p>
