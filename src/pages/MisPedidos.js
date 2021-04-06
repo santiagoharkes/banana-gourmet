@@ -82,8 +82,9 @@ function Pedidos() {
       </Helmet>
       <HeaderTitle>Pedidos!</HeaderTitle>
       <HeaderSubtitle>Aquí están todos tus pedidos</HeaderSubtitle>
-      {pedidosLoading && <Loading h={80} />}
-      {pedidos.data.length === 0 ? (
+      {pedidosLoading ? (
+        <Loading h={80} />
+      ) : pedidos?.data?.length === 0 ? (
         <AnimatePresence>
           <NoItemsCart h="80" key="noItemsCard" from="pedidos" />
         </AnimatePresence>
@@ -273,8 +274,6 @@ function Pedidos() {
                     </SecondRowStyled>
                   </PedidoCardContainer>
                 ))}
-
-          {pedidos?.data?.length < 1 && <p> No hay pedidos!!! </p>}
         </PedidosContainer>
       )}
     </PageContainer>
