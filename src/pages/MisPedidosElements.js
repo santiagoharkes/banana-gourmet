@@ -33,7 +33,15 @@ export const ButtonStyled = styled.div`
 
 export const PedidoCardContainer = styled.div`
   border-radius: 30px;
-  border: 1px solid ${(props) => props.theme.backgroundColorSecondary};
+  border: 1px solid
+    ${(props) =>
+      props.dark === "dark"
+        ? props.envio === 1
+          ? `${props.theme.pendingBackground}61`
+          : props.envio === 2
+          ? `${props.theme.yendoBackground}61`
+          : `${props.theme.successBackground}61`
+        : "transparent"};
   padding: 10px;
   margin-bottom: 20px;
   background: ${(props) => props.theme.backgroundColorSecondary};
@@ -80,11 +88,30 @@ export const EstadoEnvio = styled.div`
   padding: 10px;
   border-radius: 10px;
   background: ${(props) =>
-    props.envio === 1
+    props.dark === "dark"
+      ? "transparent"
+      : props.envio === 1
       ? props.theme.pendingBackground
       : props.envio === 2
       ? props.theme.yendoBackground
       : props.theme.successBackground};
+  color: ${(props) =>
+    props.dark === "dark"
+      ? props.envio === 1
+        ? props.theme.pendingBackground
+        : props.envio === 2
+        ? props.theme.yendoBackground
+        : props.theme.successBackground
+      : props.theme.textColor};
+  border: 1px solid
+    ${(props) =>
+      props.dark === "dark"
+        ? props.envio === 1
+          ? props.theme.pendingBackground
+          : props.envio === 2
+          ? props.theme.yendoBackground
+          : props.theme.successBackground
+        : "transparent"};
   text-align: center;
   justify-self: center;
   margin-bottom: 10px;

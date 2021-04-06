@@ -119,6 +119,15 @@ function Pedidos() {
                   <PedidoCardContainer
                     key={pedido._id}
                     onClick={() => handlePedidoClick(pedido)}
+                    dark={theme}
+                    envio={
+                      pedido.estadoEnvio === "yendo" ||
+                      pedido.estadoEnvio === "listo"
+                        ? 2
+                        : pedido.estadoEnvio === "preparacion"
+                        ? 1
+                        : 3
+                    }
                   >
                     <FirstRowStyled>
                       <ProductsContainer>
@@ -149,16 +158,8 @@ function Pedidos() {
                       </ProductsContainer>
                     </FirstRowStyled>
                     <SecondRowStyled>
-                      <PriceAndStateContainer>
-                        <TotalTextStyled>Total:</TotalTextStyled>
-                        <PriceCard>
-                          <PriceCardIconStyled dark={theme} />
-                          <PriceCardTextStyled dark={theme}>
-                            {pedido.total.toFixed(2)}
-                          </PriceCardTextStyled>
-                        </PriceCard>
-                      </PriceAndStateContainer>
                       <EstadoEnvio
+                        dark={theme}
                         envio={
                           pedido.estadoEnvio === "yendo" ||
                           pedido.estadoEnvio === "listo"
@@ -178,6 +179,15 @@ function Pedidos() {
                         {pedido.estadoEnvio === "entregado" &&
                           "Tu pedido fue entregado!"}
                       </EstadoEnvio>
+                      <PriceAndStateContainer>
+                        <TotalTextStyled>Total:</TotalTextStyled>
+                        <PriceCard>
+                          <PriceCardIconStyled dark={theme} />
+                          <PriceCardTextStyled dark={theme}>
+                            {pedido.total.toFixed(2)}
+                          </PriceCardTextStyled>
+                        </PriceCard>
+                      </PriceAndStateContainer>
                       <DatosContainer>
                         <CodeStyled>Code: {pedido.code}</CodeStyled>
                         <CodeStyled>
@@ -202,6 +212,15 @@ function Pedidos() {
                   <PedidoCardContainer
                     key={pedido._id}
                     onClick={() => handlePedidoClick(pedido)}
+                    dark={theme}
+                    envio={
+                      pedido.estadoEnvio === "yendo" ||
+                      pedido.estadoEnvio === "listo"
+                        ? 2
+                        : pedido.estadoEnvio === "preparacion"
+                        ? 1
+                        : 3
+                    }
                   >
                     <FirstRowStyled>
                       <ProductsContainer>
@@ -232,16 +251,8 @@ function Pedidos() {
                       </ProductsContainer>
                     </FirstRowStyled>
                     <SecondRowStyled>
-                      <PriceAndStateContainer>
-                        <TotalTextStyled>Total:</TotalTextStyled>
-                        <PriceCard>
-                          <PriceCardIconStyled dark={theme} />
-                          <PriceCardTextStyled dark={theme}>
-                            {pedido.total.toFixed(2)}
-                          </PriceCardTextStyled>
-                        </PriceCard>
-                      </PriceAndStateContainer>
                       <EstadoEnvio
+                        dark={theme}
                         envio={
                           pedido.estadoEnvio === "yendo" ||
                           pedido.estadoEnvio === "listo"
@@ -260,6 +271,15 @@ function Pedidos() {
                         {pedido.estadoEnvio === "entregado" &&
                           "Tu pedido fue entregado!"}
                       </EstadoEnvio>
+                      <PriceAndStateContainer>
+                        <TotalTextStyled>Total:</TotalTextStyled>
+                        <PriceCard>
+                          <PriceCardIconStyled dark={theme} />
+                          <PriceCardTextStyled dark={theme}>
+                            {pedido.total.toFixed(2)}
+                          </PriceCardTextStyled>
+                        </PriceCard>
+                      </PriceAndStateContainer>
                       <DatosContainer>
                         <CodeStyled>Code: {pedido.code}</CodeStyled>
                         <CodeStyled>

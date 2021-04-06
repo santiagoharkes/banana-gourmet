@@ -20,8 +20,8 @@ function CheckoutDone() {
   const { pedido } = usePedido();
   const history = useHistory();
 
-  const irAPedido = () => {
-    history.push("/pedido");
+  const irAPedido = (endpoint) => {
+    history.push(endpoint);
   };
 
   return (
@@ -43,10 +43,12 @@ function CheckoutDone() {
           <CodigoPedidoStyled>
             El código de tu pedido es: {pedido?.code}
           </CodigoPedidoStyled>
-          <VerMiPedidoButton onClick={irAPedido}>
+          <VerMiPedidoButton onClick={() => irAPedido("/producto")}>
             Ver mi pedido
           </VerMiPedidoButton>
-          <VerTodosLosPedidos>Ver todos mis pedidos</VerTodosLosPedidos>
+          <VerTodosLosPedidos onClick={() => irAPedido("/mis-pedidos")}>
+            Ver todos mis pedidos
+          </VerTodosLosPedidos>
         </CheckoutTitleContainer>
       </CheckoutDoneContainer>
     </PageContainer>
