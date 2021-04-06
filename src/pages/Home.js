@@ -11,6 +11,8 @@ import Loading from "components/Loading/Loading";
 import { ErrorMessageStyled, ErrorDescriptionStyled } from "./HomeElements";
 import Sidebar from "components/Sidebar/Sidebar";
 
+import BananaImge from "../img/bananaGourmetLogo.webp";
+
 function Home() {
   const { loading: userLoading } = useAuth();
   const axios = useAxios();
@@ -44,6 +46,16 @@ function Home() {
           name="description"
           content="Un lugar donde podés comprar comidita rica"
         />
+        <meta property="og:image" content={BananaImge} />
+
+        <meta
+          property="og:description"
+          content="Banana Gourmet es el lugar donde podrás pedir las mejores comidas del condado! Estás bajón un domingo? LLueve y ni ganas de salir? Sale ese Banana Gourmet. Un lugar, tu lugar."
+        />
+
+        <meta property="og:url" content="https://banana-gourmet.vercel.app/" />
+
+        <meta property="og:title" content="Banana Gourmet!" />
       </Helmet>
       <Sidebar />
 
