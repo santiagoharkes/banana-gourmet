@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
 
 import { useTheme } from "Context/Theme/ThemeContext";
-import { InputContainerSyled, InputStyled, LabelStyled } from "./InputElements";
+import {
+  InputContainerSyled,
+  InputStyled,
+  LabelStyled,
+  ShowPassword,
+  HidePassword,
+} from "./InputElements";
 
 function Input({
   type,
@@ -13,6 +19,9 @@ function Input({
   onBlur,
   className,
   setErrores,
+  icon,
+  showPassword,
+  setShowPassword,
 }) {
   const { theme } = useTheme();
   const [isActive, setIsActive] = useState(false);
@@ -59,6 +68,14 @@ function Input({
       <LabelStyled className={isActive ? "active" : ""} htmlFor={type}>
         {label}
       </LabelStyled>
+      {/* {icon === true && showPassword ? <ShowPassword /> : <HidePassword />} */}
+      {icon ? (
+        showPassword ? (
+          <HidePassword onClick={() => setShowPassword(!showPassword)} />
+        ) : (
+          <ShowPassword onClick={() => setShowPassword(!showPassword)} />
+        )
+      ) : null}
     </InputContainerSyled>
   );
 }

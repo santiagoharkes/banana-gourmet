@@ -37,7 +37,7 @@ export const TicketTitle = styled(TicketItemStyled)`
 `;
 
 export const SubtotalTitle = styled(TicketItemStyled)`
-  grid-template-columns: 1fr 25%;
+  grid-template-columns: 1fr minmax(25%, auto);
   text-align: right;
   gap: 20px;
   font-weight: bold;
@@ -73,14 +73,28 @@ export const CodigoTitle = styled(TicketItemStyled)`
 `;
 
 export const EstadoPedidoStyled = styled(TicketContainerStyled)`
-  background: ${(props) => props.theme.successBackground};
+  color: ${(props) =>
+    props.dark === "dark"
+      ? props.theme.successBackground
+      : props.theme.textColor};
+  background: ${(props) =>
+    props.dark === "dark"
+      ? props.theme.backgroundColor
+      : props.theme.successBackground};
+  text-align: center;
   border: none;
   border-radius: 20px;
   margin-bottom: 20px;
-  padding: 20px;
+  padding: 10px;
 `;
 
 export const EstadoEnvioStyled = styled(EstadoPedidoStyled)`
+  text-align: center;
+  color: ${(props) =>
+    props.dark === "dark"
+      ? props.theme.backgroundColor
+      : props.theme.textColor};
+  padding: 20px;
   background: ${(props) =>
     props.estado === 1
       ? props.theme.pendingBackground

@@ -12,12 +12,14 @@ import NoItemsCart from "components/NoItemsCart/NoItemsCart";
 import FavoriteItem from "components/Pages/FavoriteItem/FavoriteItem";
 
 import { FavoritesContainerStyled } from "./MisFavoritosElements";
+import { useAuth } from "Context/Auth/AuthContext";
 
 function MisFavoritos() {
   const axios = useAxios();
+  const { user } = useAuth();
 
   const fetchLikes = () => {
-    return axios.get("/likes");
+    return axios.get(`/likes?usuario=${user.user._id}`);
   };
 
   const {

@@ -25,6 +25,7 @@ import {
   PrecioEnvioStyled,
   PropinaCardContainer,
   ButtonBuy,
+  ErrorMessage,
 } from "./CheckoutElements";
 
 import { CategoryTitleStyled } from "components/Pages/ProductAddMore/ProductAddMoreElements";
@@ -41,6 +42,8 @@ function Cart() {
   const { cartItems, total: subtotal, limpiarCarta } = useCart();
   const { theme } = useTheme();
   const [loading, setLoading] = useState(false);
+  const [opciones, setOpciones] = useState(false);
+  const [opcionesError, setOpcionesError] = useState("");
   const {
     setTarjeta,
     setEfectivo,
@@ -61,6 +64,11 @@ function Cart() {
   const { setEstadoPedido, setPedido } = usePedido();
 
   const handleBuyClick = () => {
+    if (!opciones) {
+      setOpcionesError("Por favor, elije un método de pago");
+      return;
+    }
+
     const nuevoPedido = {
       estadoPedido: "aprobado",
       estadoEnvio: estadoEnvio,
@@ -96,6 +104,12 @@ function Cart() {
       });
   };
 
+  const handleCardClick = (callback) => {
+    setOpciones(true);
+    setOpcionesError("");
+    callback();
+  };
+
   return (
     <>
       <PageContainer>
@@ -125,11 +139,11 @@ function Cart() {
                 <TotalPriceNumber dark={theme}>{subtotal}</TotalPriceNumber>
               </TotalPriceContainer>
             </TotalContainerStyled>
-            <CategoryTitleStyled>Forma de pago:</CategoryTitleStyled>
+            <CategoryTitleStyled>Método de pago:</CategoryTitleStyled>
             <FormaDePagoContainerStyled>
               <FormaDePagoCardStyled
-                className={efectivo ? "active" : ""}
-                onClick={setEfectivo}
+                className={opcionesError ? "error" : efectivo ? "active" : ""}
+                onClick={() => handleCardClick(setEfectivo)}
               >
                 <EfectivoIconStyled className={efectivo ? "active" : ""} />
                 <FormaDePagoCardTitleStyled
@@ -139,8 +153,8 @@ function Cart() {
                 </FormaDePagoCardTitleStyled>
               </FormaDePagoCardStyled>
               <FormaDePagoCardStyled
-                className={tarjeta ? "active" : ""}
-                onClick={setTarjeta}
+                className={opcionesError ? "error" : tarjeta ? "active" : ""}
+                onClick={() => handleCardClick(setTarjeta)}
               >
                 <TarjetaIconStyled className={tarjeta ? "active" : ""} />
                 <FormaDePagoCardTitleStyled className={tarjeta ? "active" : ""}>
@@ -152,8 +166,16 @@ function Cart() {
             <FormaDePagoContainerStyled>
               {tarjeta && (
                 <FormaDePagoCardStyled
-                  className={efectivo ? "disabled" : delivery ? "active" : ""}
-                  onClick={tarjeta ? setDelivery : null}
+                  className={
+                    opcionesError
+                      ? "error"
+                      : efectivo
+                      ? "disabled"
+                      : delivery
+                      ? "active"
+                      : ""
+                  }
+                  onClick={tarjeta ? () => handleCardClick(setDelivery) : null}
                 >
                   <PrecioEnvioStyled>$50</PrecioEnvioStyled>
                   <DeliveryIconStyled
@@ -169,8 +191,8 @@ function Cart() {
                 </FormaDePagoCardStyled>
               )}
               <FormaDePagoCardStyled
-                className={takeAway ? "active" : ""}
-                onClick={setTakeAway}
+                className={opcionesError ? "error" : takeAway ? "active" : ""}
+                onClick={() => handleCardClick(setTakeAway)}
               >
                 <TakeAwayIconStyled className={takeAway ? "active" : ""} />
                 <FormaDePagoCardTitleStyled
@@ -264,6 +286,9 @@ function Cart() {
                 <TotalPriceNumber dark={theme}>{total}</TotalPriceNumber>
               </TotalPriceContainer>
             </TotalContainerStyled>
+            {opcionesError !== "" && (
+              <ErrorMessage>{opcionesError}</ErrorMessage>
+            )}
             <ButtonBuy onClick={handleBuyClick}>Comprar</ButtonBuy>
           </CheckoutItemsContainerStyled>
         )}

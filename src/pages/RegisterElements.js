@@ -12,9 +12,9 @@ export const FormStyled = styled.form`
   margin: 40px 0;
   padding-bottom: 50px;
 
-  & > div {
+  /* & > div {
     margin: 10px;
-  }
+  } */
 `;
 
 export const ButtonSubmitStyled = styled.button`

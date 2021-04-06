@@ -77,6 +77,10 @@ export const FormaDePagoCardStyled = styled.div`
   &.active {
     background: ${(props) => props.theme.yellow};
   }
+
+  &.error {
+    border: 1px solid ${(props) => props.theme.errorBackground};
+  }
 `;
 
 export const EfectivoIconStyled = styled(LocalAtmIcon)`
@@ -168,4 +172,12 @@ export const ButtonBuy = styled(ItemContainerStyled)`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+`;
+
+export const ErrorMessage = styled(ItemContainerStyled)`
+  background-color: ${(props) => props.theme.errorBackground};
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

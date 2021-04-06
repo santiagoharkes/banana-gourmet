@@ -45,12 +45,22 @@ export const CheckoutReducer = (state, action) => {
       };
 
     case "CHECKOUT_TAKE_AWAY":
-      return {
-        ...state,
-        takeAway: true,
-        delivery: false,
-        envio: 0,
-      };
+      if (state.efectivo || state.tarjeta) {
+        return {
+          ...state,
+          takeAway: true,
+          delivery: false,
+          envio: 0,
+        };
+      } else {
+        return {
+          ...state,
+          takeAway: true,
+          efectivo: true,
+          delivery: false,
+          envio: 0,
+        };
+      }
 
     case "CHECKOUT_PROPINA":
       return {

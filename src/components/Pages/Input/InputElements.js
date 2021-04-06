@@ -1,11 +1,13 @@
 import styled from "styled-components";
+import VisibilityIcon from "@material-ui/icons/Visibility";
+import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 
 export const InputContainerSyled = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  margin: 20px 0;
   width: 100%;
+  margin-bottom: 5px;
 
   &:focus-within label {
     transform: translate(0, 5px) scale(0.75);
@@ -27,6 +29,7 @@ export const InputStyled = styled.input`
   font-size: 16px;
   color: ${(props) => props.theme.textColor};
   user-select: text;
+  position: relative;
 
   &:-moz-placeholder {
     box-shadow: none !important;
@@ -61,4 +64,22 @@ export const LabelStyled = styled.label`
   &.active {
     transform: translate(0, 5px) scale(0.75);
   }
+`;
+
+export const ShowPassword = styled(VisibilityIcon)`
+  position: absolute;
+  top: 35%;
+  right: 5%;
+  cursor: pointer;
+  color: ${(props) => props.theme.textColor};
+  opacity: 0.5;
+`;
+
+export const HidePassword = styled(VisibilityOffIcon)`
+  position: absolute;
+  top: 35%;
+  right: 5%;
+  cursor: pointer;
+  color: ${(props) => props.theme.textColor};
+  opacity: 0.5;
 `;

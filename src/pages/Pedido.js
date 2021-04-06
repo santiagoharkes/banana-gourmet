@@ -32,8 +32,8 @@ function Pedido() {
 
   const {
     data: pedido,
-    isLoading: pedidoLoading,
-    isError: pedidoError,
+    // isLoading: pedidoLoading,
+    // isError: pedidoError,
   } = useQuery(["pedido", contextPedido._id], () =>
     fetchPedido(contextPedido._id)
   );
@@ -54,10 +54,13 @@ function Pedido() {
         <HeaderTitle>Pedido!</HeaderTitle>
         <HeaderSubtitle>Estos son los detalles de tu pedido</HeaderSubtitle>
         <PedidoContainerStyled>
-          <EstadoPedidoStyled>Tu pedido ha sido aprobado!</EstadoPedidoStyled>
+          <EstadoPedidoStyled dark={theme}>
+            Tu pedido ha sido aprobado!
+          </EstadoPedidoStyled>
           {pedido?.data && (
             <>
               <EstadoEnvioStyled
+                dark={theme}
                 estado={
                   pedido.data.estadoEnvio === "preparacion"
                     ? 1
@@ -87,6 +90,7 @@ function Pedido() {
                   //     (producto) => producto._id === valor._id
                   //   );
                   //   console.log({ quantity });
+
                   return (
                     <TicketItemStyled>
                       <p>1</p>

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const ImageLoginStyled = styled.img`
   max-height: 100px;
+  margin-bottom: 20px;
 `;
 
 export const FormStyled = styled.form`
@@ -39,8 +40,12 @@ export const GoToRegister = styled.p`
   }
 `;
 
+export const TestEmailContainer = styled.div`
+  margin-top: 10px;
+`;
+
 export const TestEmailStyled = styled(GoToRegister)`
-  margin-top: 20px;
+  margin-bottom: 5px;
   opacity: 0.3;
 `;
 

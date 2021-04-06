@@ -13,6 +13,7 @@ import {
   TestEmailStyled,
   FormContainer,
   InputError,
+  TestEmailContainer,
 } from "./LoginElements";
 import { useAxios } from "hooks/useAxios";
 import { useTheme } from "Context/Theme/ThemeContext";
@@ -31,6 +32,7 @@ function Login() {
   const history = useHistory();
   const [error, setError] = useState(null);
   const [errores, setErrores] = useState({ errores: "" });
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     const token = Cookies.get("token") || null;
@@ -126,7 +128,7 @@ function Login() {
               <InputError>{formik.errors.identifier}</InputError>
             ) : null}
             <Input
-              type="password"
+              type={showPassword ? "text" : "password"}
               label="Password"
               name="password"
               onBlur={formik.handleBlur}
@@ -139,6 +141,9 @@ function Login() {
                   : ""
               }
               setErrores={setErrores}
+              icon={true}
+              showPassword={showPassword}
+              setShowPassword={setShowPassword}
             />
             {formik.touched.password && formik.errors.password ? (
               <InputError>{formik.errors.password}</InputError>
@@ -153,14 +158,16 @@ function Login() {
                 </Link>
               </span>
             </GoToRegister>
-            <TestEmailStyled dark={theme}>
-              test email:
-              <span>test@test.com</span>
-            </TestEmailStyled>
-            <TestEmailStyled dark={theme}>
-              test password:
-              <span>test1234</span>
-            </TestEmailStyled>
+            <TestEmailContainer>
+              <TestEmailStyled dark={theme}>
+                test email:
+                <span>test@test.com</span>
+              </TestEmailStyled>
+              <TestEmailStyled dark={theme}>
+                test password:
+                <span>test1234</span>
+              </TestEmailStyled>
+            </TestEmailContainer>
           </FormStyled>
         </FormContainer>
       )}

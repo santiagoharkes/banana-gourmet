@@ -30,6 +30,7 @@ function Login() {
 
   const [error, setError] = useState(null);
   const [errores, setErrores] = useState({ emailError: "", usernameError: "" });
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     const token = Cookies.get("token") || null;
@@ -193,7 +194,7 @@ function Login() {
             <InputError>{errores.emailError}</InputError>
           ) : null}
           <Input
-            type="password"
+            type={showPassword ? "text" : "password"}
             label="Password"
             name="password"
             onBlur={formik.handleBlur}
@@ -202,6 +203,9 @@ function Login() {
             className={
               formik.touched.password && formik.errors.password ? "invalid" : ""
             }
+            icon={true}
+            showPassword={showPassword}
+            setShowPassword={setShowPassword}
           />
           {formik.touched.password && formik.errors.password ? (
             <InputError>{formik.errors.password}</InputError>

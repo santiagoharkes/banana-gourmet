@@ -14,6 +14,7 @@ import Register from "pages/Register";
 import Cart from "pages/Cart";
 import Product from "pages/Product";
 import MisFavoritos from "pages/MisFavoritos";
+import MisPedidos from "pages/MisPedidos";
 import Checkout from "pages/Checkout";
 import ProtectedRoute from "components/ProtectedRoute/ProtectedRoute";
 import PedidoDone from "pages/CheckoutDone";
@@ -61,6 +62,7 @@ function Routes() {
             path="/mis-favoritos"
             component={MisFavoritos}
           />
+          <ProtectedRoute exact path="/mis-pedidos" component={MisPedidos} />
           <ProtectedRoute exact path="/checkout" component={Checkout} />
           <Route exact path="/pedido" component={Pedido} />
           <Route exact path="/pedido/done" component={PedidoDone} />
