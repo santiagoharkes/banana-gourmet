@@ -8,7 +8,8 @@ export const SidebarStyled = styled.div`
   min-height: 100px;
   min-width: 0;
   z-index: 10;
-  background: rgba(2, 0, 0, 0.75);
+  /* background: rgba(2, 0, 0, 0.75); */
+  background: ${(props) => props.theme.backgroundColor};
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
@@ -18,7 +19,7 @@ export const SidebarStyled = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: ${(props) => props.theme.textColor};
   white-space: nowrap;
   overflow: hidden;
   transition-delay: 3000ms;
@@ -48,17 +49,21 @@ export const SidebarBackgroundStyled = styled.div`
   opacity: 0;
   transition: 0.3s ease;
   transition-delay: 0.2s;
+  border-radius: 30px;
+  background: #0000006e;
 
   &.sidebar__background-visible {
     left: 0;
     opacity: 1;
     z-index: 9;
     transition: 0.3s ease;
+    border-radius: 30px;
   }
 `;
 
 export const SidebarULStyled = styled.ul`
   list-style: none;
+  width: 80%;
 `;
 
 export const LiStyled = styled.li`
@@ -69,10 +74,13 @@ export const LiStyled = styled.li`
   transition-delay: none;
   transform-origin: 0%;
   opacity: 0.7;
+  border-bottom: 1px solid ${(props) => `${props.theme.textColor}20`};
+  padding-bottom: 10px;
 
   &:hover {
     transform: scale(1.1);
     opacity: 1;
+    border-bottom: 1px solid ${(props) => `${props.theme.textColor}80`};
   }
 `;
 

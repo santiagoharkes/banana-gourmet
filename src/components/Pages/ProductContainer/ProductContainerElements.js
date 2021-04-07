@@ -42,7 +42,7 @@ export const CategoryListStyled = styled(ScrollContainer)`
   margin: 0 -15px;
   position: sticky;
   top: -20px;
-  z-index: 7;
+  z-index: 1;
   background-color: ${(props) => props.theme.backgroundColor};
   padding-top: 20px;
   padding-bottom: 20px;
