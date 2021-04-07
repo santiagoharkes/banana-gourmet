@@ -73,7 +73,6 @@ function Cart() {
       setOpcionesError("Por favor, elije un método de pago");
       if (!delivery && !takeAway) {
         setEnvio(false);
-        setOpcionesError("Por favor, elije un método de envío");
       }
       return;
     }
@@ -83,7 +82,6 @@ function Cart() {
       setOpcionesError("Por favor, elije un método de envío");
       if (!efectivo && !tarjeta) {
         setPago(false);
-        setOpcionesError("Por favor, elije un método de pago");
       }
       return;
     }

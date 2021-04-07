@@ -43,7 +43,7 @@ function CheckoutDone() {
           <CodigoPedidoStyled>
             El código de tu pedido es: {pedido?.code}
           </CodigoPedidoStyled>
-          <VerMiPedidoButton onClick={() => irAPedido("/producto")}>
+          <VerMiPedidoButton onClick={() => irAPedido("/pedido")}>
             Ver mi pedido
           </VerMiPedidoButton>
           <VerTodosLosPedidos onClick={() => irAPedido("/mis-pedidos")}>
