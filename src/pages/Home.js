@@ -11,8 +11,6 @@ import Loading from "components/Loading/Loading";
 import { ErrorMessageStyled, ErrorDescriptionStyled } from "./HomeElements";
 import Sidebar from "components/Sidebar/Sidebar";
 
-import BananaImge from "../img/bananaGourmetLogo.webp";
-
 function Home() {
   const { loading: userLoading } = useAuth();
   const axios = useAxios();
@@ -40,22 +38,43 @@ function Home() {
   return (
     <PageContainer>
       <Helmet>
-        <meta charSet="utf-8" />
-        <title>Banana Gourmet</title>
         <meta
           name="description"
-          content="Un lugar donde podés comprar comidita rica"
+          content="Banana Gourmet es el lugar donde podrás pedir las mejores comidas del condado! Estás bajón un domingo? LLueve y ni ganas de salir? Sale ese Banana Gourmet. Un lugar, tu lugar."
         />
-        <meta property="og:image" content={BananaImge} />
 
+        <meta itemprop="name" content="Banana Gourmet!" />
+        <meta
+          itemprop="description"
+          content="Banana Gourmet es el lugar donde podrás pedir las mejores comidas del condado! Estás bajón un domingo? LLueve y ni ganas de salir? Sale ese Banana Gourmet. Un lugar, tu lugar."
+        />
+        <meta
+          itemprop="image"
+          content="https://res.cloudinary.com/santiagoharkes/image/upload/v1617727699/banana_Gourmet_Logo_7fd58173b5.webp"
+        />
+
+        <meta property="og:url" content="https://banana-gourmet.vercel.app" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Banana Gourmet!" />
         <meta
           property="og:description"
           content="Banana Gourmet es el lugar donde podrás pedir las mejores comidas del condado! Estás bajón un domingo? LLueve y ni ganas de salir? Sale ese Banana Gourmet. Un lugar, tu lugar."
         />
+        <meta
+          property="og:image"
+          content="https://res.cloudinary.com/santiagoharkes/image/upload/v1617727699/banana_Gourmet_Logo_7fd58173b5.webp"
+        />
 
-        <meta property="og:url" content="https://banana-gourmet.vercel.app/" />
-
-        <meta property="og:title" content="Banana Gourmet!" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Banana Gourmet!" />
+        <meta
+          name="twitter:description"
+          content="Banana Gourmet es el lugar donde podrás pedir las mejores comidas del condado! Estás bajón un domingo? LLueve y ni ganas de salir? Sale ese Banana Gourmet. Un lugar, tu lugar."
+        />
+        <meta
+          name="twitter:image"
+          content="https://res.cloudinary.com/santiagoharkes/image/upload/v1617727699/banana_Gourmet_Logo_7fd58173b5.webp"
+        ></meta>
       </Helmet>
       <Sidebar />
 

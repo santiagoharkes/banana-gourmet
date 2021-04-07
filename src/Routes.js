@@ -20,6 +20,7 @@ import ProtectedRoute from "components/ProtectedRoute/ProtectedRoute";
 import PedidoDone from "pages/CheckoutDone";
 import PedidoFail from "pages/CheckoutFail";
 import Pedido from "pages/Pedido";
+import Busqueda from "pages/Busqueda";
 import { useAuth } from "Context/Auth/AuthContext";
 import { useAxios } from "hooks/useAxios";
 
@@ -67,6 +68,7 @@ function Routes() {
           <Route exact path="/pedido" component={Pedido} />
           <Route exact path="/pedido/done" component={PedidoDone} />
           <Route exact path="/pedido/fail" component={PedidoFail} />
+          <Route exact path="/search" component={Busqueda} />
           <Route exact path="/garralapala" component={Nada} />
           <Route exact path="*">
             <Redirect to="/" />

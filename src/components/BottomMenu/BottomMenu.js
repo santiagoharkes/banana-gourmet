@@ -20,7 +20,7 @@ function BottomMenu() {
 
   return (
     <BottomMenuContainerStyled>
-      <Link onClick={hideMenu} to="/garralapala">
+      <Link onClick={hideMenu} to="/search">
         <SearchIconStyled />
       </Link>
       <Link onClick={hideMenu} replace to="/">

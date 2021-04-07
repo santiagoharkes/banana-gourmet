@@ -5,6 +5,7 @@ import { AuthContextprovider } from "Context/Auth/AuthContext";
 import { Menuprovider } from "Context/Menu/MenuContext";
 import { CheckoutContextProvider } from "Context/Checkout/CheckoutContext";
 import { PedidoContextProvider } from "Context/Pedido/PedidoContext";
+import { SearchContextProvider } from "Context/Search/SearchContext";
 
 function Providers({ children }) {
   return (
@@ -14,7 +15,9 @@ function Providers({ children }) {
           <ProductsProvider>
             <CartContextProvider>
               <CheckoutContextProvider>
-                <PedidoContextProvider>{children}</PedidoContextProvider>
+                <PedidoContextProvider>
+                  <SearchContextProvider>{children}</SearchContextProvider>
+                </PedidoContextProvider>
               </CheckoutContextProvider>
             </CartContextProvider>
           </ProductsProvider>
