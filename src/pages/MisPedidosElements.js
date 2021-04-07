@@ -43,9 +43,35 @@ export const PedidoCardContainer = styled.div`
           : `${props.theme.successBackground}61`
         : "transparent"};
   padding: 10px;
-  margin-bottom: 20px;
+  margin: 40px 0;
   background: ${(props) => props.theme.backgroundColorSecondary};
   cursor: pointer;
+  position: relative;
+`;
+
+export const FechaPedido = styled.div`
+  position: absolute;
+  width: 100px;
+  height: 20px;
+  padding: 10px;
+  top: -10px;
+  left: calc(50% - 50px);
+  background-color: ${(props) => props.theme.backgroundColorSecondary};
+  color: ${(props) => props.theme.textColor};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.75em;
+  border-radius: 10px;
+  border-top: 1px solid
+    ${(props) =>
+      props.dark === "dark"
+        ? props.envio === 1
+          ? `${props.theme.pendingBackground}61`
+          : props.envio === 2
+          ? `${props.theme.yendoBackground}61`
+          : `${props.theme.successBackground}61`
+        : "transparent"};
 `;
 
 export const SecondRowStyled = styled.div`

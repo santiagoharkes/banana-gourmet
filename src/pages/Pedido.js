@@ -15,6 +15,9 @@ import {
   CodigoTitle,
   // EstadoPedidoStyled,
   EstadoEnvioStyled,
+  DetailItemStyled,
+  DetailTitle,
+  OtrosDatos,
 } from "./PedidoElements";
 import { useTheme } from "Context/Theme/ThemeContext";
 import { usePedido } from "Context/Pedido/PedidoContext";
@@ -46,6 +49,20 @@ function Pedido() {
     }
   }, [history, contextPedido]);
 
+  const getDate = () => {
+    const fechita = new Date(contextPedido.createdAt);
+
+    return `${fechita.getDate()}/${fechita.getMonth()}/${fechita.getFullYear()}`;
+  };
+
+  const getHour = () => {
+    const fechita = new Date(contextPedido.createdAt);
+
+    return `${fechita.getHours()}:${fechita.getMinutes()}hs`;
+  };
+
+  console.log(contextPedido);
+
   return (
     <>
       <PageContainer>
@@ -70,7 +87,8 @@ function Pedido() {
                 estado={
                   pedido.data.estadoEnvio === "preparacion"
                     ? 1
-                    : pedido.data.estadoEnvio === "yendo"
+                    : pedido.data.estadoEnvio === "yendo" ||
+                      pedido.data.estadoEnvio === "listo"
                     ? 2
                     : 3
                 }
@@ -79,6 +97,8 @@ function Pedido() {
                   ? "Tu pedido está siendo preparado"
                   : pedido.data.estadoEnvio === "yendo"
                   ? "Tu pedido está yen2!"
+                  : pedido.data.estadoEnvio === "listo"
+                  ? "Tu pedido está listo para retirar"
                   : "Tu pedido fue entregado, que lo disfrutes!"}
               </EstadoEnvioStyled>
               <TicketContainerStyled dark={theme}>
@@ -138,6 +158,24 @@ function Pedido() {
               </TicketContainerStyled>
             </>
           )}
+
+          <OtrosDatos>Otros datos:</OtrosDatos>
+          <DetailItemStyled>
+            <DetailTitle>Fecha:</DetailTitle>
+            {getDate()}
+          </DetailItemStyled>
+          <DetailItemStyled>
+            <DetailTitle>Hora:</DetailTitle>
+            {getHour()}
+          </DetailItemStyled>
+          <DetailItemStyled>
+            <DetailTitle>Método de envío:</DetailTitle>
+            {contextPedido.delivery ? "Delivery" : "Take Away"}
+          </DetailItemStyled>
+          <DetailItemStyled>
+            <DetailTitle>Método de pago:</DetailTitle>
+            {contextPedido.tarjeta ? "Tarjeta" : "Efectivo"}
+          </DetailItemStyled>
         </PedidoContainerStyled>
       </PageContainer>
     </>

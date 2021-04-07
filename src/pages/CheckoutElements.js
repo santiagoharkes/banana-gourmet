@@ -166,6 +166,43 @@ export const PropinaCardContainer = styled(FormaDePagoCardStyled)`
   padding: 10px 20px;
 `;
 
+export const OtraPropinaLabel = styled.label`
+  color: ${(props) => props.theme.textColor};
+  margin: 10px 0;
+  display: block;
+`;
+
+export const OtraPropina = styled.input`
+  border-radius: 20px;
+  background: ${(props) => props.theme.backgroundColorSecondary};
+  border: 1px solid #8c8c8c38;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 10px;
+  margin-right: 20px;
+  gap: 10px;
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+  border: none;
+  outline: none;
+  color: ${(props) => props.theme.textColor};
+  user-select: text;
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+
+  &.disabled {
+    cursor: not-allowed;
+    opacity: ${(props) => (props.theme === "dark" ? 1 : 0.2)};
+  }
+
+  &.active {
+    border: 1px solid ${(props) => `${props.theme.yellow}61`};
+  }
+`;
+
 export const ButtonBuy = styled(ItemContainerStyled)`
   background-color: ${(props) => props.theme.yellow};
   display: flex;

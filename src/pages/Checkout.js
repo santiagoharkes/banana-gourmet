@@ -26,6 +26,8 @@ import {
   PropinaCardContainer,
   ButtonBuy,
   ErrorMessage,
+  OtraPropina,
+  OtraPropinaLabel,
 } from "./CheckoutElements";
 
 import { CategoryTitleStyled } from "components/Pages/ProductAddMore/ProductAddMoreElements";
@@ -42,7 +44,9 @@ function Cart() {
   const { cartItems, total: subtotal, limpiarCarta } = useCart();
   const { theme } = useTheme();
   const [loading, setLoading] = useState(false);
-  const [opciones, setOpciones] = useState(false);
+  const [otraPropina, setOtraPropina] = useState(false);
+  const [envio, setEnvio] = useState(true);
+  const [pago, setPago] = useState(true);
   const [opcionesError, setOpcionesError] = useState("");
   const {
     setTarjeta,
@@ -64,8 +68,23 @@ function Cart() {
   const { setEstadoPedido, setPedido } = usePedido();
 
   const handleBuyClick = () => {
-    if (!opciones) {
+    if (!efectivo && !tarjeta) {
+      setPago(false);
       setOpcionesError("Por favor, elije un método de pago");
+      if (!delivery && !takeAway) {
+        setEnvio(false);
+        setOpcionesError("Por favor, elije un método de envío");
+      }
+      return;
+    }
+
+    if (!delivery && !takeAway) {
+      setEnvio(false);
+      setOpcionesError("Por favor, elije un método de envío");
+      if (!efectivo && !tarjeta) {
+        setPago(false);
+        setOpcionesError("Por favor, elije un método de pago");
+      }
       return;
     }
 
@@ -83,8 +102,6 @@ function Cart() {
       usuario: usuario,
       total: total,
     };
-
-    console.log(nuevoPedido);
 
     setLoading(true);
     axios
@@ -105,7 +122,8 @@ function Cart() {
   };
 
   const handleCardClick = (callback) => {
-    setOpciones(true);
+    setPago(true);
+    setEnvio(true);
     setOpcionesError("");
     callback();
   };
@@ -142,7 +160,7 @@ function Cart() {
             <CategoryTitleStyled>Método de pago:</CategoryTitleStyled>
             <FormaDePagoContainerStyled>
               <FormaDePagoCardStyled
-                className={opcionesError ? "error" : efectivo ? "active" : ""}
+                className={!pago ? "error" : efectivo ? "active" : ""}
                 onClick={() => handleCardClick(setEfectivo)}
               >
                 <EfectivoIconStyled className={efectivo ? "active" : ""} />
@@ -153,7 +171,7 @@ function Cart() {
                 </FormaDePagoCardTitleStyled>
               </FormaDePagoCardStyled>
               <FormaDePagoCardStyled
-                className={opcionesError ? "error" : tarjeta ? "active" : ""}
+                className={!pago ? "error" : tarjeta ? "active" : ""}
                 onClick={() => handleCardClick(setTarjeta)}
               >
                 <TarjetaIconStyled className={tarjeta ? "active" : ""} />
@@ -167,7 +185,7 @@ function Cart() {
               {tarjeta && (
                 <FormaDePagoCardStyled
                   className={
-                    opcionesError
+                    !envio
                       ? "error"
                       : efectivo
                       ? "disabled"
@@ -191,7 +209,7 @@ function Cart() {
                 </FormaDePagoCardStyled>
               )}
               <FormaDePagoCardStyled
-                className={opcionesError ? "error" : takeAway ? "active" : ""}
+                className={!envio ? "error" : takeAway ? "active" : ""}
                 onClick={() => handleCardClick(setTakeAway)}
               >
                 <TakeAwayIconStyled className={takeAway ? "active" : ""} />
@@ -208,13 +226,28 @@ function Cart() {
                 <FormaDePagoContainerStyled>
                   <PropinaCardContainer
                     className={
-                      efectivo ? "disabled" : propina === 0 ? "active" : ""
+                      efectivo
+                        ? "disabled"
+                        : propina === 0 && !otraPropina
+                        ? "active"
+                        : ""
                     }
-                    onClick={tarjeta ? () => setPropina(0) : null}
+                    onClick={
+                      tarjeta
+                        ? () => {
+                            setOtraPropina(false);
+                            setPropina(0);
+                          }
+                        : null
+                    }
                   >
                     <FormaDePagoCardTitleStyled
                       className={
-                        efectivo ? "disabled" : propina === 0 ? "active" : ""
+                        efectivo
+                          ? "disabled"
+                          : propina === 0 && !otraPropina
+                          ? "active"
+                          : ""
                       }
                     >
                       $0
@@ -222,13 +255,28 @@ function Cart() {
                   </PropinaCardContainer>
                   <PropinaCardContainer
                     className={
-                      efectivo ? "disabled" : propina === 25 ? "active" : ""
+                      efectivo
+                        ? "disabled"
+                        : propina === 25 && !otraPropina
+                        ? "active"
+                        : ""
                     }
-                    onClick={tarjeta ? () => setPropina(25) : null}
+                    onClick={
+                      tarjeta
+                        ? () => {
+                            setOtraPropina(false);
+                            setPropina(25);
+                          }
+                        : null
+                    }
                   >
                     <FormaDePagoCardTitleStyled
                       className={
-                        efectivo ? "disabled" : propina === 25 ? "active" : ""
+                        efectivo
+                          ? "disabled"
+                          : propina === 25 && !otraPropina
+                          ? "active"
+                          : ""
                       }
                     >
                       $25
@@ -236,13 +284,28 @@ function Cart() {
                   </PropinaCardContainer>
                   <PropinaCardContainer
                     className={
-                      efectivo ? "disabled" : propina === 50 ? "active" : ""
+                      efectivo
+                        ? "disabled"
+                        : propina === 50 && !otraPropina
+                        ? "active"
+                        : ""
                     }
-                    onClick={tarjeta ? () => setPropina(50) : null}
+                    onClick={
+                      tarjeta
+                        ? () => {
+                            setOtraPropina(false);
+                            setPropina(50);
+                          }
+                        : null
+                    }
                   >
                     <FormaDePagoCardTitleStyled
                       className={
-                        efectivo ? "disabled" : propina === 50 ? "active" : ""
+                        efectivo
+                          ? "disabled"
+                          : propina === 50 && !otraPropina
+                          ? "active"
+                          : ""
                       }
                     >
                       $50
@@ -250,13 +313,28 @@ function Cart() {
                   </PropinaCardContainer>
                   <PropinaCardContainer
                     className={
-                      efectivo ? "disabled" : propina === 75 ? "active" : ""
+                      efectivo
+                        ? "disabled"
+                        : propina === 75 && !otraPropina
+                        ? "active"
+                        : ""
                     }
-                    onClick={tarjeta ? () => setPropina(75) : null}
+                    onClick={
+                      tarjeta
+                        ? () => {
+                            setOtraPropina(false);
+                            setPropina(75);
+                          }
+                        : null
+                    }
                   >
                     <FormaDePagoCardTitleStyled
                       className={
-                        efectivo ? "disabled" : propina === 75 ? "active" : ""
+                        efectivo
+                          ? "disabled"
+                          : propina === 75 && !otraPropina
+                          ? "active"
+                          : ""
                       }
                     >
                       $75
@@ -264,19 +342,39 @@ function Cart() {
                   </PropinaCardContainer>
                   <PropinaCardContainer
                     className={
-                      efectivo ? "disabled" : propina === 100 ? "active" : ""
+                      efectivo ? "disabled" : otraPropina ? "active" : ""
                     }
-                    onClick={tarjeta ? () => setPropina(100) : null}
+                    onClick={() => {
+                      setOtraPropina(true);
+                    }}
                   >
                     <FormaDePagoCardTitleStyled
                       className={
-                        efectivo ? "disabled" : propina === 100 ? "active" : ""
+                        efectivo ? "disabled" : otraPropina ? "active" : ""
                       }
                     >
-                      $100
+                      Otra
                     </FormaDePagoCardTitleStyled>
                   </PropinaCardContainer>
                 </FormaDePagoContainerStyled>
+                {otraPropina && (
+                  <>
+                    <OtraPropinaLabel htmlFor="otraPropina">
+                      Ingrese otra propina aquí...
+                    </OtraPropinaLabel>
+                    <OtraPropina
+                      name="otraPropina"
+                      id="otraPropina"
+                      className={
+                        efectivo ? "disabled" : otraPropina ? "active" : ""
+                      }
+                      value={propina}
+                      placeholder="Ingrese otra propina aquí..."
+                      type="number"
+                      onChange={(e) => setPropina(Number(e.target.value))}
+                    ></OtraPropina>
+                  </>
+                )}
               </>
             )}
             <TotalContainerStyled dark={theme}>

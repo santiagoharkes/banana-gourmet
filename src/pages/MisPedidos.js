@@ -35,6 +35,7 @@ import {
   PriceAndStateContainer,
   TotalTextStyled,
   PriceCard,
+  FechaPedido,
 } from "./MisPedidosElements";
 
 import {
@@ -67,8 +68,6 @@ function Pedidos() {
     setPedido(valor);
     history.push("/pedido");
   };
-
-  console.log({ pedidos });
 
   return (
     <PageContainer>
@@ -115,50 +114,36 @@ function Pedidos() {
                     valor.estadoEnvio === "yendo" ||
                     valor.estadoEnvio === "listo"
                 )
-                .map((pedido, index) => (
-                  <PedidoCardContainer
-                    key={pedido._id}
-                    onClick={() => handlePedidoClick(pedido)}
-                    dark={theme}
-                    envio={
-                      pedido.estadoEnvio === "yendo" ||
-                      pedido.estadoEnvio === "listo"
-                        ? 2
-                        : pedido.estadoEnvio === "preparacion"
-                        ? 1
-                        : 3
-                    }
-                  >
-                    <FirstRowStyled>
-                      <ProductsContainer>
-                        {pedido.productos
-                          ?.reduce((acc, current) => {
-                            const x = acc.find(
-                              (item) => item._id === current._id
-                            );
+                .sort((a, b) => {
+                  const opcionA = a.createdAt;
+                  const opcionB = b.createdAt;
 
-                            if (!x) {
-                              return acc.concat([current]);
-                            } else {
-                              return acc;
-                            }
-                          }, [])
-                          .map((producto, index) => {
-                            const filtradosLength = pedido.productos?.filter(
-                              (holis) => holis._id === producto._id
-                            );
+                  let comparison = 0;
 
-                            return (
-                              <ProductStyled>
-                                <span>{filtradosLength.length} - </span>
-                                {producto.nombre}
-                              </ProductStyled>
-                            );
-                          })}
-                      </ProductsContainer>
-                    </FirstRowStyled>
-                    <SecondRowStyled>
-                      <EstadoEnvio
+                  if (opcionA < opcionB) {
+                    comparison = 1;
+                  } else if (opcionA > opcionB) {
+                    comparison = -1;
+                  }
+                  return comparison;
+                })
+                .map((pedido, index) => {
+                  const fechita = new Date(pedido.createdAt);
+                  return (
+                    <PedidoCardContainer
+                      key={pedido._id}
+                      onClick={() => handlePedidoClick(pedido)}
+                      dark={theme}
+                      envio={
+                        pedido.estadoEnvio === "yendo" ||
+                        pedido.estadoEnvio === "listo"
+                          ? 2
+                          : pedido.estadoEnvio === "preparacion"
+                          ? 1
+                          : 3
+                      }
+                    >
+                      <FechaPedido
                         dark={theme}
                         envio={
                           pedido.estadoEnvio === "yendo" ||
@@ -169,89 +154,106 @@ function Pedidos() {
                             : 3
                         }
                       >
-                        {pedido.estadoEnvio === "yendo" &&
-                          "Tu pedido está yen2!"}
-                        {pedido.estadoEnvio === "preparacion" &&
-                          "En preparación"}
-                        {pedido.estadoEnvio === "enviado" && "Enviado!"}
-                        {pedido.estadoEnvio === "listo" &&
-                          "Tu pedido está listo para retirar!"}
-                        {pedido.estadoEnvio === "entregado" &&
-                          "Tu pedido fue entregado!"}
-                      </EstadoEnvio>
-                      <PriceAndStateContainer>
-                        <TotalTextStyled>Total:</TotalTextStyled>
-                        <PriceCard>
-                          <PriceCardIconStyled dark={theme} />
-                          <PriceCardTextStyled dark={theme}>
-                            {pedido.total.toFixed(2)}
-                          </PriceCardTextStyled>
-                        </PriceCard>
-                      </PriceAndStateContainer>
-                      <DatosContainer>
-                        <CodeStyled>Code: {pedido.code}</CodeStyled>
-                        <CodeStyled>
-                          Pago: {pedido.efectivo && <EfectivoIcon />}
-                          {pedido.tarjeta && <TarjetaIcon />}
-                        </CodeStyled>
-                        <CodeStyled>
-                          Envío: {pedido.delivery && <DeliveryIcon />}
-                          {pedido.takeAway && <TakeAwayIcon />}
-                        </CodeStyled>
-                      </DatosContainer>
-                    </SecondRowStyled>
-                  </PedidoCardContainer>
-                ))
+                        {fechita.getDate()}/{fechita.getMonth()}/
+                        {fechita.getFullYear()}
+                      </FechaPedido>
+                      <FirstRowStyled>
+                        <ProductsContainer>
+                          {pedido.productos
+                            ?.reduce((acc, current) => {
+                              const x = acc.find(
+                                (item) => item._id === current._id
+                              );
+
+                              if (!x) {
+                                return acc.concat([current]);
+                              } else {
+                                return acc;
+                              }
+                            }, [])
+                            .map((producto, index) => {
+                              const filtradosLength = pedido.productos?.filter(
+                                (holis) => holis._id === producto._id
+                              );
+
+                              return (
+                                <ProductStyled>
+                                  <span>{filtradosLength.length} - </span>
+                                  {producto.nombre}
+                                </ProductStyled>
+                              );
+                            })}
+                        </ProductsContainer>
+                      </FirstRowStyled>
+                      <SecondRowStyled>
+                        <EstadoEnvio
+                          dark={theme}
+                          envio={
+                            pedido.estadoEnvio === "yendo" ||
+                            pedido.estadoEnvio === "listo"
+                              ? 2
+                              : pedido.estadoEnvio === "preparacion"
+                              ? 1
+                              : 3
+                          }
+                        >
+                          {pedido.estadoEnvio === "yendo" &&
+                            "Tu pedido está yen2!"}
+                          {pedido.estadoEnvio === "preparacion" &&
+                            "En preparación"}
+                          {pedido.estadoEnvio === "enviado" && "Enviado!"}
+                          {pedido.estadoEnvio === "listo" &&
+                            "Tu pedido está listo para retirar!"}
+                          {pedido.estadoEnvio === "entregado" &&
+                            "Tu pedido fue entregado!"}
+                        </EstadoEnvio>
+                        <PriceAndStateContainer>
+                          <TotalTextStyled>Total:</TotalTextStyled>
+                          <PriceCard>
+                            <PriceCardIconStyled dark={theme} />
+                            <PriceCardTextStyled dark={theme}>
+                              {pedido.total.toFixed(2)}
+                            </PriceCardTextStyled>
+                          </PriceCard>
+                        </PriceAndStateContainer>
+                        <DatosContainer>
+                          <CodeStyled>Code: {pedido.code}</CodeStyled>
+                          <CodeStyled>
+                            Pago: {pedido.efectivo && <EfectivoIcon />}
+                            {pedido.tarjeta && <TarjetaIcon />}
+                          </CodeStyled>
+                          <CodeStyled>
+                            Envío: {pedido.delivery && <DeliveryIcon />}
+                            {pedido.takeAway && <TakeAwayIcon />}
+                          </CodeStyled>
+                        </DatosContainer>
+                      </SecondRowStyled>
+                    </PedidoCardContainer>
+                  );
+                })
             : pedidos?.data
                 ?.filter(
                   (pedido) =>
                     pedido.estadoEnvio === "entregado" ||
                     pedido.estadoEnvio === "enviado"
                 )
-                .map((pedido, index) => (
-                  <PedidoCardContainer
-                    key={pedido._id}
-                    onClick={() => handlePedidoClick(pedido)}
-                    dark={theme}
-                    envio={
-                      pedido.estadoEnvio === "yendo" ||
-                      pedido.estadoEnvio === "listo"
-                        ? 2
-                        : pedido.estadoEnvio === "preparacion"
-                        ? 1
-                        : 3
-                    }
-                  >
-                    <FirstRowStyled>
-                      <ProductsContainer>
-                        {pedido.productos
-                          ?.reduce((acc, current) => {
-                            const x = acc.find(
-                              (item) => item._id === current._id
-                            );
-
-                            if (!x) {
-                              return acc.concat([current]);
-                            } else {
-                              return acc;
-                            }
-                          }, [])
-                          .map((producto, index) => {
-                            const filtradosLength = pedido.productos?.filter(
-                              (holis) => holis._id === producto._id
-                            );
-
-                            return (
-                              <ProductStyled>
-                                <span>{filtradosLength.length} - </span>
-                                {producto.nombre}
-                              </ProductStyled>
-                            );
-                          })}
-                      </ProductsContainer>
-                    </FirstRowStyled>
-                    <SecondRowStyled>
-                      <EstadoEnvio
+                .map((pedido, index) => {
+                  const fechita = new Date(pedido.createdAt);
+                  return (
+                    <PedidoCardContainer
+                      key={pedido._id}
+                      onClick={() => handlePedidoClick(pedido)}
+                      dark={theme}
+                      envio={
+                        pedido.estadoEnvio === "yendo" ||
+                        pedido.estadoEnvio === "listo"
+                          ? 2
+                          : pedido.estadoEnvio === "preparacion"
+                          ? 1
+                          : 3
+                      }
+                    >
+                      <FechaPedido
                         dark={theme}
                         envio={
                           pedido.estadoEnvio === "yendo" ||
@@ -262,38 +264,82 @@ function Pedidos() {
                             : 3
                         }
                       >
-                        {pedido.estadoEnvio === "yendo" && "Yen2"}
-                        {pedido.estadoEnvio === "preparacion" &&
-                          "En preparacion"}
-                        {pedido.estadoEnvio === "enviado" && "Enviado!"}
-                        {pedido.estadoEnvio === "listo" &&
-                          "Tu pedido está listo para retirar!"}
-                        {pedido.estadoEnvio === "entregado" &&
-                          "Tu pedido fue entregado!"}
-                      </EstadoEnvio>
-                      <PriceAndStateContainer>
-                        <TotalTextStyled>Total:</TotalTextStyled>
-                        <PriceCard>
-                          <PriceCardIconStyled dark={theme} />
-                          <PriceCardTextStyled dark={theme}>
-                            {pedido.total.toFixed(2)}
-                          </PriceCardTextStyled>
-                        </PriceCard>
-                      </PriceAndStateContainer>
-                      <DatosContainer>
-                        <CodeStyled>Code: {pedido.code}</CodeStyled>
-                        <CodeStyled>
-                          Pago: {pedido.efectivo && <EfectivoIcon />}
-                          {pedido.tarjeta && <TarjetaIcon />}
-                        </CodeStyled>
-                        <CodeStyled>
-                          Envío: {pedido.delivery && <DeliveryIcon />}
-                          {pedido.takeAway && <TakeAwayIcon />}
-                        </CodeStyled>
-                      </DatosContainer>
-                    </SecondRowStyled>
-                  </PedidoCardContainer>
-                ))}
+                        {fechita.getDate()}/{fechita.getMonth()}/
+                        {fechita.getFullYear()}
+                      </FechaPedido>
+                      <FirstRowStyled>
+                        <ProductsContainer>
+                          {pedido.productos
+                            ?.reduce((acc, current) => {
+                              const x = acc.find(
+                                (item) => item._id === current._id
+                              );
+
+                              if (!x) {
+                                return acc.concat([current]);
+                              } else {
+                                return acc;
+                              }
+                            }, [])
+                            .map((producto, index) => {
+                              const filtradosLength = pedido.productos?.filter(
+                                (holis) => holis._id === producto._id
+                              );
+
+                              return (
+                                <ProductStyled>
+                                  <span>{filtradosLength.length} - </span>
+                                  {producto.nombre}
+                                </ProductStyled>
+                              );
+                            })}
+                        </ProductsContainer>
+                      </FirstRowStyled>
+                      <SecondRowStyled>
+                        <EstadoEnvio
+                          dark={theme}
+                          envio={
+                            pedido.estadoEnvio === "yendo" ||
+                            pedido.estadoEnvio === "listo"
+                              ? 2
+                              : pedido.estadoEnvio === "preparacion"
+                              ? 1
+                              : 3
+                          }
+                        >
+                          {pedido.estadoEnvio === "yendo" && "Yen2"}
+                          {pedido.estadoEnvio === "preparacion" &&
+                            "En preparacion"}
+                          {pedido.estadoEnvio === "enviado" && "Enviado!"}
+                          {pedido.estadoEnvio === "listo" &&
+                            "Tu pedido está listo para retirar!"}
+                          {pedido.estadoEnvio === "entregado" &&
+                            "Tu pedido fue entregado!"}
+                        </EstadoEnvio>
+                        <PriceAndStateContainer>
+                          <TotalTextStyled>Total:</TotalTextStyled>
+                          <PriceCard>
+                            <PriceCardIconStyled dark={theme} />
+                            <PriceCardTextStyled dark={theme}>
+                              {pedido.total.toFixed(2)}
+                            </PriceCardTextStyled>
+                          </PriceCard>
+                        </PriceAndStateContainer>
+                        <DatosContainer>
+                          <CodeStyled>Code: {pedido.code}</CodeStyled>
+                          <CodeStyled>
+                            Pago: {pedido.efectivo && <EfectivoIcon />}
+                            {pedido.tarjeta && <TarjetaIcon />}
+                          </CodeStyled>
+                          <CodeStyled>
+                            Envío: {pedido.delivery && <DeliveryIcon />}
+                            {pedido.takeAway && <TakeAwayIcon />}
+                          </CodeStyled>
+                        </DatosContainer>
+                      </SecondRowStyled>
+                    </PedidoCardContainer>
+                  );
+                })}
         </PedidosContainer>
       )}
     </PageContainer>

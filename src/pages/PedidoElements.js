@@ -10,6 +10,7 @@ export const TicketContainerStyled = styled.div`
     ${(props) => (props.dark === "dark" ? "#4f4f4f" : "#d7d7d7")};
   border-radius: 30px;
   padding: 10px;
+  margin-bottom: 20px;
 `;
 
 export const TicketItemStyled = styled.div`
@@ -101,4 +102,23 @@ export const EstadoEnvioStyled = styled(EstadoPedidoStyled)`
       : props.estado === 2
       ? props.theme.yendoBackground
       : props.theme.successBackground};
+`;
+
+export const DetailItemStyled = styled.div`
+  margin: 10px 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+  color: ${(props) => props.theme.textColor};
+`;
+
+export const OtrosDatos = styled.div`
+  border-bottom: 1px solid ${(props) => props.theme.textColor};
+  width: 100%;
+  color: ${(props) => props.theme.textColor};
+  padding: 10px;
+`;
+
+export const DetailTitle = styled.p`
+  font-weight: bold;
 `;
