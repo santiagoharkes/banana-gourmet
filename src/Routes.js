@@ -21,6 +21,7 @@ import PedidoDone from "pages/CheckoutDone";
 import PedidoFail from "pages/CheckoutFail";
 import Pedido from "pages/Pedido";
 import Busqueda from "pages/Busqueda";
+import ForgotPassword from "pages/ForgotPassword";
 import { useAuth } from "Context/Auth/AuthContext";
 import { useAxios } from "hooks/useAxios";
 
@@ -55,6 +56,7 @@ function Routes() {
         <Switch location={location} key={location.key}>
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/forgot" component={ForgotPassword} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/cart" component={Cart} />
           <Route exact path="/product" component={Product} />
@@ -65,7 +67,7 @@ function Routes() {
           />
           <ProtectedRoute exact path="/mis-pedidos" component={MisPedidos} />
           <ProtectedRoute exact path="/checkout" component={Checkout} />
-          <Route exact path="/pedido" component={Pedido} />
+          <ProtectedRoute exact path="/pedido" component={Pedido} />
           <Route exact path="/pedido/done" component={PedidoDone} />
           <Route exact path="/pedido/fail" component={PedidoFail} />
           <Route exact path="/search" component={Busqueda} />

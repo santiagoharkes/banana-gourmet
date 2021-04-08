@@ -6,6 +6,7 @@ import {
   CategoryListStyled,
   CategoryBadgeStyled,
   ProductsListStyled,
+  CategorieTitleStyled,
 } from "./ProductContainerElements";
 
 // import BlockIcon from "@material-ui/icons/Block";
@@ -35,38 +36,48 @@ function ProductContainer({ productos, categorias }) {
         </ProductsSeeAllStyled>
       </ProductsTitleContainerStyled>
       <CategoryListStyled>
-        {categorias?.data.map(({ nombre, img, _id }) => (
+        {categorias?.data.map((valor) => (
           <CategoryBadgeStyled
-            key={_id}
+            key={valor._id}
             dark={theme}
-            onClick={() => storeCategories(nombre)}
-            active={categoria === nombre ? true : null}
+            onClick={() => storeCategories(valor)}
+            active={categoria?.nombre === valor.nombre ? true : null}
           >
-            <img src={`${img.url}`} alt="" />
-            {nombre}
+            <img src={`${valor.img.url}`} alt="" />
+            {valor.nombre}
           </CategoryBadgeStyled>
         ))}
       </CategoryListStyled>
 
-      <ProductsListStyled>
-        {categoria
-          ? productos?.data
-              .filter((producto) => producto.categoria.nombre === categoria)
-              .map((producto) => (
-                <ProductCard
-                  key={producto._id}
-                  img={`${producto.img[0].url}`}
-                  data={producto}
-                />
-              ))
-          : productos?.data.map((producto) => (
+      {categoria ? (
+        <>
+          <CategorieTitleStyled>{categoria.nombre}</CategorieTitleStyled>
+          <ProductsListStyled>
+            {categoria.productos.map((producto) => (
               <ProductCard
                 key={producto._id}
                 img={`${producto.img[0].url}`}
                 data={producto}
               />
             ))}
-      </ProductsListStyled>
+          </ProductsListStyled>
+        </>
+      ) : (
+        categorias?.data.map((categoria) => (
+          <>
+            <CategorieTitleStyled>{categoria.nombre}</CategorieTitleStyled>
+            <ProductsListStyled>
+              {categoria.productos.map((producto) => (
+                <ProductCard
+                  key={producto._id}
+                  img={`${producto.img[0].url}`}
+                  data={producto}
+                />
+              ))}
+            </ProductsListStyled>
+          </>
+        ))
+      )}
     </AllProductsStyled>
   );
 }

@@ -199,7 +199,10 @@ export const OtraPropina = styled.input`
   }
 
   &.active {
-    border: 1px solid ${(props) => `${props.theme.yellow}61`};
+    border: 1px solid
+      ${(props) => {
+        return `${props.theme.yellow}61`;
+      }};
   }
 `;
 
@@ -217,4 +220,18 @@ export const ErrorMessage = styled(ItemContainerStyled)`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const DetallesStyled = styled.textarea`
+  border-radius: 10px;
+  background: ${(props) => props.theme.backgroundColorSecondary};
+  border: 1px solid #8c8c8c38;
+  padding: 10px;
+  width: 100%;
+  margin-bottom: 20px;
+  outline: none;
+  color: ${(props) => props.theme.textColor};
+  user-select: text;
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
 `;

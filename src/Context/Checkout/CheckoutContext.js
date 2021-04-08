@@ -19,6 +19,7 @@ const initialState = {
   usuario: "",
   total: 0,
   envio: 0,
+  detalles: "",
 };
 
 export function CheckoutContextProvider({ children }) {
@@ -90,6 +91,10 @@ export function CheckoutContextProvider({ children }) {
     dispatch({ type: "CHECKOUT_TOTAL", precio, propina, envio });
   };
 
+  const setDetalles = (payload) => {
+    dispatch({ type: "SET_DETALLES", payload });
+  };
+
   const contextValues = {
     ...state,
     setTarjeta,
@@ -101,6 +106,7 @@ export function CheckoutContextProvider({ children }) {
     setTakeAway,
     setPropina,
     setUsuario,
+    setDetalles,
   };
 
   return (

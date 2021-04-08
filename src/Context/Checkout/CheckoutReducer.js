@@ -86,6 +86,12 @@ export const CheckoutReducer = (state, action) => {
         total: Number(numeroTotal),
       };
 
+    case "SET_DETALLES":
+      return {
+        ...state,
+        detalles: action.payload,
+      };
+
     default:
       return state;
   }

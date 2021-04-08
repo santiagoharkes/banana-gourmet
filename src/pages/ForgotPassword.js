@@ -10,11 +10,8 @@ import {
   FormStyled,
   ButtonSubmitStyled,
   GoToRegister,
-  TestEmailStyled,
   FormContainer,
   InputError,
-  TestEmailContainer,
-  ForgotPasswordStyled,
 } from "./LoginElements";
 import { useAxios } from "hooks/useAxios";
 import { useTheme } from "Context/Theme/ThemeContext";
@@ -26,14 +23,13 @@ import Input from "components/Pages/Input/Input";
 import PizzaLogin from "../img/pizzaLogin.webp";
 import Loading from "components/Loading/Loading";
 
-function Login() {
+function ForgotPassword() {
   const { theme } = useTheme();
   const axios = useAxios();
-  const { login, setLoading, loading, loginError } = useAuth();
+  const { setLoading, loading } = useAuth();
   const history = useHistory();
-  const [error, setError] = useState(null);
+  const [error] = useState(null);
   const [errores, setErrores] = useState({ errores: "" });
-  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     const token = Cookies.get("token") || null;
@@ -44,38 +40,24 @@ function Login() {
 
   const formik = useFormik({
     initialValues: {
-      identifier: "",
-      password: "",
+      email: "",
     },
     validationSchema: Yup.object({
-      identifier: Yup.string()
+      email: Yup.string()
         .email("Dirrección de correo no válida")
-        .required("Este campo es requerido"),
-      password: Yup.string()
-        .min(5, "Tiene que ser mayor a 5 caracteres")
         .required("Este campo es requerido"),
     }),
 
     onSubmit: function (values) {
+      console.log(values);
       setLoading();
       axios
-        .post(`/auth/local/`, values)
+        .post(`/auth/forgot-password`, values)
         .then((res) => {
-          //set token response from Strapi for server validation
-          const inFifteenMinutes = new Date(
-            new Date().getTime() + 15 * 60 * 1000
-          );
-          Cookies.set("token", res.data.jwt, {
-            expires: inFifteenMinutes,
-          });
-
-          login(res.data);
-
-          history.goBack();
+          console.log(res);
         })
         .catch((error) => {
-          loginError();
-          setError(error);
+          console.log(error);
         });
     },
   });
@@ -102,8 +84,11 @@ function Login() {
           content="Banana Gourmet - Login - Iniciá sesión para acceder a tu cuenta"
         />
       </Helmet>
-      <HeaderTitle>Login!</HeaderTitle>
-      <HeaderSubtitle>Iniciá sesión para acceder a tu cuenta</HeaderSubtitle>
+      <HeaderTitle>Forgot!</HeaderTitle>
+      <HeaderSubtitle>
+        Te olvidaste tu contraseña? No pasa orange, escribí tu mail acá abajo y
+        te mandamos una nueva
+      </HeaderSubtitle>
       {loading ? (
         <Loading h="80" />
       ) : (
@@ -113,65 +98,30 @@ function Login() {
             <Input
               type="email"
               label="E-mail"
-              name="identifier"
+              name="email"
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
-              value={formik.values.identifier}
+              value={formik.values.email}
               className={
-                (formik.touched.identifier && formik.errors.identifier) ||
-                errores.errores
+                (formik.touched.email && formik.errors.email) || errores.errores
                   ? "invalid"
                   : ""
               }
               setErrores={setErrores}
             />
-            {formik.touched.identifier && formik.errors.identifier ? (
-              <InputError>{formik.errors.identifier}</InputError>
+            {formik.touched.email && formik.errors.email ? (
+              <InputError>{formik.errors.email}</InputError>
             ) : null}
-            <Input
-              type={showPassword ? "text" : "password"}
-              label="Password"
-              name="password"
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
-              value={formik.values.password}
-              className={
-                (formik.touched.password && formik.errors.password) ||
-                errores.errores
-                  ? "invalid"
-                  : ""
-              }
-              setErrores={setErrores}
-              icon={true}
-              showPassword={showPassword}
-              setShowPassword={setShowPassword}
-            />
-            {formik.touched.password && formik.errors.password ? (
-              <InputError>{formik.errors.password}</InputError>
-            ) : null}
-            <ForgotPasswordStyled onClick={() => history.push("/forgot")}>
-              Forgot password?
-            </ForgotPasswordStyled>
-            {errores.errores && <InputError>{errores.errores}</InputError>}
-            <ButtonSubmitStyled type="submit">Login</ButtonSubmitStyled>
+
+            <ButtonSubmitStyled type="submit">Enviar mail!</ButtonSubmitStyled>
             <GoToRegister dark={theme}>
-              No tenés una cuenta?
+              Volver a
               <span>
-                <Link replace to="/register">
-                  Registrate!
+                <Link replace to="/login">
+                  Login!
                 </Link>
               </span>
             </GoToRegister>
-            <TestEmailContainer>
-              <TestEmailStyled dark={theme}>
-                test email:
-                <span>test@test.com</span>
-              </TestEmailStyled>
-              <TestEmailStyled dark={theme}>
-                test password:
-                <span>test1234</span>
-              </TestEmailStyled>
-            </TestEmailContainer>
           </FormStyled>
         </FormContainer>
       )}
@@ -179,4 +129,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default ForgotPassword;

@@ -1,11 +1,12 @@
 import styled from "styled-components";
+import { PriceCardTextStyled } from "components/Pages/CartItem/CartItemElements";
 
 export const ItemContainerStyled = styled.div`
   background-color: ${(props) => props.theme.backgroundColorSecondary};
   min-height: 50px;
   border-radius: 15px;
   display: grid;
-  grid-template-columns: 30% 1fr 30%;
+  grid-template-columns: 25% 1fr 25%;
   padding: 10px 20px;
   margin-bottom: 20px;
   place-items: center;
@@ -27,4 +28,9 @@ export const ItemUnitsStyled = styled.div`
 export const TextStyled = styled.p`
   color: ${(props) => props.theme.textColor};
   text-align: center;
+  font-size: 0.75em;
+`;
+
+export const PriceCardText = styled(PriceCardTextStyled)`
+  font-size: 1em;
 `;

@@ -57,3 +57,10 @@ export const InputError = styled.p`
   color: red;
   font-size: 0.75em;
 `;
+
+export const ForgotPasswordStyled = styled.p`
+  margin: 5px 0;
+  color: ${(props) => props.theme.subtitleColor};
+  cursor: pointer;
+  text-align: center;
+`;

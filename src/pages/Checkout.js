@@ -28,6 +28,7 @@ import {
   ErrorMessage,
   OtraPropina,
   OtraPropinaLabel,
+  DetallesStyled,
 } from "./CheckoutElements";
 
 import { CategoryTitleStyled } from "components/Pages/ProductAddMore/ProductAddMoreElements";
@@ -64,6 +65,8 @@ function Cart() {
     productos,
     precio,
     usuario,
+    setDetalles,
+    detalles,
   } = useCheckout();
   const { setEstadoPedido, setPedido } = usePedido();
 
@@ -99,24 +102,24 @@ function Cart() {
       propina: propina,
       usuario: usuario,
       total: total,
+      detalles: detalles,
     };
 
     setLoading(true);
     axios
       .post("/pedidos", nuevoPedido)
       .then((valor) => {
-        history.push("/pedido/done");
-        setLoading(false);
         limpiarCarta();
         setEstadoPedido(true);
         setPedido(valor.data);
+        history.push("/pedido/done");
       })
       .catch((e) => {
         setEstadoPedido(false);
         setPedido(undefined);
-        setLoading(false);
         history.push("/pedido/fail");
-      });
+      })
+      .finally(() => setLoading(false));
   };
 
   const handleCardClick = (callback) => {
@@ -382,6 +385,16 @@ function Cart() {
                 <TotalPriceNumber dark={theme}>{total}</TotalPriceNumber>
               </TotalPriceContainer>
             </TotalContainerStyled>
+
+            <OtraPropinaLabel htmlFor="detalles">
+              Detalles (opcional):
+            </OtraPropinaLabel>
+            <DetallesStyled
+              name="detalles"
+              id="detalles"
+              onChange={(e) => setDetalles(e.target.value)}
+            />
+
             {opcionesError !== "" && (
               <ErrorMessage>{opcionesError}</ErrorMessage>
             )}

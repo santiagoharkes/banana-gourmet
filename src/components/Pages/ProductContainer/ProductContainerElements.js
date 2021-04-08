@@ -93,8 +93,18 @@ export const ProductsListStyled = styled.div`
   grid-template-columns: repeat(2, 47%);
   gap: 20px;
   row-gap: 20px;
+  margin-bottom: 20px;
 `;
 
 export const AllProductsStyled = styled.div`
   padding-bottom: 100px;
+`;
+
+export const CategorieTitleStyled = styled.p`
+  color: ${(props) => props.theme.subtitleColor};
+  font-size: 1rem;
+  font-weight: 300;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-bottom: ${(props) => `1px solid ${props.theme.subtitleColor}50`};
 `;

@@ -4,11 +4,11 @@ import {
   ItemContainerStyled,
   ItemUnitsStyled,
   TextStyled,
+  PriceCardText,
 } from "./CheckoutItemElements";
 import {
   PriceCardStyled,
   PriceCardIconStyled,
-  PriceCardTextStyled,
 } from "components/Pages/CartItem/CartItemElements";
 import { useTheme } from "Context/Theme/ThemeContext";
 
@@ -23,9 +23,9 @@ function CheckoutItem({ data }) {
       </ItemUnitsStyled>
       <PriceCardStyled mb="0">
         <PriceCardIconStyled dark={theme} />
-        <PriceCardTextStyled dark={theme}>
+        <PriceCardText dark={theme}>
           {(data.quantity * data.precio).toFixed(2)}
-        </PriceCardTextStyled>
+        </PriceCardText>
       </PriceCardStyled>
     </ItemContainerStyled>
   );
