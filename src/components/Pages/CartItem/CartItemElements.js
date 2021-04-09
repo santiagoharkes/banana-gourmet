@@ -4,6 +4,7 @@ import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 import CloseIcon from "@material-ui/icons/Close";
 import { motion } from "framer-motion";
+import CheckIcon from "@material-ui/icons/Check";
 
 export const CartContainer = styled.div`
   margin: 20px 0;
@@ -15,6 +16,12 @@ export const CartItemStyled = styled(motion.div)`
   border-radius: 15px;
   display: grid;
   grid-template-columns: 20% 1fr 30%;
+  grid-template-rows: ${(props) =>
+    props.data === "true" ? "1fr auto" : "1fr"};
+  grid-template-areas: ${(props) =>
+    props.data === "true"
+      ? "'imagen titulo precio' 'adicional adicional adicional'"
+      : "'imagen titulo precio'"};
   padding: 10px 20px;
   margin-bottom: 20px;
   place-items: center;
@@ -42,6 +49,7 @@ export const ImageCardContainerStyled = styled.div`
   -webkit-transform: translate3d(0, 0, 0);
   -moz-transform: translate3d(0, 0, 0);
   z-index: 2;
+  grid-area: imagen;
 
   img {
     object-fit: cover;
@@ -132,10 +140,68 @@ export const PriceAddStyledContainer = styled.div`
   align-items: center;
   width: 100%;
   min-width: 100px;
+  grid-area: precio;
 `;
 
 export const TextContainer = styled.div`
   width: 100%;
   color: ${(props) => props.theme.textColor};
   cursor: pointer;
+  grid-area: titulo;
+`;
+
+export const AdicionalesContainer = styled.div`
+  grid-area: adicional;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+`;
+
+export const AdicionalesButton = styled.div`
+  border-radius: 20px;
+  background: ${(props) => props.theme.yellow};
+  padding: 5px 20px;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+`;
+
+export const AdicionalesDetails = styled.div`
+  border-radius: 20px;
+  background: ${(props) => props.theme.backgroundColor};
+  padding: 5px 20px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  margin: 10px 0 0 0;
+  color: ${(props) => props.theme.textColor};
+`;
+
+export const ItemCheck = styled.div`
+  height: 15px;
+  width: 15px;
+  border: 1px solid ${(props) => `${props.theme.textColor}50`};
+  border-radius: 50%;
+  position: relative;
+
+  &.active {
+    border: inset 1px solid red;
+    background: ${(props) => props.theme.yellow};
+    border: 1px solid ${(props) => `${props.theme.yellow}50`};
+  }
+`;
+
+export const ItemCheckIcon = styled(CheckIcon)`
+  color: #212121;
+  position: absolute;
+  width: 20px !important;
+  height: 20px !important;
+  top: -5px;
+  left: -1px;
 `;

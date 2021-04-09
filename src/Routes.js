@@ -22,6 +22,7 @@ import PedidoFail from "pages/CheckoutFail";
 import Pedido from "pages/Pedido";
 import Busqueda from "pages/Busqueda";
 import ForgotPassword from "pages/ForgotPassword";
+import RecoverPassword from "pages/RecoverPassword";
 import { useAuth } from "Context/Auth/AuthContext";
 import { useAxios } from "hooks/useAxios";
 
@@ -36,7 +37,7 @@ function Routes() {
 
   useEffect(() => {
     if (token) {
-      setLoading();
+      setLoading(true);
       axios.get(`/users/me/`).then((res) => {
         const userLogged = {
           jwt: token,
@@ -57,6 +58,7 @@ function Routes() {
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/forgot" component={ForgotPassword} />
+          <Route exact path="/recover" component={RecoverPassword} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/cart" component={Cart} />
           <Route exact path="/product" component={Product} />

@@ -42,7 +42,7 @@ export const CategoryListStyled = styled(ScrollContainer)`
   margin: 0 -15px;
   position: sticky;
   top: -20px;
-  z-index: 1;
+  z-index: 2;
   background-color: ${(props) => props.theme.backgroundColor};
   padding-top: 20px;
   padding-bottom: 20px;
@@ -107,4 +107,8 @@ export const CategorieTitleStyled = styled.p`
   padding: 10px;
   margin-bottom: 20px;
   border-bottom: ${(props) => `1px solid ${props.theme.subtitleColor}50`};
+  position: sticky;
+  top: 50px;
+  z-index: 1;
+  background: ${(props) => props.theme.backgroundColor};
 `;

@@ -23,7 +23,12 @@ export const MenuIconStyled = styled(FastfoodIcon)`
   background-color: ${(props) => props.theme.backgroundColorSecondary};
   padding: 10px;
   object-fit: contain;
-  border: 1px solid ${(props) => `${props.theme.yellow}50`};
+  border: 1px solid
+    ${(props) =>
+      props.dark === "dark"
+        ? `${props.theme.yellow}50`
+        : `${props.theme.texColor}50`};
   cursor: pointer;
-  color: ${(props) => props.theme.yellow};
+  color: ${(props) =>
+    props.dark === "dark" ? props.theme.yellow : props.theme.textColor};
 `;

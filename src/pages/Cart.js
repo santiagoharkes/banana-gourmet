@@ -23,6 +23,8 @@ function Cart() {
   const { user } = useAuth();
   const history = useHistory();
 
+  console.log({ cartItems });
+
   const handleBuyClick = () => {
     if (user) {
       history.push("/checkout");

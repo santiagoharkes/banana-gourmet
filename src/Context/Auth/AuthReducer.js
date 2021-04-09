@@ -3,7 +3,7 @@ export const AuthReducer = (state, action) => {
     case "LOADING":
       return {
         ...state,
-        loading: true,
+        loading: action.payload,
       };
 
     case "LOGIN":

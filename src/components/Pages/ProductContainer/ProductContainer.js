@@ -24,6 +24,9 @@ function ProductContainer({ productos, categorias }) {
   //   storeCategories(categoria);
   // };
 
+  console.log({ categorias });
+  console.log({ productos });
+
   return (
     <AllProductsStyled>
       <ProductsTitleContainerStyled>
@@ -50,32 +53,40 @@ function ProductContainer({ productos, categorias }) {
       </CategoryListStyled>
 
       {categoria ? (
-        <>
-          <CategorieTitleStyled>{categoria.nombre}</CategorieTitleStyled>
+        <div key={categoria._id}>
+          <CategorieTitleStyled key={categoria._id}>
+            {categoria.nombre}
+          </CategorieTitleStyled>
           <ProductsListStyled>
-            {categoria.productos.map((producto) => (
-              <ProductCard
-                key={producto._id}
-                img={`${producto.img[0].url}`}
-                data={producto}
-              />
-            ))}
-          </ProductsListStyled>
-        </>
-      ) : (
-        categorias?.data.map((categoria) => (
-          <>
-            <CategorieTitleStyled>{categoria.nombre}</CategorieTitleStyled>
-            <ProductsListStyled>
-              {categoria.productos.map((producto) => (
+            {productos?.data
+              .filter((valor) => valor.categoria._id === categoria._id)
+              .map((producto) => (
                 <ProductCard
                   key={producto._id}
                   img={`${producto.img[0].url}`}
                   data={producto}
                 />
               ))}
+          </ProductsListStyled>
+        </div>
+      ) : (
+        categorias?.data.map((categoria) => (
+          <div key={categoria._id}>
+            <CategorieTitleStyled key={categoria._id}>
+              {categoria.nombre}
+            </CategorieTitleStyled>
+            <ProductsListStyled>
+              {productos?.data
+                .filter((valor) => valor.categoria._id === categoria._id)
+                .map((producto) => (
+                  <ProductCard
+                    key={producto._id}
+                    img={`${producto.img[0].url}`}
+                    data={producto}
+                  />
+                ))}
             </ProductsListStyled>
-          </>
+          </div>
         ))
       )}
     </AllProductsStyled>

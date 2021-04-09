@@ -13,6 +13,7 @@ import {
   FormContainer,
   InputError,
 } from "./LoginElements";
+import { MailEnviadoStyled } from "./ForgotPasswordElements";
 import { useAxios } from "hooks/useAxios";
 import { useTheme } from "Context/Theme/ThemeContext";
 import { useAuth } from "Context/Auth/AuthContext";
@@ -30,6 +31,7 @@ function ForgotPassword() {
   const history = useHistory();
   const [error] = useState(null);
   const [errores, setErrores] = useState({ errores: "" });
+  const [mailMessage, setMailMessage] = useState("");
 
   useEffect(() => {
     const token = Cookies.get("token") || null;
@@ -50,15 +52,16 @@ function ForgotPassword() {
 
     onSubmit: function (values) {
       console.log(values);
-      setLoading();
+      setLoading(true);
       axios
         .post(`/auth/forgot-password`, values)
         .then((res) => {
-          console.log(res);
+          setMailMessage("Se ha enviado un mail a tu casilla de correo!");
         })
         .catch((error) => {
           console.log(error);
-        });
+        })
+        .finally(() => setLoading(false));
     },
   });
 
@@ -112,6 +115,10 @@ function ForgotPassword() {
             {formik.touched.email && formik.errors.email ? (
               <InputError>{formik.errors.email}</InputError>
             ) : null}
+
+            {mailMessage && (
+              <MailEnviadoStyled>{mailMessage}</MailEnviadoStyled>
+            )}
 
             <ButtonSubmitStyled type="submit">Enviar mail!</ButtonSubmitStyled>
             <GoToRegister dark={theme}>

@@ -17,8 +17,8 @@ export function AuthContextprovider({ children }) {
     dispatch({ type: "SET_USER", payload });
   };
 
-  const setLoading = () => {
-    dispatch({ type: "LOADING" });
+  const setLoading = (payload) => {
+    dispatch({ type: "LOADING", payload });
   };
 
   const login = (payload) => {

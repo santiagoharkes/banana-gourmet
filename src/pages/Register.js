@@ -62,7 +62,7 @@ function Login() {
     }),
 
     onSubmit: function (values) {
-      setLoading();
+      setLoading(true);
       axios
         .post(`/auth/local/register/`, values)
         .then((res) => {
