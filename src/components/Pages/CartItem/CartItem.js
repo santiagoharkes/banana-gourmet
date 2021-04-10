@@ -33,8 +33,10 @@ function CartItem(data) {
 
   const [showAdicionales, setShowAdicionales] = useState(false);
 
+  console.log({ data });
+
   const handleClick = () => {
-    storeProducto(data);
+    storeProducto(data.data);
     history.replace("/product");
   };
 
