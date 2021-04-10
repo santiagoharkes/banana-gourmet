@@ -42,7 +42,7 @@ import { usePedido } from "Context/Pedido/PedidoContext";
 function Cart() {
   const axios = useAxios();
   const history = useHistory();
-  const { cartItems, total: subtotal, limpiarCarta } = useCart();
+  const { cartItems, total: subtotal, limpiarCarta, extras } = useCart();
   const { theme } = useTheme();
   const [loading, setLoading] = useState(false);
   const [otraPropina, setOtraPropina] = useState(false);
@@ -67,6 +67,7 @@ function Cart() {
     usuario,
     setDetalles,
     detalles,
+    adicionales,
   } = useCheckout();
   const { setEstadoPedido, setPedido } = usePedido();
 
@@ -103,6 +104,8 @@ function Cart() {
       usuario: usuario,
       total: total,
       detalles: detalles,
+      adicionales: extras,
+      extras: adicionales,
     };
 
     setLoading(true);
@@ -155,7 +158,9 @@ function Cart() {
               <TotalTitleStyled>Sub-Total Productos:</TotalTitleStyled>
               <TotalPriceContainer>
                 <TotalPriceIcon dark={theme} />
-                <TotalPriceNumber dark={theme}>{subtotal}</TotalPriceNumber>
+                <TotalPriceNumber dark={theme}>
+                  {(subtotal + adicionales).toFixed(2)}
+                </TotalPriceNumber>
               </TotalPriceContainer>
             </TotalContainerStyled>
             <CategoryTitleStyled>Método de pago:</CategoryTitleStyled>

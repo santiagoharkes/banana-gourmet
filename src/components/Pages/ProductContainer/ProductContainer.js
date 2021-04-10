@@ -7,6 +7,7 @@ import {
   CategoryBadgeStyled,
   ProductsListStyled,
   CategorieTitleStyled,
+  CategoryTitleContainerStyled,
 } from "./ProductContainerElements";
 
 // import BlockIcon from "@material-ui/icons/Block";
@@ -15,20 +16,29 @@ import { useTheme } from "Context/Theme/ThemeContext";
 import { useProducts } from "Context/Products/ProductsContext";
 
 import ProductCard from "../ProductCard/ProductCard";
+import { useRef } from "react";
 
 function ProductContainer({ productos, categorias }) {
   const { theme } = useTheme();
   const { storeCategories, categoria } = useProducts();
+  const scrollRef = useRef();
 
   // const handleCategoryClick = (categoria) => {
   //   storeCategories(categoria);
   // };
 
-  console.log({ categorias });
-  console.log({ productos });
+  const onCategoryBadgeClick = (valor) => {
+    storeCategories(valor);
+    scrollRef.current.scrollIntoView({
+      block: "start",
+      inline: "nearest",
+      behavior: "smooth",
+    });
+  };
 
   return (
     <AllProductsStyled>
+      <div ref={scrollRef}></div>
       <ProductsTitleContainerStyled>
         <ProductsTitleStyled>Menú</ProductsTitleStyled>
         <ProductsSeeAllStyled
@@ -43,7 +53,7 @@ function ProductContainer({ productos, categorias }) {
           <CategoryBadgeStyled
             key={valor._id}
             dark={theme}
-            onClick={() => storeCategories(valor)}
+            onClick={() => onCategoryBadgeClick(valor)}
             active={categoria?.nombre === valor.nombre ? true : null}
           >
             <img src={`${valor.img.url}`} alt="" />
@@ -57,6 +67,7 @@ function ProductContainer({ productos, categorias }) {
           <CategorieTitleStyled key={categoria._id}>
             {categoria.nombre}
           </CategorieTitleStyled>
+
           <ProductsListStyled>
             {productos?.data
               .filter((valor) => valor.categoria._id === categoria._id)
@@ -75,6 +86,7 @@ function ProductContainer({ productos, categorias }) {
             <CategorieTitleStyled key={categoria._id}>
               {categoria.nombre}
             </CategorieTitleStyled>
+
             <ProductsListStyled>
               {productos?.data
                 .filter((valor) => valor.categoria._id === categoria._id)

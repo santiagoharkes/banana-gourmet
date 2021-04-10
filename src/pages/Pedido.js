@@ -18,6 +18,16 @@ import {
   DetailItemStyled,
   DetailTitle,
   OtrosDatos,
+  TicketItemUnidades,
+  TicketItemTitulo,
+  TicketItemPrecio,
+  TicketItemAdicionales,
+  AdicionalesContainer,
+  AdicionalesContainerTitulo,
+  AdicionalesContainerNombre,
+  AdicionalesContainerPrecio,
+  AdicionalesTitle,
+  AdicionalContainerItem,
 } from "./PedidoElements";
 import { useTheme } from "Context/Theme/ThemeContext";
 import { usePedido } from "Context/Pedido/PedidoContext";
@@ -25,6 +35,7 @@ import { useAxios } from "hooks/useAxios";
 import { useQuery } from "react-query";
 import { useHistory } from "react-router";
 import Loading from "components/Loading/Loading";
+import { useCheckout } from "Context/Checkout/CheckoutContext";
 
 function Pedido() {
   const { theme } = useTheme();
@@ -44,6 +55,16 @@ function Pedido() {
     fetchPedido(contextPedido?._id)
   );
 
+  const fetchAdicionales = () => {
+    return axios.get(`/adicionales`);
+  };
+
+  const {
+    data: adicionales,
+    isLoading: adicionalesLoading,
+    // isError: pedidoError,
+  } = useQuery("adicionales", fetchAdicionales);
+
   useEffect(() => {
     if (!contextPedido) {
       history.push("/");
@@ -61,8 +82,6 @@ function Pedido() {
 
     return `${fechita.getHours()}:${fechita.getMinutes()}hs`;
   };
-
-  console.log(contextPedido);
 
   return (
     <>
@@ -111,9 +130,9 @@ function Pedido() {
                     <p>{pedido.data.code}</p>
                   </CodigoTitle>
                   <TicketTitle>
-                    <p>Uni</p>
-                    <p>Descripción</p>
-                    <p>Precio</p>
+                    <TicketItemUnidades>Uni</TicketItemUnidades>
+                    <TicketItemTitulo>Descripción</TicketItemTitulo>
+                    <TicketItemPrecio>Precio</TicketItemPrecio>
                   </TicketTitle>
                   {pedido.data.productos
                     .reduce((acc, current) => {
@@ -124,25 +143,68 @@ function Pedido() {
                         return acc;
                       }
                     }, [])
-                    .map((valor) => {
+                    .map((productito) => {
                       const filtradosLength = pedido.data.productos.filter(
-                        (holis) => holis._id === valor._id
+                        (holis) => holis._id === productito._id
+                      );
+
+                      const adicionalesFiltrados = contextPedido.adicionales.filter(
+                        (holis) => holis.idProducto === productito._id
                       );
 
                       return (
-                        <TicketItemStyled>
-                          <p>{filtradosLength.length}</p>
-                          <p>{valor.nombre}</p>
-                          <p className="precio">
+                        <TicketItemStyled
+                          key={productito._id}
+                          adicionales={!!adicionalesFiltrados.length > 0}
+                        >
+                          <TicketItemUnidades>
+                            {filtradosLength.length}
+                          </TicketItemUnidades>
+                          <TicketItemTitulo>
+                            {productito.nombre}
+                          </TicketItemTitulo>
+                          <TicketItemPrecio className="precio">
                             ${" "}
-                            {(valor.precio * filtradosLength.length).toFixed(2)}
-                          </p>
+                            {(
+                              productito.precio * filtradosLength.length
+                            ).toFixed(2)}
+                          </TicketItemPrecio>
+                          {adicionalesFiltrados.length > 0 && (
+                            <TicketItemAdicionales>
+                              <AdicionalesTitle>Adicionales:</AdicionalesTitle>
+                              {adicionalesFiltrados.map((valor) => (
+                                <AdicionalesContainer>
+                                  <AdicionalesContainerTitulo>
+                                    {productito.nombre} - {valor.index + 1}
+                                  </AdicionalesContainerTitulo>
+                                  {valor.idAdicionales.map((adicional) => {
+                                    const adicionalFiltrado = adicionales?.data?.find(
+                                      (valor) => valor._id === adicional
+                                    );
+
+                                    return (
+                                      <AdicionalContainerItem>
+                                        <AdicionalesContainerNombre>
+                                          {adicionalFiltrado?.adicional}
+                                        </AdicionalesContainerNombre>
+                                        <AdicionalesContainerPrecio>
+                                          $ {adicionalFiltrado?.precio}
+                                        </AdicionalesContainerPrecio>
+                                      </AdicionalContainerItem>
+                                    );
+                                  })}
+                                </AdicionalesContainer>
+                              ))}
+                            </TicketItemAdicionales>
+                          )}
                         </TicketItemStyled>
                       );
                     })}
                   <SubtotalTitle dark={theme} borderTop>
                     <p>Subtotal</p>
-                    <p>$ {pedido.data.precio}</p>
+                    <p>
+                      $ {(pedido.data.precio + pedido.data.extras).toFixed(2)}
+                    </p>
                   </SubtotalTitle>
                   {pedido.data.delivery && (
                     <EnvioPropinaStyled>

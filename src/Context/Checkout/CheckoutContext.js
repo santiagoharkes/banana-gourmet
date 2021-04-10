@@ -20,6 +20,7 @@ const initialState = {
   total: 0,
   envio: 0,
   detalles: "",
+  adicionales: 0,
 };
 
 export function CheckoutContextProvider({ children }) {
@@ -43,8 +44,8 @@ export function CheckoutContextProvider({ children }) {
       .flat();
 
     setProductos(cartItemsIds);
-    setPrecio(subtotal);
-    setTotal(Number(subtotal), Number(state.propina), Number(state.envio));
+    setPrecio(Number(subtotal));
+    setTotal();
 
     if (user) {
       setUsuario(user.user._id);
@@ -95,6 +96,10 @@ export function CheckoutContextProvider({ children }) {
     dispatch({ type: "SET_DETALLES", payload });
   };
 
+  const setAdicionales = (payload) => {
+    dispatch({ type: "SET_ADICIONALES", payload });
+  };
+
   const contextValues = {
     ...state,
     setTarjeta,
@@ -107,6 +112,7 @@ export function CheckoutContextProvider({ children }) {
     setPropina,
     setUsuario,
     setDetalles,
+    setAdicionales,
   };
 
   return (

@@ -16,6 +16,7 @@ import {
   CloseIconStyled,
   AdicionalesContainer,
   AdicionalesButton,
+  AdicionalesItemsContainer,
 } from "./CartItemElements";
 import { useCart } from "Context/Cart/CartContext";
 
@@ -27,6 +28,7 @@ function CartItem(data) {
   const { theme } = useTheme();
   const { sumarProducto, restarProducto, eliminarProducto } = useCart();
   const { storeProducto } = useProducts();
+  const { setExtras, extras } = useCart();
   const history = useHistory();
 
   const [showAdicionales, setShowAdicionales] = useState(false);
@@ -35,8 +37,6 @@ function CartItem(data) {
     storeProducto(data);
     history.replace("/product");
   };
-
-  console.log({ data });
 
   return (
     <CartItemStyled
@@ -67,7 +67,7 @@ function CartItem(data) {
         </AddProductStyled>
       </PriceAddStyledContainer>
       {data?.data?.adicionales?.length > 0 && (
-        <AdicionalesContainer>
+        <AdicionalesContainer dark={theme}>
           <AdicionalesButton
             onClick={() => setShowAdicionales(!showAdicionales)}
           >
@@ -75,14 +75,42 @@ function CartItem(data) {
           </AdicionalesButton>
 
           {showAdicionales &&
-            [...Array(data.data.quantity)].map((e, i) => (
-              <>
-                <p style={{ marginTop: "10px" }}>Producto {i + 1}</p>
-                {data.data.adicionales.map((valor) => (
-                  <AdicionalItem adicional={valor} />
-                ))}
-              </>
-            ))}
+            [...Array(data.data.quantity)].map((e, i) => {
+              return (
+                <AdicionalesItemsContainer key={i}>
+                  <p style={{ marginTop: "10px" }}>Producto {i + 1}</p>
+                  {data.data.adicionales.map((valor) => {
+                    const extrasFiltrado = extras?.find((valor) => {
+                      if (
+                        valor.index === i &&
+                        valor.idProducto === data.data._id
+                      ) {
+                        return true;
+                      } else {
+                        return false;
+                      }
+                    });
+
+                    console.log({ extrasFiltrado });
+
+                    const adicionalesFiltrado = extrasFiltrado?.idAdicionales?.find(
+                      (jupiter) => jupiter === valor._id
+                    );
+
+                    console.log({ adicionalesFiltrado });
+
+                    return (
+                      <AdicionalItem
+                        adicional={valor}
+                        producto={data.data}
+                        index={i}
+                        isActive={!!adicionalesFiltrado}
+                      />
+                    );
+                  })}
+                </AdicionalesItemsContainer>
+              );
+            })}
 
           {/* {showAdicionales &&
             data.adicionales.map((valor) => (

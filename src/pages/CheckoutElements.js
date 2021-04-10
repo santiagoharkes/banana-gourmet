@@ -20,7 +20,9 @@ export const TotalContainerStyled = styled(ItemContainerStyled)`
   background-color: ${(props) => props.theme.backgroundColorSecondary};
   border: 1px solid
     ${(props) =>
-      props.dark === "dark" ? props.theme.yellow : props.theme.textColor};
+      props.dark === "dark"
+        ? `${props.theme.yellow}4a`
+        : `${props.theme.textColor}4a`};
   display: flex;
   justify-content: space-between;
 `;

@@ -17,7 +17,13 @@ export const TicketItemStyled = styled.div`
   width: 100%;
   padding: 10px;
   display: grid;
-  grid-template-columns: 10% 1fr 25%;
+  grid-template-columns: ${(props) =>
+    props.adicionales ? "10% 1fr 25%" : "10% 1fr 25%"};
+  grid-template-rows: ${(props) => (props.adicionales ? "auto auto" : "1fr")};
+  grid-template-areas: ${(props) =>
+    props.adicionales
+      ? "'unidades titulo precio' 'adicionales adicionales adicionales'"
+      : "'unidades titulo precio'"};
   text-align: center;
   color: ${(props) => props.theme.textColor};
   border-top: ${(props) =>
@@ -33,6 +39,61 @@ export const TicketItemStyled = styled.div`
   }
 `;
 
+export const AdicionalesTitle = styled.p`
+  padding: 5px;
+  border-bottom: 1px solid ${(props) => props.theme.backgroundColorSecondary};
+`;
+
+export const TicketItemUnidades = styled.p`
+  grid-area: unidades;
+`;
+export const TicketItemTitulo = styled.p`
+  grid-area: titulo;
+`;
+export const TicketItemPrecio = styled.p`
+  grid-area: precio;
+`;
+export const TicketItemAdicionales = styled.div`
+  grid-area: adicionales;
+  font-size: 0.75em;
+  margin: 10px 0;
+  border-radius: 20px;
+  border: 1px solid ${(props) => props.theme.backgroundColorSecondary};
+  padding: 5px 0;
+`;
+
+export const AdicionalesContainer = styled.div`
+  /* display: grid; */
+  /* grid-template-columns: 10% 1fr 25%; */
+  /* grid-template-areas: "titulo titulo titulo" ". nombre precio"; */
+  /* grid-auto-rows: 1fr; */
+  /* grid-auto-flow: row; */
+  gap: 5px;
+  margin: 5px 0;
+`;
+
+export const AdicionalesContainerTitulo = styled.div`
+  grid-area: titulo;
+  background: ${(props) => props.theme.backgroundColorSecondary};
+  margin: 5px 0;
+`;
+
+export const AdicionalesContainerNombre = styled.div`
+  grid-area: nombre;
+`;
+
+export const AdicionalesContainerPrecio = styled.div`
+  grid-area: precio;
+`;
+
+export const AdicionalContainerItem = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  width: 80%;
+`;
+
 export const TicketTitle = styled(TicketItemStyled)`
   opacity: 0.4;
 `;
@@ -45,6 +106,7 @@ export const SubtotalTitle = styled(TicketItemStyled)`
   border-bottom: ${(props) =>
     props.borderBottom &&
     `1px solid ${props.dark === "dark" ? "#4f4f4f" : "#d7d7d7"}`};
+  grid-template-areas: unset;
 
   @media screen and (max-width: 330px) {
     grid-template-columns: 1fr 30%;

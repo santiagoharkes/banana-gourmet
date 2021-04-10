@@ -7,6 +7,7 @@ import {
   ELIMINAR_PRODUCTO,
   LIMPIAR_CARTA,
   CHECKOUT,
+  SET_EXTRAS,
 } from "../../utils/constants";
 
 const CartContext = createContext();
@@ -19,6 +20,7 @@ const initialState = {
   cartItems: storage,
   ...sumItems(storage),
   checkout: false,
+  extras: [],
 };
 
 export function CartContextProvider({ children }) {
@@ -48,6 +50,10 @@ export function CartContextProvider({ children }) {
     dispatch({ type: CHECKOUT });
   };
 
+  const setExtras = (payload) => {
+    dispatch({ type: SET_EXTRAS, payload });
+  };
+
   const contextValues = {
     sumarProducto,
     restarProducto,
@@ -55,6 +61,7 @@ export function CartContextProvider({ children }) {
     eliminarProducto,
     limpiarCarta,
     handleCheckout,
+    setExtras,
     ...state,
   };
 

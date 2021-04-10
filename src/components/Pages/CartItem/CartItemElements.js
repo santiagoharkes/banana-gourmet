@@ -157,17 +157,23 @@ export const AdicionalesContainer = styled.div`
   align-items: center;
   flex-direction: column;
   width: 100%;
+  /* color: ${(props) =>
+    props.dark === "dark" ? props.theme.yellow : props.theme.textColor}; */
+  color: ${(props) => props.theme.textColor};
 `;
 
 export const AdicionalesButton = styled.div`
-  border-radius: 20px;
-  background: ${(props) => props.theme.yellow};
+  border-radius: 5px;
+  /* background: ${(props) => `${props.theme.yellow}10`}; */
   padding: 5px 20px;
-  width: auto;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  color: ${(props) => props.theme.textColor};
+  border-top: 1px solid ${(props) => `${props.theme.textColor}10`};
+  border-bottom: 1px solid ${(props) => `${props.theme.textColor}10`};
 `;
 
 export const AdicionalesDetails = styled.div`
@@ -204,4 +210,12 @@ export const ItemCheckIcon = styled(CheckIcon)`
   height: 20px !important;
   top: -5px;
   left: -1px;
+`;
+
+export const AdicionalesItemsContainer = styled.div`
+  width: 100%;
+
+  & > p {
+    font-size: 0.75em;
+  }
 `;

@@ -16,14 +16,14 @@ import {
 import { useTheme } from "Context/Theme/ThemeContext";
 import { useAuth } from "Context/Auth/AuthContext";
 import { useHistory } from "react-router";
+import { useCheckout } from "Context/Checkout/CheckoutContext";
 
 function Cart() {
   const { cartItems, total } = useCart();
+  const { adicionales } = useCheckout();
   const { theme } = useTheme();
   const { user } = useAuth();
   const history = useHistory();
-
-  console.log({ cartItems });
 
   const handleBuyClick = () => {
     if (user) {
@@ -65,7 +65,9 @@ function Cart() {
       </PageContainer>
       {total > 0 && (
         <CartTotalContainerStyled>
-          <HeaderTitle>Total: ${total}</HeaderTitle>
+          <HeaderTitle>
+            Total: ${(Number(total) + Number(adicionales)).toFixed(2)}
+          </HeaderTitle>
           <BuyButtonStyled dark={theme} onClick={handleBuyClick}>
             Comprar!
           </BuyButtonStyled>

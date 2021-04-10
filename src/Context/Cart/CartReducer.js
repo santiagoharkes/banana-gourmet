@@ -5,6 +5,7 @@ import {
   ELIMINAR_PRODUCTO,
   LIMPIAR_CARTA,
   CHECKOUT,
+  SET_EXTRAS,
 } from "../../utils/constants";
 
 const Storage = (cartItems) => {
@@ -20,9 +21,11 @@ export const sumItems = (cartItems) => {
     (total, product) => total + product.quantity,
     0
   );
-  let total = cartItems
-    .reduce((total, product) => total + product.precio * product.quantity, 0)
-    .toFixed(2);
+  let total = Number(
+    cartItems
+      .reduce((total, product) => total + product.precio * product.quantity, 0)
+      .toFixed(2)
+  );
   return { itemCount, total };
 };
 
@@ -77,6 +80,37 @@ export const CartReducer = (state, action) => {
         ...state,
         ...sumItems(restarUno),
         cartItems: restarUno,
+      };
+
+    case SET_EXTRAS:
+      const isInExtras = state.extras?.filter((extra) => {
+        if (
+          extra.index === action.payload.index &&
+          extra.idProducto === action.payload.idProducto
+        ) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+
+      const nuevoArray =
+        isInExtras?.length > 0 && state.extras?.length > 0
+          ? state.extras?.map((extra) => {
+              if (
+                extra.index === action.payload.index &&
+                extra.idProducto === action.payload.idProducto
+              ) {
+                return action.payload;
+              } else {
+                return extra;
+              }
+            })
+          : [...state.extras, action.payload];
+
+      return {
+        ...state,
+        extras: nuevoArray,
       };
 
     case CHECKOUT:
