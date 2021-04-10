@@ -106,8 +106,6 @@ function Login() {
     }
   }, [error]);
 
-  console.log(errores);
-
   return (
     <PageContainer>
       <Helmet>

@@ -51,7 +51,6 @@ function ForgotPassword() {
     }),
 
     onSubmit: function (values) {
-      console.log(values);
       setLoading(true);
       axios
         .post(`/auth/forgot-password`, values)

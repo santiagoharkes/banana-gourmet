@@ -33,8 +33,6 @@ function CartItem(data) {
 
   const [showAdicionales, setShowAdicionales] = useState(false);
 
-  console.log({ data });
-
   const handleClick = () => {
     storeProducto(data.data);
     history.replace("/product");
@@ -93,13 +91,9 @@ function CartItem(data) {
                       }
                     });
 
-                    console.log({ extrasFiltrado });
-
                     const adicionalesFiltrado = extrasFiltrado?.idAdicionales?.find(
                       (jupiter) => jupiter === valor._id
                     );
-
-                    console.log({ adicionalesFiltrado });
 
                     return (
                       <AdicionalItem

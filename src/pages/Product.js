@@ -70,8 +70,6 @@ function Product() {
     // isError: pedidoError,
   } = useQuery(["producto", producto?._id], () => fetchPedido(producto?._id));
 
-  console.log({ product });
-
   return (
     <PageContainer>
       <Helmet>

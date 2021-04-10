@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import {
@@ -30,14 +29,12 @@ function CartItem({ data }) {
   } = useCart();
   const { storeProducto } = useProducts();
   const history = useHistory();
-  const [producto, setProducto] = useState({});
+  // const [producto, setProducto] = useState({});
 
-  console.log(producto);
-
-  useEffect(() => {
-    const filterProduct = cartItems.find((valor) => valor._id === data._id);
-    setProducto(filterProduct);
-  }, [data, cartItems]);
+  // useEffect(() => {
+  //   const filterProduct = cartItems.find((valor) => valor._id === data._id);
+  //   setProducto(filterProduct);
+  // }, [data, cartItems]);
 
   const handleClick = () => {
     storeProducto(data);

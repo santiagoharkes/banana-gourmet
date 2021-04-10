@@ -25,10 +25,6 @@ function CheckoutItem({ data }) {
     (valor) => valor.idProducto === data._id
   );
 
-  console.log({ data });
-
-  console.log({ isProductInExtras });
-
   return (
     <ItemContainerStyled adicionales={!!isProductInExtras.length > 0}>
       <TextStyled>{data.nombre}</TextStyled>

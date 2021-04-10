@@ -68,7 +68,6 @@ function RecoverPassword() {
     }),
 
     onSubmit: function (values) {
-      console.log(values);
       setLoading(true);
       axios
         .post(`/auth/reset-password`, values)

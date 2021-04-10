@@ -43,7 +43,6 @@ function Routes() {
           jwt: token,
           user: res.data,
         };
-        console.log("****** CHEQUEANDO SI TOY LOGUEADO ******");
         setUser(userLogged);
       });
     } else {
