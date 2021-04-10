@@ -28,7 +28,7 @@ function CartItem(data) {
   const { theme } = useTheme();
   const { sumarProducto, restarProducto, eliminarProducto } = useCart();
   const { storeProducto } = useProducts();
-  const { setExtras, extras } = useCart();
+  const { extras } = useCart();
   const history = useHistory();
 
   const [showAdicionales, setShowAdicionales] = useState(false);

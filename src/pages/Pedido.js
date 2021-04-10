@@ -35,7 +35,6 @@ import { useAxios } from "hooks/useAxios";
 import { useQuery } from "react-query";
 import { useHistory } from "react-router";
 import Loading from "components/Loading/Loading";
-import { useCheckout } from "Context/Checkout/CheckoutContext";
 
 function Pedido() {
   const { theme } = useTheme();
@@ -96,7 +95,7 @@ function Pedido() {
         </Helmet>
         <HeaderTitle>Pedido!</HeaderTitle>
         <HeaderSubtitle>Estos son los detalles de tu pedido</HeaderSubtitle>
-        {pedidoLoading ? (
+        {pedidoLoading && adicionalesLoading ? (
           <Loading h="80" />
         ) : (
           <PedidoContainerStyled>

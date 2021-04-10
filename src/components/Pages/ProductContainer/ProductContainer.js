@@ -7,7 +7,6 @@ import {
   CategoryBadgeStyled,
   ProductsListStyled,
   CategorieTitleStyled,
-  CategoryTitleContainerStyled,
 } from "./ProductContainerElements";
 
 // import BlockIcon from "@material-ui/icons/Block";
