@@ -46,7 +46,7 @@ export const TestEmailContainer = styled.div`
 
 export const TestEmailStyled = styled(GoToRegister)`
   margin-bottom: 5px;
-  opacity: 0.3;
+  opacity: 0.2;
 `;
 
 export const FormContainer = styled.div`
@@ -63,4 +63,30 @@ export const ForgotPasswordStyled = styled.p`
   color: ${(props) => props.theme.subtitleColor};
   cursor: pointer;
   text-align: center;
+`;
+
+export const GoogleLoginButton = styled.div`
+  width: auto;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-bottom: 20px;
+
+  & img {
+    max-width: 20px;
+    margin: 0 10px;
+  }
+`;
+
+export const GithubLoginButton = styled(GoogleLoginButton)`
+  background: #272727;
+  color: #eaeaea;
 `;

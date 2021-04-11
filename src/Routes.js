@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
-import { Switch, Route, useLocation, Redirect } from "react-router-dom";
+import { Switch, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import Cookies from "js-cookie";
 
@@ -25,6 +25,8 @@ import ForgotPassword from "pages/ForgotPassword";
 import RecoverPassword from "pages/RecoverPassword";
 import { useAuth } from "Context/Auth/AuthContext";
 import { useAxios } from "hooks/useAxios";
+import GoogleLogin from "pages/GoogleLogin";
+import GithubLogin from "pages/GithubLogin";
 
 function Routes() {
   const { theme } = useTheme();
@@ -56,6 +58,8 @@ function Routes() {
         <Switch location={location} key={location.key}>
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
+          <Route path="/auth/google/callback" component={GoogleLogin} />
+          <Route path="/auth/github/callback" component={GithubLogin} />
           <Route exact path="/forgot" component={ForgotPassword} />
           <Route exact path="/recover" component={RecoverPassword} />
           <Route exact path="/register" component={Register} />
@@ -73,9 +77,9 @@ function Routes() {
           <Route exact path="/pedido/fail" component={PedidoFail} />
           <Route exact path="/search" component={Busqueda} />
           <Route exact path="/garralapala" component={Nada} />
-          <Route exact path="*">
+          {/* <Route exact path="*">
             <Redirect to="/" />
-          </Route>
+          </Route> */}
         </Switch>
       </AnimatePresence>
     </Layout>

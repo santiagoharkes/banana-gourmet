@@ -38,12 +38,14 @@ import { useAxios } from "hooks/useAxios";
 import { useHistory } from "react-router";
 import Loading from "components/Loading/Loading";
 import { usePedido } from "Context/Pedido/PedidoContext";
+import { useAuth } from "Context/Auth/AuthContext";
 
 function Cart() {
   const axios = useAxios();
   const history = useHistory();
   const { cartItems, total: subtotal, limpiarCarta, extras } = useCart();
   const { theme } = useTheme();
+  const { user } = useAuth();
   const [loading, setLoading] = useState(false);
   const [otraPropina, setOtraPropina] = useState(false);
   const [envio, setEnvio] = useState(true);
@@ -72,6 +74,11 @@ function Cart() {
   const { setEstadoPedido, setPedido } = usePedido();
 
   const handleBuyClick = () => {
+    if (!user) {
+      history.push("/login");
+      return;
+    }
+
     if (!efectivo && !tarjeta) {
       setPago(false);
       setOpcionesError("Por favor, elije un método de pago");
@@ -387,7 +394,9 @@ function Cart() {
               <TotalTitleStyled>Total:</TotalTitleStyled>
               <TotalPriceContainer>
                 <TotalPriceIcon dark={theme} />
-                <TotalPriceNumber dark={theme}>{total}</TotalPriceNumber>
+                <TotalPriceNumber dark={theme}>
+                  {total.toFixed(2)}
+                </TotalPriceNumber>
               </TotalPriceContainer>
             </TotalContainerStyled>
 

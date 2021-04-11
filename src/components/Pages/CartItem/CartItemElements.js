@@ -5,6 +5,7 @@ import RemoveIcon from "@material-ui/icons/Remove";
 import CloseIcon from "@material-ui/icons/Close";
 import { motion } from "framer-motion";
 import CheckIcon from "@material-ui/icons/Check";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
 export const CartContainer = styled.div`
   margin: 20px 0;
@@ -174,6 +175,48 @@ export const AdicionalesButton = styled.div`
   color: ${(props) => props.theme.textColor};
   border-top: 1px solid ${(props) => `${props.theme.textColor}10`};
   border-bottom: 1px solid ${(props) => `${props.theme.textColor}10`};
+  position: relative;
+`;
+
+export const ArrowIconStyled = styled(ArrowBackIosIcon)`
+  transform: rotate(270deg);
+  position: absolute;
+  right: 7px;
+  top: -2px;
+  width: 0.75em !important;
+  color: ${(props) => `${props.theme.textColor}4a`};
+  /* transition: 300ms transform; */
+  animation: alvesre 300ms;
+
+  &.rotate__arrow-icon {
+    top: 6px;
+    transform: rotate(90deg);
+    animation: rotar 300ms;
+  }
+
+  @keyframes rotar {
+    0% {
+      transform: rotate(270deg);
+      top: -2px;
+    }
+
+    100% {
+      transform: rotate(90deg);
+      top: 6px;
+    }
+  }
+
+  @keyframes alvesre {
+    0% {
+      transform: rotate(90deg);
+      top: 6px;
+    }
+
+    100% {
+      transform: rotate(270deg);
+      top: -2px;
+    }
+  }
 `;
 
 export const AdicionalesDetails = styled.div`

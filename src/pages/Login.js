@@ -10,11 +10,11 @@ import {
   FormStyled,
   ButtonSubmitStyled,
   GoToRegister,
-  TestEmailStyled,
   FormContainer,
   InputError,
-  TestEmailContainer,
   ForgotPasswordStyled,
+  GoogleLoginButton,
+  GithubLoginButton,
 } from "./LoginElements";
 import { useAxios } from "hooks/useAxios";
 import { useTheme } from "Context/Theme/ThemeContext";
@@ -25,6 +25,9 @@ import HeaderSubtitle from "components/Pages/HeaderSubtitle/HeaderSubtitle";
 import Input from "components/Pages/Input/Input";
 import PizzaLogin from "../img/pizzaLogin.webp";
 import Loading from "components/Loading/Loading";
+
+import GoogleLogo from "../img/g-logo.png";
+import GithubLogo from "../img/github-logo.png";
 
 function Login() {
   const { theme } = useTheme();
@@ -153,7 +156,31 @@ function Login() {
               Forgot password?
             </ForgotPasswordStyled>
             {errores.errores && <InputError>{errores.errores}</InputError>}
+
             <ButtonSubmitStyled type="submit">Login</ButtonSubmitStyled>
+
+            <GoogleLoginButton
+              onClick={() => {
+                setLoading(true);
+                window.location.replace(
+                  "https://nucba-zapi-app.herokuapp.com/connect/google"
+                );
+              }}
+            >
+              <img src={GoogleLogo} alt="Google logo" /> Login with Google
+            </GoogleLoginButton>
+
+            <GithubLoginButton
+              onClick={() => {
+                setLoading(true);
+                window.location.replace(
+                  "https://nucba-zapi-app.herokuapp.com/connect/github"
+                );
+              }}
+            >
+              <img src={GithubLogo} alt="Google logo" /> Login with Github
+            </GithubLoginButton>
+
             <GoToRegister dark={theme}>
               No tenés una cuenta?
               <span>
@@ -162,7 +189,7 @@ function Login() {
                 </Link>
               </span>
             </GoToRegister>
-            <TestEmailContainer>
+            {/* <TestEmailContainer>
               <TestEmailStyled dark={theme}>
                 test email:
                 <span>test@test.com</span>
@@ -171,7 +198,7 @@ function Login() {
                 test password:
                 <span>test1234</span>
               </TestEmailStyled>
-            </TestEmailContainer>
+            </TestEmailContainer> */}
           </FormStyled>
         </FormContainer>
       )}

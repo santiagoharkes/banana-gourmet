@@ -5,6 +5,7 @@ import ClearIcon from "@material-ui/icons/Clear";
 export const SearchContainer = styled.div`
   margin: 20px 0;
   padding-bottom: 50px;
+  height: 100%;
 `;
 
 export const InputContainerStyled = styled.form`

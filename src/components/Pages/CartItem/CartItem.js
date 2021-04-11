@@ -17,6 +17,7 @@ import {
   AdicionalesContainer,
   AdicionalesButton,
   AdicionalesItemsContainer,
+  ArrowIconStyled,
 } from "./CartItemElements";
 import { useCart } from "Context/Cart/CartContext";
 
@@ -72,6 +73,10 @@ function CartItem(data) {
             onClick={() => setShowAdicionales(!showAdicionales)}
           >
             Adicionales
+            <ArrowIconStyled
+              showAdicionales={showAdicionales}
+              className={showAdicionales ? "rotate__arrow-icon" : ""}
+            />
           </AdicionalesButton>
 
           {showAdicionales &&

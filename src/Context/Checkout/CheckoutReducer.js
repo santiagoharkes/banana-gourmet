@@ -78,8 +78,13 @@ export const CheckoutReducer = (state, action) => {
       return {
         ...state,
         total: Number(
-          state.precio + state.propina + state.envio + state.adicionales
-        ).toFixed(2),
+          (
+            Number(state.precio) +
+            Number(state.propina) +
+            Number(state.envio) +
+            Number(state.adicionales)
+          ).toFixed(2)
+        ),
       };
 
     case "SET_DETALLES":

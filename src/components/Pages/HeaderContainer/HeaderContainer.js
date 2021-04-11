@@ -25,7 +25,12 @@ function HeaderContainer() {
     <HeaderContainerStyled>
       <HeaderTitleStyled>
         <HeaderTitle>
-          Hola, {user ? `${user.user.nombre}!` : `cómo estás?`}
+          Hola,{" "}
+          {user
+            ? user.user.nombre
+              ? `${user.user.nombre}!`
+              : `${user.user.username}`
+            : `cómo estás?`}
         </HeaderTitle>
         <HeaderSubtitle>Ya sabés qué pedir para hoy?</HeaderSubtitle>
       </HeaderTitleStyled>

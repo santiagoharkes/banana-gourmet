@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 import { Helmet } from "react-helmet";
 
@@ -33,10 +33,12 @@ import {
 
 import SearchLight from "../img/searchIconLight.png";
 import SearchDark from "../img/searchIconDark.png";
+import Loading from "components/Loading/Loading";
 
 function Busqueda() {
   const axios = useAxios();
   const { theme } = useTheme();
+  const [loading, setLoading] = useState(false);
 
   const {
     inputText,
@@ -51,6 +53,7 @@ function Busqueda() {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
 
     if (inputText.trim() === "") {
       setError("Este campo no puede estar vacío!");
@@ -63,15 +66,22 @@ function Busqueda() {
         producto.nombre.toUpperCase().includes(inputText.toUpperCase()) ||
         producto.descripcion.toUpperCase().includes(inputText.toUpperCase())
     );
-    if (productosFiltrados.length > 0) {
-      setNada(false);
-      setProductosFiltrados(productosFiltrados);
-      setError("");
-    } else {
-      setNada(true);
-      setProductosFiltrados(productosFiltrados);
-      setError("");
-    }
+
+    const randomNum = Math.floor(Math.random() * 1500);
+
+    setTimeout(() => {
+      if (productosFiltrados.length > 0) {
+        setNada(false);
+        setProductosFiltrados(productosFiltrados);
+        setError("");
+        setLoading(false);
+      } else {
+        setNada(true);
+        setProductosFiltrados(productosFiltrados);
+        setError("");
+        setLoading(false);
+      }
+    }, randomNum);
   };
 
   const onClear = () => {
@@ -121,7 +131,9 @@ function Busqueda() {
           </ButtonSubmitContainer>
         </InputContainerStyled>
         {error && <ErrorMessage>{error}</ErrorMessage>}
-        {productosFiltrados.length > 0 ? (
+        {loading ? (
+          <Loading h="70" />
+        ) : productosFiltrados.length > 0 ? (
           <ProductosContainer>
             {productosFiltrados.map((producto) => (
               <ProductCard
