@@ -60,7 +60,6 @@ function Cart() {
     setDelivery,
     setTakeAway,
     setPropina,
-    setDireccion,
     takeAway,
     delivery,
     tarjeta,
