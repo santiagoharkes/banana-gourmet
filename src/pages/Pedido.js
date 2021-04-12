@@ -79,7 +79,9 @@ function Pedido() {
   const getHour = () => {
     const fechita = new Date(contextPedido.createdAt);
 
-    return `${fechita.getHours()}:${fechita.getMinutes()}hs`;
+    return `${fechita.getHours()}:${
+      fechita.getMinutes() < 10 ? "0" : ""
+    }${fechita.getMinutes()}hs`;
   };
 
   return (

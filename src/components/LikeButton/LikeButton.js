@@ -36,8 +36,8 @@ function LikeButton({ user, producto }) {
     if (likes?.data?.length > 0) {
       const userLikesProduct = likes?.data?.find((valor) => {
         if (
-          valor.producto._id === producto._id &&
-          valor.usuario._id === user.user._id
+          valor.producto?._id === producto?._id &&
+          valor.usuario?._id === user?.user?._id
         ) {
           return true;
         }

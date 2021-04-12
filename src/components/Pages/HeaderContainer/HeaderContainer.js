@@ -29,7 +29,7 @@ function HeaderContainer() {
           {user
             ? user.user.nombre
               ? `${user.user.nombre}!`
-              : `${user.user.username}`
+              : `${user.user.username}!`
             : `cómo estás?`}
         </HeaderTitle>
         <HeaderSubtitle>Ya sabés qué pedir para hoy?</HeaderSubtitle>

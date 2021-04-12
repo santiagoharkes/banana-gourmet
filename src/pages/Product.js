@@ -85,7 +85,7 @@ function Product() {
         <ProductContainerStyled>
           <TitleContainerStyled>
             <HeaderTitle>{product?.data?.nombre}</HeaderTitle>
-            <LikeButton user={user} producto={product.data} />
+            <LikeButton user={user} producto={product?.data} />
           </TitleContainerStyled>
           {product.data.img.length > 1 ? (
             <Swiper
@@ -104,7 +104,7 @@ function Product() {
             </Swiper>
           ) : (
             <ProductImageStyled>
-              <img src={`${product.data.img[0].url}`} alt="" />
+              <img src={`${product?.data?.img[0].url}`} alt="" />
             </ProductImageStyled>
           )}
           <PriceAddContainerStyled>
@@ -114,26 +114,26 @@ function Product() {
                 {product.data.precio.toFixed(2)}
               </PriceCardTextStyled>
             </ProductPriceStyled>
-            {isInCart(product.data, cartItems) &&
-              isInCart(product.data, cartItems).quantity > 0 && (
+            {isInCart(product?.data, cartItems) &&
+              isInCart(product?.data, cartItems).quantity > 0 && (
                 <AddProductStyled dark={theme}>
                   <AddIconStyled onClick={() => sumarProducto(product.data)} />
-                  {isInCart(product.data, cartItems).quantity}
+                  {isInCart(product?.data, cartItems).quantity}
                   <RemoveIconStyled
                     onClick={
-                      isInCart(product.data, cartItems).quantity <= 1
-                        ? () => eliminarProducto(product.data)
-                        : () => restarProducto(product.data)
+                      isInCart(product?.data, cartItems).quantity <= 1
+                        ? () => eliminarProducto(product?.data)
+                        : () => restarProducto(product?.data)
                     }
                   />
                 </AddProductStyled>
               )}
 
-            {(!isInCart(product.data, cartItems) ||
-              isInCart(product.data, cartItems).quantity < 1) && (
+            {(!isInCart(product?.data, cartItems) ||
+              isInCart(product?.data, cartItems).quantity < 1) && (
               <AddProductStyled
                 dark={theme}
-                onClick={() => agregarProducto(product.data)}
+                onClick={() => agregarProducto(product?.data)}
               >
                 <p>Agregar</p>
               </AddProductStyled>
@@ -141,12 +141,12 @@ function Product() {
           </PriceAddContainerStyled>
           <DescriptionTitle>Descripción:</DescriptionTitle>
           <DescriptionTitleStyled>
-            {product?.data.descripcion}
+            {product?.data?.descripcion}
           </DescriptionTitleStyled>
 
           <LineaDivisora />
 
-          {product.data && <ProductAddMore producto={product.data} />}
+          {product.data && <ProductAddMore producto={product?.data} />}
         </ProductContainerStyled>
       )}
     </PageContainer>

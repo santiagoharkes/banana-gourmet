@@ -22,6 +22,16 @@ function MisFavoritos() {
     return axios.get(`/likes?usuario=${user.user._id}`);
   };
 
+  const fetchProducts = () => {
+    return axios.get("/productos");
+  };
+
+  const {
+    data: productos,
+    // isLoading: productsLoading,
+    // isError: productsError,
+  } = useQuery("products", fetchProducts);
+
   const {
     data: likes,
     isLoading: likesLoading,
@@ -51,7 +61,14 @@ function MisFavoritos() {
         {likes?.data?.length > 0 && (
           <FavoritesContainerStyled>
             {likes.data.map((item) => {
-              return <FavoriteItem data={item.producto} key={item._id} />;
+              console.log({ productos });
+              console.log({ item });
+
+              const filteredProduct = productos.data.find(
+                (producto) => producto._id === item.producto._id
+              );
+
+              return <FavoriteItem data={filteredProduct} key={item._id} />;
             })}
           </FavoritesContainerStyled>
         )}
