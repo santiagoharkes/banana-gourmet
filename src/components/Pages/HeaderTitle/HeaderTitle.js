@@ -1,9 +1,9 @@
 // Styles
 import { HeaderTitleStyled } from "./HeaderTitleElements";
 
-function HeaderTitle({ children, color }) {
+function HeaderTitle({ children, color, small }) {
   return (
-    <HeaderTitleStyled color={color ? color : null}>
+    <HeaderTitleStyled small={small} color={color ? color : null}>
       {children}
     </HeaderTitleStyled>
   );

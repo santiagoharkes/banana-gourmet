@@ -100,6 +100,12 @@ export const CheckoutReducer = (state, action) => {
         total: Number(state.total + action.payload),
       };
 
+    case "SET_DIRECCION":
+      return {
+        ...state,
+        direccion: action.payload,
+      };
+
     default:
       return state;
   }

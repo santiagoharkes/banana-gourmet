@@ -206,6 +206,10 @@ export const OtraPropina = styled.input`
         return `${props.theme.yellow}61`;
       }};
   }
+
+  &.error {
+    border: 1px solid ${(props) => props.theme.errorBackground};
+  }
 `;
 
 export const ButtonBuy = styled(ItemContainerStyled)`
@@ -236,4 +240,12 @@ export const DetallesStyled = styled.textarea`
   user-select: text;
   -webkit-appearance: none;
   -moz-appearance: textfield;
+`;
+
+export const AdressErrorStyled = styled.p`
+  width: 100%;
+  text-align: center;
+  color: ${(props) => props.theme.errorBackground};
+  margin-top: -10px;
+  margin-bottom: 20px;
 `;

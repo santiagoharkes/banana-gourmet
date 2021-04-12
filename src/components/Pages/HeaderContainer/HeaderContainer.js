@@ -24,7 +24,7 @@ function HeaderContainer() {
   return (
     <HeaderContainerStyled>
       <HeaderTitleStyled>
-        <HeaderTitle>
+        <HeaderTitle small>
           Hola,{" "}
           {user
             ? user.user.nombre

@@ -244,6 +244,10 @@ function Pedido() {
               <DetailTitle>Método de pago:</DetailTitle>
               {contextPedido.tarjeta ? "Tarjeta" : "Efectivo"}
             </DetailItemStyled>
+            <DetailItemStyled>
+              <DetailTitle>Dirección:</DetailTitle>
+              {contextPedido.direccion}
+            </DetailItemStyled>
             {contextPedido.detalles && (
               <DetailItemStyled>
                 <DetailTitle>Detalles:</DetailTitle>

@@ -21,7 +21,7 @@ function CheckoutItem({ data }) {
   const { theme } = useTheme();
   const { extras } = useCart();
 
-  const isProductInExtras = extras.filter(
+  const isProductInExtras = extras?.filter(
     (valor) => valor.idProducto === data._id
   );
 

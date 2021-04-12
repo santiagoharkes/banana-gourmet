@@ -82,6 +82,37 @@ export const CartReducer = (state, action) => {
         cartItems: restarUno,
       };
 
+    // case SET_EXTRAS:
+    //   const isInExtras = state.extras?.filter((extra) => {
+    //     if (
+    //       extra.index === action.payload.index &&
+    //       extra.idProducto === action.payload.idProducto
+    //     ) {
+    //       return true;
+    //     } else {
+    //       return false;
+    //     }
+    //   });
+
+    //   const nuevoArray =
+    //     isInExtras?.length > 0 && state.extras?.length > 0
+    //       ? state.extras?.map((extra) => {
+    //           if (
+    //             extra.index === action.payload.index &&
+    //             extra.idProducto === action.payload.idProducto
+    //           ) {
+    //             return action.payload;
+    //           } else {
+    //             return extra;
+    //           }
+    //         })
+    //       : [...state.extras, action.payload];
+
+    //   return {
+    //     ...state,
+    //     extras: nuevoArray,
+    //   };
+
     case SET_EXTRAS:
       const isInExtras = state.extras?.filter((extra) => {
         if (
@@ -94,27 +125,31 @@ export const CartReducer = (state, action) => {
         }
       });
 
-      const nuevoArray =
-        isInExtras?.length > 0 && state.extras?.length > 0
-          ? state.extras?.map((extra) => {
-              if (
-                extra.index === action.payload.index &&
-                extra.idProducto === action.payload.idProducto
-              ) {
-                return action.payload;
-              } else {
-                return extra;
-              }
-            })
-          : [...state.extras, action.payload];
+      const nuevoArray = state.extras?.map((extra) => {
+        if (
+          extra.index === action.payload.index &&
+          extra.idProducto === action.payload.idProducto
+        ) {
+          return action.payload;
+        } else {
+          return extra;
+        }
+      });
 
       return {
         ...state,
-        extras: nuevoArray,
+        extras:
+          isInExtras?.length > 0 && state.extras?.length > 0
+            ? nuevoArray
+            : state.extras.length > 0
+            ? [...state.extras, action.payload]
+            : [action.payload],
       };
 
     case CHECKOUT:
       return {
+        ...state,
+        extras: [],
         cartItems: [],
         checkout: true,
         ...sumItems([]),
@@ -122,6 +157,8 @@ export const CartReducer = (state, action) => {
 
     case LIMPIAR_CARTA:
       return {
+        ...state,
+        extras: [],
         cartItems: [],
         ...sumItems([]),
       };

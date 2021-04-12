@@ -27,6 +27,7 @@ import { useAuth } from "Context/Auth/AuthContext";
 import { useAxios } from "hooks/useAxios";
 import GoogleLogin from "pages/GoogleLogin";
 import GithubLogin from "pages/GithubLogin";
+import Perfil from "pages/Perfil";
 
 function Routes() {
   const { theme } = useTheme();
@@ -65,6 +66,7 @@ function Routes() {
           <Route exact path="/register" component={Register} />
           <Route exact path="/cart" component={Cart} />
           <Route exact path="/product" component={Product} />
+          <Route exact path="/profile" component={Perfil} />
           <ProtectedRoute
             exact
             path="/mis-favoritos"

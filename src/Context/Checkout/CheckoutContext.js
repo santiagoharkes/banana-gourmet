@@ -21,6 +21,7 @@ const initialState = {
   envio: 0,
   detalles: "",
   adicionales: 0,
+  direccion: "",
 };
 
 export function CheckoutContextProvider({ children }) {
@@ -100,6 +101,10 @@ export function CheckoutContextProvider({ children }) {
     dispatch({ type: "SET_ADICIONALES", payload });
   };
 
+  const setDireccion = (payload) => {
+    dispatch({ type: "SET_DIRECCION", payload });
+  };
+
   const contextValues = {
     ...state,
     setTarjeta,
@@ -113,6 +118,7 @@ export function CheckoutContextProvider({ children }) {
     setUsuario,
     setDetalles,
     setAdicionales,
+    setDireccion,
   };
 
   return (

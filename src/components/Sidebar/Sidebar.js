@@ -46,7 +46,9 @@ function Sidebar() {
         <SidebarULStyled>
           {user ? (
             <>
-              <LiStyled onClick={handleClick}>Mi perfil</LiStyled>
+              <LiStyled onClick={(e) => handleClick(e, "/profile")}>
+                Mi perfil
+              </LiStyled>
               <LiStyled onClick={(e) => handleClick(e, "/mis-pedidos")}>
                 Mis pedidos
               </LiStyled>

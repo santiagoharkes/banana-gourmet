@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import FastfoodIcon from "@material-ui/icons/Fastfood";
+import MenuIcon from "@material-ui/icons/Menu";
 
 export const HeaderContainerStyled = styled.div`
   display: flex;
@@ -16,7 +16,7 @@ export const HeaderTitleStyled = styled.div`
   align-items: flex-start;
 `;
 
-export const MenuIconStyled = styled(FastfoodIcon)`
+export const MenuIconStyled = styled(MenuIcon)`
   width: 50px !important;
   height: 50px !important;
   border-radius: 15px;

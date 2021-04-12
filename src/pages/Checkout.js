@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import shortid from "shortid";
 
@@ -29,6 +29,7 @@ import {
   OtraPropina,
   OtraPropinaLabel,
   DetallesStyled,
+  AdressErrorStyled,
 } from "./CheckoutElements";
 
 import { CategoryTitleStyled } from "components/Pages/ProductAddMore/ProductAddMoreElements";
@@ -49,6 +50,8 @@ function Cart() {
   const [loading, setLoading] = useState(false);
   const [otraPropina, setOtraPropina] = useState(false);
   const [envio, setEnvio] = useState(true);
+  const [adress, setAdress] = useState("");
+  const [adressError, setAdressError] = useState("");
   const [pago, setPago] = useState(true);
   const [opcionesError, setOpcionesError] = useState("");
   const {
@@ -57,6 +60,7 @@ function Cart() {
     setDelivery,
     setTakeAway,
     setPropina,
+    setDireccion,
     takeAway,
     delivery,
     tarjeta,
@@ -70,8 +74,17 @@ function Cart() {
     setDetalles,
     detalles,
     adicionales,
+    direccion,
   } = useCheckout();
   const { setEstadoPedido, setPedido } = usePedido();
+
+  useEffect(() => {
+    if (user) {
+      setAdress(user.user.direccion);
+    } else {
+      setAdress(direccion);
+    }
+  }, [user, direccion]);
 
   const handleBuyClick = () => {
     if (!user) {
@@ -85,6 +98,9 @@ function Cart() {
       if (!delivery && !takeAway) {
         setEnvio(false);
       }
+      if (!adress) {
+        setAdressError("Por favor, colocá tu dirección");
+      }
       return;
     }
 
@@ -94,8 +110,18 @@ function Cart() {
       if (!efectivo && !tarjeta) {
         setPago(false);
       }
+      if (!adress) {
+        setAdressError("Por favor, colocá tu dirección");
+      }
       return;
     }
+
+    if (!adress) {
+      setAdressError("Por favor, colocá tu dirección");
+      return;
+    }
+
+    // setDireccion(adress);
 
     const nuevoPedido = {
       estadoPedido: "aprobado",
@@ -113,6 +139,7 @@ function Cart() {
       detalles: detalles,
       adicionales: extras,
       extras: adicionales,
+      direccion: adress,
     };
 
     setLoading(true);
@@ -235,6 +262,28 @@ function Cart() {
             </FormaDePagoContainerStyled>
             {tarjeta && (
               <>
+                {delivery && (
+                  <>
+                    <OtraPropinaLabel htmlFor="otraPropina">
+                      Ingrese su dirección...
+                    </OtraPropinaLabel>
+                    <OtraPropina
+                      name="direccion"
+                      id="direccion"
+                      className={adressError ? "error" : "active"}
+                      value={adress}
+                      placeholder="Ingrese su dirección..."
+                      type="text"
+                      onChange={(e) => {
+                        setAdress(e.target.value);
+                        setAdressError("");
+                      }}
+                    ></OtraPropina>
+                    {adressError && (
+                      <AdressErrorStyled>{adressError}</AdressErrorStyled>
+                    )}
+                  </>
+                )}
                 <CategoryTitleStyled>Propina:</CategoryTitleStyled>
                 <FormaDePagoContainerStyled>
                   <PropinaCardContainer
