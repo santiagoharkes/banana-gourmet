@@ -1,9 +1,7 @@
-import { AvatarImageStyled } from "./HeaderAvatarElements";
-
-import AvatarImage from "../../../img/avatar.webp";
+import { AvatarIcon } from "./HeaderAvatarElements";
 
 function HeaderAvatar({ onClick }) {
-  return <AvatarImageStyled onClick={onClick} src={AvatarImage} />;
+  return <AvatarIcon onClick={onClick} />;
 }
 
 export default HeaderAvatar;

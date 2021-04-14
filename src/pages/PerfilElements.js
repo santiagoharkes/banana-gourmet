@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import EditIcon from "@material-ui/icons/Edit";
+import { Link } from "react-router-dom";
+import PersonIcon from "@material-ui/icons/Person";
 
 export const PerfilContainer = styled.div`
-  margin-bottom: 50px;
+  padding-bottom: 75px;
 `;
 
 export const PerfilCard = styled.div`
@@ -11,12 +13,12 @@ export const PerfilCard = styled.div`
       props.dark === "dark"
         ? props.editing
           ? `${props.theme.successBackground}4a`
-          : `${props.theme.yellow}4a`
+          : `#dddddd21`
         : props.editing
         ? `${props.theme.successBackground}4a`
         : props.theme.backgroundColorSecondary};
   border-radius: 20px;
-  padding: 20px;
+  padding: 40px 20px;
   margin: 20px 0;
   display: flex;
   flex-direction: column;
@@ -24,17 +26,31 @@ export const PerfilCard = styled.div`
   align-items: center;
   position: relative;
   min-height: 250px;
+  box-shadow: 0px 0px 20px #9191911f;
 `;
 
 export const PerfilImage = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 100px !important;
+  height: 100px !important;
   object-fit: cover;
   background-color: ${(props) => props.theme.backgroundColorSecondary};
   border: none;
   border-radius: 50%;
   overflow: hidden;
   margin-bottom: 20px;
+`;
+
+export const PerfilIcon = styled(PersonIcon)`
+  width: 100px !important;
+  height: 100px !important;
+  object-fit: cover;
+  background-color: ${(props) => props.theme.backgroundColorSecondary};
+  color: ${(props) => props.theme.textColor};
+  border: none;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 20px;
+  padding: 10px;
 `;
 
 export const UsernameStyled = styled.p`
@@ -122,4 +138,32 @@ export const ButtonCancelar = styled(ButtonAceptar)`
   border: 1px solid ${(props) => props.theme.errorBackground};
   background: ${(props) => props.theme.backgroundColor};
   color: ${(props) => props.theme.errorBackground};
+`;
+
+export const Button = styled(Link)`
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #00000014;
+  border-radius: 20px;
+  background: ${(props) => props.theme.backgroundColorSecondary};
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: ${(props) => props.theme.textColor};
+  border: 1px solid
+    ${(props) =>
+      props.dark === "dark"
+        ? props.editing
+          ? `${props.theme.successBackground}4a`
+          : `#dddddd21`
+        : props.editing
+        ? `${props.theme.successBackground}4a`
+        : props.theme.backgroundColorSecondary};
+`;
+
+export const ButtonLogout = styled(Button)`
+  background: transparent;
+  border: none;
 `;

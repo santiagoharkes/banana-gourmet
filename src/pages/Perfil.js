@@ -1,19 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
+import { ToastContainer, toast } from "react-toastify";
+import { useHistory } from "react-router";
+import "react-toastify/dist/ReactToastify.css";
 
 // Components
 import PageContainer from "components/PageContainer/PageContainer";
 import HeaderSubtitle from "components/Pages/HeaderSubtitle/HeaderSubtitle";
 import HeaderTitle from "components/Pages/HeaderTitle/HeaderTitle";
-import Avatar from "../img/avatar.webp";
+// import Avatar from "../img/avatar.webp";
+import Loading from "components/Loading/Loading";
 
 // Hooks & Context
+import { useAuth } from "Context/Auth/AuthContext";
+import { useTheme } from "Context/Theme/ThemeContext";
+import { useAxios } from "hooks/useAxios";
 
 // Styled components
 import {
   PerfilContainer,
   PerfilCard,
-  PerfilImage,
+  // PerfilImage,
   DireccionStyled,
   UsernameStyled,
   EmailStyled,
@@ -24,15 +31,13 @@ import {
   ButtonsContainer,
   ButtonAceptar,
   ButtonCancelar,
+  Button,
+  ButtonLogout,
+  PerfilIcon,
 } from "./PerfilElements";
-import { useAuth } from "Context/Auth/AuthContext";
-import { useTheme } from "Context/Theme/ThemeContext";
-import { useHistory } from "react-router";
-import { useAxios } from "hooks/useAxios";
-import Loading from "components/Loading/Loading";
 
 function Perfil() {
-  const { user, setUser, loading, setLoading } = useAuth();
+  const { user, setUser, loading, setLoading, logout } = useAuth();
   const { theme } = useTheme();
   const axios = useAxios();
   const history = useHistory();
@@ -56,9 +61,31 @@ function Perfil() {
 
   const updateUser = () => {
     setLoading(true);
-    axios.put(`/users/${user.user.id}`, usuarito).then((res) => {
-      setUser({ user: { ...res.data } });
-    });
+    axios
+      .put(`/users/${user.user.id}`, usuarito)
+      .then((res) => {
+        toast.success("✅ Usuario editado correctamente!", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        setUser({ user: { ...res.data } });
+      })
+      .catch((error) => {
+        toast.error("❌ Ups! No pudimos actualizar tu perfil", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
   };
 
   console.log({ usuarito });
@@ -78,6 +105,17 @@ function Perfil() {
         Este a tu perfil, donde podrás modificar tus datos personales
       </HeaderSubtitle>
       <PerfilContainer>
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={true}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
         {user &&
           (loading ? (
             <PerfilCard dark={theme} editing={editProfile}>
@@ -91,7 +129,8 @@ function Perfil() {
                   onClick={() => setEditProfile(!editProfile)}
                 />
               )}
-              <PerfilImage src={Avatar} />
+              {/* <PerfilImage src={Avatar} /> */}
+              <PerfilIcon />
               {editProfile ? (
                 <UsernameInput
                   type="text"
@@ -144,6 +183,21 @@ function Perfil() {
               )}
             </PerfilCard>
           ))}
+        <Button to="/mis-pedidos" dark={theme}>
+          Mis pedidos
+        </Button>
+        <Button to="/mis-favoritos" dark={theme}>
+          Mis favoritos
+        </Button>
+        <ButtonLogout
+          onClick={() => {
+            logout();
+            history.push("/");
+          }}
+          dark={theme}
+        >
+          Logout
+        </ButtonLogout>
       </PerfilContainer>
     </PageContainer>
   );
