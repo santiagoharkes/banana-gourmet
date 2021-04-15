@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import ForumIcon from "@material-ui/icons/Forum";
 
 export const PedidoContainerStyled = styled.div`
   padding: 20px 0;
@@ -183,4 +184,33 @@ export const OtrosDatos = styled.div`
 
 export const DetailTitle = styled.p`
   font-weight: bold;
+`;
+
+export const ContactContainer = styled.div`
+  color: ${(props) => props.theme.textColor};
+  margin-bottom: ${(props) => (props.mb ? `${props.mb}px` : "20px")};
+  margin: ${(props) => (props.m ? props.m : 0)};
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 20%;
+  border-radius: 20px;
+  border: 1px solid
+    ${(props) =>
+      props.dark === "dark"
+        ? props.editing
+          ? `${props.theme.successBackground}4a`
+          : `#dddddd21`
+        : props.editing
+        ? `${props.theme.successBackground}4a`
+        : props.theme.backgroundColorSecondary};
+  padding: 20px 5px;
+  font-size: 0.75rem;
+  gap: 20px;
+  box-shadow: 0px 0px 20px #9191911f;
+  cursor: pointer;
+`;
+
+export const ContactIcon = styled(ForumIcon)`
+  color: ${(props) => props.theme.textColor};
+  place-self: center;
 `;

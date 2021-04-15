@@ -11,10 +11,12 @@ import {
 } from "./SidebarElements";
 import { useMenu } from "Context/Menu/MenuContext";
 import { useAuth } from "Context/Auth/AuthContext";
+import { useContact } from "Context/Contact/ContactContext";
 
 function Sidebar() {
   const { hideMenu, isVisible } = useMenu();
   const { user, logout } = useAuth();
+  const { contactFromContact } = useContact();
   const history = useHistory();
 
   const handleClick = (e, route) => {
@@ -24,8 +26,13 @@ function Sidebar() {
         logout();
         history.replace("/login");
       }
+      if (route && route === "/contact") {
+        contactFromContact();
+        history.push(route);
+        return;
+      }
       if (route && route !== "logout") {
-        history.replace(route);
+        history.push(route);
       }
     }
   };
@@ -54,6 +61,9 @@ function Sidebar() {
               </LiStyled>
               <LiStyled onClick={(e) => handleClick(e, "/mis-favoritos")}>
                 Mis favoritos
+              </LiStyled>
+              <LiStyled onClick={(e) => handleClick(e, "/contact")}>
+                Contactanos!
               </LiStyled>
               <LiStyled onClick={(e) => handleClick(e, "logout")}>
                 Logout

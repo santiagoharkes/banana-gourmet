@@ -28,6 +28,7 @@ import { useAxios } from "hooks/useAxios";
 import GoogleLogin from "pages/GoogleLogin";
 import GithubLogin from "pages/GithubLogin";
 import Perfil from "pages/Perfil";
+import Contact from "pages/Contact";
 
 function Routes() {
   const { theme } = useTheme();
@@ -67,6 +68,7 @@ function Routes() {
           <Route exact path="/cart" component={Cart} />
           <Route exact path="/product" component={Product} />
           <Route exact path="/profile" component={Perfil} />
+          <ProtectedRoute exact path="/contact" component={Contact} />
           <ProtectedRoute
             exact
             path="/mis-favoritos"

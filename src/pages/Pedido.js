@@ -28,6 +28,8 @@ import {
   AdicionalesContainerPrecio,
   AdicionalesTitle,
   AdicionalContainerItem,
+  ContactContainer,
+  ContactIcon,
 } from "./PedidoElements";
 import { useTheme } from "Context/Theme/ThemeContext";
 import { usePedido } from "Context/Pedido/PedidoContext";
@@ -35,9 +37,11 @@ import { useAxios } from "hooks/useAxios";
 import { useQuery } from "react-query";
 import { useHistory } from "react-router";
 import Loading from "components/Loading/Loading";
+import { useContact } from "Context/Contact/ContactContext";
 
 function Pedido() {
   const { theme } = useTheme();
+  const { contactFromPedido } = useContact();
   const history = useHistory();
   const { pedido: contextPedido } = usePedido();
   const axios = useAxios();
@@ -84,6 +88,11 @@ function Pedido() {
     }${fechita.getMinutes()}hs`;
   };
 
+  const handleContactClick = () => {
+    contactFromPedido();
+    history.push("/contact");
+  };
+
   return (
     <>
       <PageContainer>
@@ -125,6 +134,12 @@ function Pedido() {
                     ? "Tu pedido está listo para retirar"
                     : "Tu pedido fue entregado, que lo disfrutes!"}
                 </EstadoEnvioStyled>
+
+                <ContactContainer dark={theme} onClick={handleContactClick}>
+                  Necesitás ayuda con tu pedido? Envianos un mensaje!
+                  <ContactIcon />
+                </ContactContainer>
+
                 <TicketContainerStyled dark={theme}>
                   <CodigoTitle dark={theme}>
                     <span>Codigo:</span>
