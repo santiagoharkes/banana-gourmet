@@ -142,8 +142,8 @@ function Contact() {
               ) : (
                 <>
                   Muchas gracias por contactarte con nosotros! Te responderemos
-                  a la brevedad al siguiente mail:{" "}
-                  <span>{user?.user?.email}</span>
+                  a la brevedad al siguiente mail:
+                  <span> {user?.user?.email}</span>
                 </>
               )}
             </InfoContainer>

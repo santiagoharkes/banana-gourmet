@@ -135,7 +135,11 @@ function Pedido() {
                     : "Tu pedido fue entregado, que lo disfrutes!"}
                 </EstadoEnvioStyled>
 
-                <ContactContainer dark={theme} onClick={handleContactClick}>
+                <ContactContainer
+                  mb="20"
+                  dark={theme}
+                  onClick={handleContactClick}
+                >
                   Necesitás ayuda con tu pedido? Envianos un mensaje!
                   <ContactIcon />
                 </ContactContainer>
