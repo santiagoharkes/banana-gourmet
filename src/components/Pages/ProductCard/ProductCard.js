@@ -33,7 +33,7 @@ function ProductCard({ img, data }) {
 
   const handleClick = () => {
     storeProducto(data);
-    history.replace("/product");
+    history.push("/product");
   };
 
   return (

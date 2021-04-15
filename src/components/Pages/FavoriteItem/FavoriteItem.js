@@ -36,11 +36,9 @@ function CartItem({ data }) {
   //   setProducto(filterProduct);
   // }, [data, cartItems]);
 
-  console.log({ data });
-
   const handleClick = () => {
     storeProducto(data);
-    history.replace("/product");
+    history.push("/product");
   };
 
   return (

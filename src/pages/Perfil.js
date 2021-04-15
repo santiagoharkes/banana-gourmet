@@ -88,8 +88,6 @@ function Perfil() {
       });
   };
 
-  console.log({ usuarito });
-
   return (
     <PageContainer>
       <Helmet>

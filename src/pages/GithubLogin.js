@@ -41,8 +41,6 @@ function GithubLogin() {
           expires: inFifteenMinutes,
         });
 
-        console.log(userInfo.data);
-
         login(userInfo.data);
         history.push("/");
       })

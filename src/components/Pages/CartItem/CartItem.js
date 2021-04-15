@@ -36,7 +36,7 @@ function CartItem(data) {
 
   const handleClick = () => {
     storeProducto(data.data);
-    history.replace("/product");
+    history.push("/product");
   };
 
   return (

@@ -61,9 +61,6 @@ function MisFavoritos() {
         {likes?.data?.length > 0 && (
           <FavoritesContainerStyled>
             {likes.data.map((item) => {
-              console.log({ productos });
-              console.log({ item });
-
               const filteredProduct = productos.data.find(
                 (producto) => producto._id === item.producto._id
               );
