@@ -115,7 +115,7 @@ function Cart() {
       return;
     }
 
-    if (!adress) {
+    if (!adress && delivery) {
       setAdressError("Por favor, colocá tu dirección");
       return;
     }

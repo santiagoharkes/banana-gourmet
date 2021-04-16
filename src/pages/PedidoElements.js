@@ -188,8 +188,8 @@ export const DetailTitle = styled.p`
 
 export const ContactContainer = styled.div`
   color: ${(props) => props.theme.textColor};
-  margin-bottom: ${(props) => (props.mb ? `${props.mb}px` : "20px")};
   margin: ${(props) => (props.m ? props.m : 0)};
+  margin-bottom: ${(props) => (props.mb ? `${props.mb}px` : "20px")};
   text-align: center;
   display: grid;
   grid-template-columns: 1fr 20%;
